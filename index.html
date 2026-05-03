@@ -35,7 +35,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .page{display:none;min-height:100vh;flex-direction:column;}
 .page.active{display:flex;}
 
-/* ═══ LOGIN ═══ */
+/* LOGIN */
 #pg-login{background:linear-gradient(160deg,#16A34A 0%,#15803D 40%,#052E16 100%);align-items:center;justify-content:center;padding:20px;min-height:100vh;}
 .login-card{background:#fff;border-radius:24px;padding:32px 28px 28px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.2);animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards;}
 @keyframes popIn{from{opacity:0;transform:scale(.9) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
@@ -62,7 +62,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:800;font-family:var(--ff);cursor:pointer;box-shadow:0 6px 20px rgba(34,197,94,.3);transition:transform .15s,box-shadow .15s;margin-top:10px;}
 .btn-primary:active{transform:scale(.97);}
 
-/* ═══ TOPBAR ═══ */
+/* TOPBAR */
 .topbar{background:var(--card);border-bottom:1.5px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:var(--sh);}
 .tlogo{font-size:20px;font-weight:900;color:var(--g);letter-spacing:-.4px;}
 .tsub{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.3px;}
@@ -70,12 +70,12 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .tbtn:hover{border-color:var(--g);background:var(--gl);}
 .tbtns{display:flex;gap:8px;align-items:center;}
 
-/* ═══ NOTIF BANNER ═══ */
+/* NOTIF */
 .notif-banner{background:linear-gradient(90deg,#22C55E,#16A34A);color:#fff;padding:12px 16px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;animation:slideDown .4s ease;}
 .notif-banner .nb-close{margin-left:auto;cursor:pointer;font-size:16px;opacity:.8;}
 @keyframes slideDown{from{opacity:0;transform:translateY(-100%);}to{opacity:1;transform:translateY(0);}}
 
-/* ═══ POPUP ALERT ═══ */
+/* POPUP */
 .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:20px;animation:fadeIn .2s ease;}
 .popup-overlay.hidden{display:none;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -88,7 +88,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .popup-earn{font-size:22px;font-weight:900;color:var(--g);margin-bottom:14px;}
 .popup-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-/* ═══ TABS ═══ */
+/* TABS */
 .tab-bar{background:var(--card);border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:62px;z-index:150;}
 .tab-bar::-webkit-scrollbar{display:none;}
 .tbtn2{flex:1;min-width:80px;padding:13px 8px;border:none;background:transparent;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;font-family:var(--ff);display:flex;flex-direction:column;align-items:center;gap:3px;}
@@ -99,7 +99,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .tab-cnt.red-cnt{background:var(--rl);color:var(--red);}
 .tbtn2.active .tab-cnt.red-cnt{background:var(--red);color:#fff;}
 
-/* ═══ MAIN CONTENT ═══ */
+/* MAIN */
 .main{flex:1;padding:14px;max-width:520px;width:100%;margin:0 auto;}
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
 .scard{background:var(--card);border-radius:var(--r2);padding:14px 10px;text-align:center;border:1.5px solid var(--border);box-shadow:var(--sh);}
@@ -114,7 +114,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .tc{display:none;}
 .tc.active{display:block;}
 
-/* ═══ ORDER CARD ═══ */
+/* ORDER CARD */
 .ocard{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);padding:14px;margin-bottom:12px;box-shadow:var(--sh);cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;position:relative;overflow:hidden;}
 .ocard:active{transform:scale(.985);}
 .ocard:hover{border-color:var(--g);box-shadow:var(--sh2);}
@@ -140,7 +140,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .sch-act{background:var(--bl);color:var(--blue);}
 .sch-done{background:var(--gl);color:var(--gd);}
 
-/* ═══ BUTTONS ═══ */
+/* BUTTONS */
 .btn{flex:1;padding:12px 6px;border:none;border-radius:10px;font-size:12px;font-weight:800;font-family:var(--ff);cursor:pointer;transition:transform .15s;display:flex;align-items:center;justify-content:center;gap:5px;}
 .btn:active{transform:scale(.95);}
 .btn-g{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;box-shadow:0 4px 14px rgba(34,197,94,.3);}
@@ -154,12 +154,12 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .ag{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
 .ag .btn{flex:none;padding:13px;font-size:12px;}
 
-/* ═══ EMPTY ═══ */
+/* EMPTY */
 .empty{text-align:center;padding:50px 20px;}
 .empty .eico{font-size:48px;opacity:.3;margin-bottom:10px;}
 .empty p{font-size:14px;color:var(--muted);font-weight:700;}
 
-/* ═══ STEP SLIDER (delivery flow) ═══ */
+/* ═══ SWIPE SLIDER — completely rewritten ═══ */
 .step-flow{margin-top:14px;}
 .step-item{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:10px;box-shadow:var(--sh);}
 .step-item.done-step{border-color:var(--g);background:var(--gl);}
@@ -169,14 +169,16 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .step-num{width:24px;height:24px;border-radius:50%;background:var(--g);color:#fff;font-size:11px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
 .step-item.done-step .step-num{background:var(--gd);}
 .step-item.locked .step-num{background:var(--border);color:var(--muted);}
-.slider-wrap{position:relative;height:52px;background:var(--border);border-radius:30px;overflow:hidden;cursor:pointer;user-select:none;}
-.slider-track{position:absolute;inset:0;border-radius:30px;background:linear-gradient(90deg,var(--gl),var(--g2));transition:width .1s;}
-.slider-thumb{position:absolute;left:4px;top:4px;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:20px;transition:left .1s;cursor:grab;z-index:2;}
-.slider-thumb:active{cursor:grabbing;}
-.slider-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--gd);pointer-events:none;padding-left:55px;}
-.slider-done{background:linear-gradient(135deg,var(--g),var(--gd));border-radius:30px;height:52px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;gap:6px;}
+.slider-done{background:linear-gradient(135deg,var(--g),var(--gd));border-radius:30px;height:54px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;gap:6px;}
 
-/* OTP input */
+/* The actual swipe slider */
+.swipe-slider{position:relative;height:54px;background:var(--gl);border-radius:30px;overflow:hidden;user-select:none;touch-action:none;border:2px solid var(--g2);}
+.swipe-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--g2),var(--g));border-radius:30px;pointer-events:none;transition:width .05s linear;}
+.swipe-thumb{position:absolute;left:5px;top:5px;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:grab;z-index:3;transition:none;}
+.swipe-thumb:active{cursor:grabbing;}
+.swipe-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--gd);pointer-events:none;padding-left:60px;z-index:2;}
+
+/* OTP */
 .otp-box{background:var(--card);border:2px solid var(--g);border-radius:var(--r2);padding:16px;margin-bottom:10px;}
 .otp-title{font-size:13px;font-weight:800;margin-bottom:10px;color:var(--g);}
 .otp-inputs{display:flex;gap:8px;margin-bottom:12px;}
@@ -191,7 +193,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .cod-timer .timer-val{font-size:22px;font-weight:900;font-family:var(--mono);letter-spacing:1px;}
 .cod-timer.warning{background:linear-gradient(135deg,var(--red),#DC2626);}
 
-/* Payment card */
+/* Payment */
 .pay-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:var(--sh);}
 .pay-title{font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
 .pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
@@ -208,7 +210,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .pay-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
 .pay-btns .btn{flex:none;}
 
-/* ═══ DETAIL PAGE ═══ */
+/* Detail page */
 .det-hero{background:linear-gradient(135deg,var(--g),var(--gd));padding:20px 16px 24px;color:#fff;}
 .det-hero-ico{width:60px;height:60px;border-radius:18px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px;}
 .det-hero h2{font-size:20px;font-weight:900;}
@@ -230,7 +232,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .rdot.pu{background:var(--g);box-shadow:0 0 0 3px var(--gl);}
 .rdot.dr{background:var(--blue);box-shadow:0 0 0 3px var(--bl);}
 
-/* Bill table */
+/* Bill */
 .btbl{width:100%;border-collapse:collapse;margin-top:8px;}
 .btbl th{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:5px 0;text-align:left;border-bottom:1.5px solid var(--border);}
 .btbl th:last-child{text-align:right;}
@@ -245,7 +247,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .brow.grand{font-size:16px;font-weight:900;}
 .brow.grand .ga{color:var(--gd);}
 
-/* ═══ PROFILE ═══ */
+/* Profile */
 .prof-hero{background:linear-gradient(135deg,#22C55E,#16A34A);padding:32px 16px 24px;text-align:center;color:#fff;}
 .av{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.25);font-size:34px;display:inline-flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.5);margin-bottom:10px;}
 .pname{font-size:20px;font-weight:900;}
@@ -316,8 +318,8 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .iico2{font-size:20px;width:34px;text-align:center;}
 .ilbl2{font-size:13px;font-weight:700;flex:1;}
 
-/* Forgot PW / OTP modal */
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;display:flex;align-items:center;justify-content:center;padding:20px;display:none;}
+/* Forgot PW modal */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;display:none;align-items:center;justify-content:center;padding:20px;}
 .modal-ov.on{display:flex;}
 .modal-c{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:380px;box-shadow:var(--sh3);animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
 .modal-title{font-size:18px;font-weight:900;margin-bottom:6px;}
@@ -325,20 +327,19 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 .modal-step{display:none;}
 .modal-step.on{display:block;}
 
-/* ═══ BOTTOM NAV ═══ */
+/* Bottom nav */
 .bot-nav{background:var(--card);border-top:1.5px solid var(--border);display:flex;padding:6px 0 calc(6px + env(safe-area-inset-bottom));position:sticky;bottom:0;z-index:200;}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px;cursor:pointer;transition:all .15s;border:none;background:transparent;color:var(--muted);font-size:10px;font-weight:700;font-family:var(--ff);}
 .nb .ni{font-size:20px;transition:transform .15s;}
 .nb.active{color:var(--g);}
 .nb.active .ni{transform:scale(1.15);}
 
-/* TOAST */
+/* Toast */
 .toast-c{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:800;pointer-events:none;width:90%;max-width:340px;}
 .toast{background:#111827;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:700;box-shadow:var(--sh3);display:flex;align-items:center;gap:8px;animation:tIn .3s ease,tOut .3s ease 2.3s forwards;}
 @keyframes tIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
 @keyframes tOut{to{opacity:0;transform:translateY(-8px);}}
 [data-dark] .toast{background:#F0F6FC;color:#111827;}
-
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 </style>
@@ -394,9 +395,9 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══════════════ LOGIN PAGE ══════════════ -->
+<!-- LOGIN PAGE -->
 <div id="pg-login" class="page active">
-  <div class="login-card">
+  <div class="login-card" style="margin:auto;">
     <div class="logo-wrap">
       <div class="logo-mark">🛒</div>
       <div class="logo-name">GoCart</div>
@@ -424,7 +425,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══════════════ DASHBOARD ══════════════ -->
+<!-- DASHBOARD -->
 <div id="pg-dash" class="page">
   <div class="topbar">
     <div><div class="tlogo">🛒 GoCart</div><div class="tsub">📍 ANNAVARAM</div></div>
@@ -466,7 +467,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══════════════ ORDER DETAIL ══════════════ -->
+<!-- ORDER DETAIL -->
 <div id="pg-det" class="page">
   <div class="topbar">
     <button class="tbtn" onclick="goPage('pg-dash')">←</button>
@@ -476,7 +477,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   <div id="det-content" style="overflow-y:auto;flex:1;"></div>
 </div>
 
-<!-- ══════════════ PROFILE ══════════════ -->
+<!-- PROFILE -->
 <div id="pg-prof" class="page">
   <div class="topbar">
     <button class="tbtn" onclick="goPage('pg-dash')">←</button>
@@ -507,7 +508,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══ PERFORMANCE ══ -->
+<!-- PERFORMANCE -->
 <div id="pg-perf" class="page">
   <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Performance Stats</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
@@ -538,7 +539,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══ EARNINGS ══ -->
+<!-- EARNINGS -->
 <div id="pg-earn" class="page">
   <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Earnings History</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
@@ -564,7 +565,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══ NOTIFICATIONS ══ -->
+<!-- NOTIFICATIONS -->
 <div id="pg-notif" class="page">
   <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Notification Settings</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
@@ -583,7 +584,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══ CUSTOMER CARE ══ -->
+<!-- CUSTOMER CARE -->
 <div id="pg-cc" class="page">
   <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Customer Care</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
@@ -614,7 +615,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
   </div>
 </div>
 
-<!-- ══ HELP ══ -->
+<!-- HELP -->
 <div id="pg-help" class="page">
   <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Help &amp; Support</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
@@ -624,7 +625,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
       <div class="dlbl">FAQ</div>
       <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">How do I accept an order?<span class="fa2">›</span></div><div class="fa"><p>Tap the green Accept slider on any new order card. Once accepted, the order moves to your Active tab and is locked to you only.</p></div></div>
       <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">What are the 6 delivery steps?<span class="fa2">›</span></div><div class="fa"><p>1) Accept Order → 2) Order Picked Up → 3) Out for Delivery → 4) Money Received → 5) Enter Customer OTP → 6) Mark as Delivered.</p></div></div>
-      <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">What is the COD timer?<span class="fa2">›</span></div><div class="fa"><p>For Cash on Delivery orders, you have 5 hours to complete the delivery. If the timer expires, the order is flagged. The timer is visible on the order tracking page.</p></div></div>
+      <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">What is the COD timer?<span class="fa2">›</span></div><div class="fa"><p>For Cash on Delivery orders, you have 5 hours to complete the delivery. If the timer expires, the order is flagged.</p></div></div>
       <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">How and when do I get paid?<span class="fa2">›</span></div><div class="fa"><p>Earnings are credited to your UPI every Monday for the previous week. COD must be deposited at the GoCart hub within 24 hours.</p></div></div>
       <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">What if the customer doesn't respond?<span class="fa2">›</span></div><div class="fa"><p>Call 3 times, wait 5 minutes at drop location, then contact support at 1800-123-4567. Never leave packages unattended.</p></div></div>
     </div>
@@ -632,7 +633,7 @@ html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--tex
 </div>
 
 <script>
-// ══ DATA ══
+// ── DATA ──
 let orders=[
   {id:'GC-1021',item:'Groceries',icon:'🛒',pickup:'Ram Nagar, Annavaram',drop:'Lakshmi Colony, Uppada',earn:65,time:'18 min',customer:'Priya Lakshmi',phone:'8885551230',desc:'2 bags – vegetables, fruits, milk',payment:'COD',payAmt:65,shopName:'Sri Balaji Supermarket',items:[{name:'Vegetables (mixed)',qty:1,price:120},{name:'Fruits (assorted)',qty:1,price:85},{name:'Milk 1L',qty:2,price:60},{name:'Bread',qty:1,price:35}],deliveryCharge:65,status:'new',urgent:true,step:0,codTimer:18000},
   {id:'GC-1022',item:'Medicine',icon:'💊',pickup:'Annavaram Pharmacy, Main Rd',drop:'Konda Vari St, Kakinada Rd',earn:40,time:'12 min',customer:'Suresh Babu',phone:'9993334455',desc:'Prescription medicines – 1 packet',payment:'Online',payAmt:40,shopName:'Annavaram Medical Stores',items:[{name:'Paracetamol 500mg',qty:1,price:28},{name:'Azithromycin 500mg',qty:1,price:95},{name:'Vitamin C',qty:1,price:45}],deliveryCharge:40,status:'new',urgent:false,step:0,codTimer:0},
@@ -648,26 +649,25 @@ const STEPS=['Accept Order','Order Picked Up','Out for Delivery','Money Received
 const STEP_ICONS=['🤝','🏪','🛵','💵','🔐','✅'];
 
 let todayEarned=0,completedCount=0,darkMode=false,demoIdx=0;
-let currentOTP='1234';
 let codTimers={};
 
-// ══ PASSWORD ══
+// ── PASSWORD ──
 function checkPw(v){
   const r={'r-len':v.length>=8,'r-up':/[A-Z]/.test(v),'r-low':/[a-z]/.test(v),'r-num':/[0-9]/.test(v),'r-sp':/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(v)};
   const lbs={'r-len':'At least 8 characters','r-up':'One uppercase letter (A–Z)','r-low':'One lowercase letter (a–z)','r-num':'One number (0–9)','r-sp':'One special character (!@#$%^&*)'};
-  const pw2={'r2-len':v.length>=8,'r2-up':/[A-Z]/.test(v),'r2-low':/[a-z]/.test(v),'r2-num':/[0-9]/.test(v),'r2-sp':/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(v)};
+  const r2={'r2-len':v.length>=8,'r2-up':/[A-Z]/.test(v),'r2-low':/[a-z]/.test(v),'r2-num':/[0-9]/.test(v),'r2-sp':/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(v)};
   const lbs2={'r2-len':'At least 8 characters','r2-up':'One uppercase (A–Z)','r2-low':'One lowercase (a–z)','r2-num':'One number (0–9)','r2-sp':'One special character'};
   const pwr=document.getElementById('pw-rules');
-  if(pwr) pwr.classList.toggle('on',v.length>0);
+  if(pwr)pwr.classList.toggle('on',v.length>0);
   let all=true;
   for(const[id,ok] of Object.entries(r)){const el=document.getElementById(id);if(el){el.textContent=(ok?'✅ ':'⬜ ')+lbs[id];el.classList.toggle('ok',ok);}if(!ok)all=false;}
-  for(const[id,ok] of Object.entries(pw2)){const el=document.getElementById(id);if(el){el.textContent=(ok?'✅ ':'⬜ ')+lbs2[id];el.classList.toggle('ok',ok);}}
+  for(const[id,ok] of Object.entries(r2)){const el=document.getElementById(id);if(el){el.textContent=(ok?'✅ ':'⬜ ')+lbs2[id];el.classList.toggle('ok',ok);}}
   return all;
 }
 function togglePw(){const i=document.getElementById('pw');if(i)i.type=i.type==='password'?'text':'password';}
 function togglePw2(){const i=document.getElementById('np-input');if(i)i.type=i.type==='password'?'text':'password';}
 
-// ══ LOGIN ══
+// ── LOGIN ──
 function doLogin(){
   const ph=document.getElementById('ph').value.trim();
   const pw=document.getElementById('pw').value;
@@ -684,7 +684,7 @@ function doLogin(){
 }
 function doLogout(){goPage('pg-login');toast('👋 Logged out');}
 
-// ══ FORGOT PW ══
+// ── FORGOT PW ──
 function openForgot(){document.getElementById('forgot-modal').classList.add('on');}
 function closeForgot(){document.getElementById('forgot-modal').classList.remove('on');['ms1','ms2','ms3'].forEach((id,i)=>{document.getElementById(id).classList.toggle('on',i===0);});}
 function sendOtp(){
@@ -696,7 +696,7 @@ function sendOtp(){
 }
 function verifyOtp(){
   const entered=[document.getElementById('ot1'),document.getElementById('ot2'),document.getElementById('ot3'),document.getElementById('ot4')].map(i=>i.value).join('');
-  if(entered===currentOTP){document.getElementById('ms2').classList.remove('on');document.getElementById('ms3').classList.add('on');toast('✅ OTP Verified!');}
+  if(entered==='1234'){document.getElementById('ms2').classList.remove('on');document.getElementById('ms3').classList.add('on');toast('✅ OTP Verified!');}
   else toast('❌ Wrong OTP. Try: 1234');
 }
 function resetPw(){
@@ -706,7 +706,7 @@ function resetPw(){
 }
 function otpNav(el,prevId,nextId){if(el.value&&nextId)document.getElementById(nextId)?.focus();if(!el.value&&prevId)document.getElementById(prevId)?.focus();}
 
-// ══ NAVIGATION ══
+// ── NAVIGATION ──
 function goPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -722,7 +722,7 @@ function switchTab(t,btn){
 }
 function setNav(el){document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
 
-// ══ RENDER ══
+// ── RENDER ──
 function renderAll(){
   const nw=orders.filter(o=>o.status==='new'),ac=orders.filter(o=>o.status==='accepted'),dn=orders.filter(o=>o.status==='done');
   ['cnt-new','cnt-act','cnt-done'].forEach((id,i)=>document.getElementById(id).textContent=[nw,ac,dn][i].length);
@@ -731,7 +731,9 @@ function renderAll(){
   document.getElementById('st-done').textContent=completedCount;
   document.getElementById('p-done').textContent=completedCount;
   document.getElementById('p-earn').textContent='₹'+todayEarned;
-  renderList('list-new',nw,'new');renderList('list-act',ac,'accepted');renderList('list-done',dn,'done');
+  renderList('list-new',nw,'new');
+  renderList('list-act',ac,'accepted');
+  renderList('list-done',dn,'done');
 }
 
 function renderList(cid,list,type){
@@ -745,7 +747,7 @@ function buildCard(o,type){
     ?`<div class="cactions"><button class="btn btn-g" onclick="acceptOrder('${o.id}');event.stopPropagation()">✅ ACCEPT</button><button class="btn btn-r" onclick="rejectOrder('${o.id}');event.stopPropagation()">✗ REJECT</button></div>`
     :type==='accepted'
     ?`<div class="cactions"><button class="btn btn-b" style="flex:1" onclick="openDetail('${o.id}');event.stopPropagation()">👉 Continue Delivery</button></div>`:'';
-  const chip=type==='done'?'<span class="schap sch-done">✅ Done</span>':type==='accepted'?`<span class="schap sch-act">🚴 Step ${o.step}/5</span>`:'';
+  const chip=type==='done'?'<span class="schap sch-done">✅ Done</span>':type==='accepted'?`<span class="schap sch-act">🚴 Step ${o.step}/6</span>`:'';
   const cod=o.payment==='COD'&&type==='accepted'&&o.codTimer>0?`<span class="schap" style="background:var(--ol);color:var(--orange);">⏱️ ${fmtTimer(o.codTimer)}</span>`:'';
   return `<div class="ocard ${o.urgent&&type==='new'?'urgent':''}" onclick="openDetail('${o.id}')">
     <div class="ch"><div class="ci"><div class="cico">${o.icon}</div><div><div class="cname">${o.item}${o.urgent&&type==='new'?'<span class="urg-tag">🔥 URGENT</span>':''}</div><div class="cid">${o.id}</div></div></div><div class="earn-tag">₹${o.earn}</div></div>
@@ -756,7 +758,7 @@ function buildCard(o,type){
   </div>`;
 }
 
-// ══ ORDER ACTIONS ══
+// ── ORDER ACTIONS ──
 function acceptOrder(id){
   const o=orders.find(x=>x.id===id);if(!o)return;
   o.status='accepted';o.step=1;
@@ -769,24 +771,34 @@ function rejectOrder(id){orders=orders.filter(x=>x.id!==id);renderAll();toast('�
 function startCodTimer(o){
   if(codTimers[o.id])clearInterval(codTimers[o.id]);
   codTimers[o.id]=setInterval(()=>{
-    if(o.codTimer>0){o.codTimer--;renderAll();if(document.getElementById('det-content').innerHTML&&o.status==='accepted')refreshDetail(o.id);}
-    else{clearInterval(codTimers[o.id]);toast('⚠️ COD timer expired for '+o.id);o.codTimer=0;}
+    if(o.codTimer>0){
+      o.codTimer--;
+      // Update COD display in list
+      renderAll();
+      // Update COD display in detail page if open
+      const dispEl=document.getElementById('cod-disp-'+o.id);
+      if(dispEl)dispEl.textContent=fmtTimer(o.codTimer);
+    }else{
+      clearInterval(codTimers[o.id]);
+      toast('⚠️ COD timer expired for '+o.id);
+    }
   },1000);
 }
-function fmtTimer(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;}
+function fmtTimer(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sc=s%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sc).padStart(2,'0')}`;}
 
-// ══ ORDER DETAIL ══
+// ── ORDER DETAIL ──
 let currentDetId=null;
 function openDetail(id){currentDetId=id;renderDetail(id);goPage('pg-det');}
-function refreshDetail(id){if(currentDetId===id&&document.getElementById('pg-det').classList.contains('active'))renderDetail(id);}
 
 function renderDetail(id){
   const o=orders.find(x=>x.id===id);if(!o)return;
   let iHtml='',iTotal=0;
-  if(o.items){iHtml='<table class="btbl"><thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead><tbody>';o.items.forEach(it=>{const lt=it.price*it.qty;iTotal+=lt;iHtml+=`<tr><td>${it.name}</td><td>${it.qty}</td><td>${lt?'₹'+lt:'—'}</td></tr>`;});iHtml+='</tbody></table>';}
+  if(o.items){
+    iHtml='<table class="btbl"><thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead><tbody>';
+    o.items.forEach(it=>{const lt=it.price*it.qty;iTotal+=lt;iHtml+=`<tr><td>${it.name}</td><td>${it.qty}</td><td>${lt?'₹'+lt:'—'}</td></tr>`;});
+    iHtml+='</tbody></table>';
+  }
   const grand=iTotal?iTotal+o.deliveryCharge:o.payAmt;
-
-  // Payment section
   const paySection=`<div class="pay-card">
     <div class="pay-title">💳 Payment Method</div>
     <div class="pay-methods">
@@ -796,14 +808,12 @@ function renderDetail(id){
     ${o.payment==='UPI'?`<div class="qr-wrap">${generateQR()}<div class="qr-label">Scan to Pay</div><div class="qr-amount">₹${grand}</div><div class="pay-btns"><button class="btn btn-g" onclick="toast('✅ Payment confirmed!')">💸 Pay Now</button><button class="btn btn-outline" onclick="toast('⏳ Pay Later selected')">⏳ Pay Later</button></div></div>`:''}
     ${o.payment==='COD'?`<div style="text-align:center;padding:12px;background:var(--ol);border-radius:10px;color:var(--orange);font-weight:800;font-size:14px;">💵 Collect ₹${grand} in Cash</div>`:''}
   </div>`;
-
-  // COD timer
   const codSection=o.payment==='COD'&&o.status==='accepted'?`<div class="cod-timer ${o.codTimer<1800?'warning':''}">
     <span class="timer-ico">⏱️</span>
     <div><div class="timer-label">COD Delivery Window</div><div class="timer-val" id="cod-disp-${o.id}">${fmtTimer(o.codTimer)}</div></div>
   </div>`:'';
 
-  // Step flow (only for accepted orders)
+  // Step flow (only for accepted)
   let stepFlow='';
   if(o.status==='accepted'){
     stepFlow='<div class="step-flow">';
@@ -811,13 +821,12 @@ function renderDetail(id){
       const isDone=o.step>i;
       const isActive=o.step===i;
       const isLocked=o.step<i;
-      let cls=isLocked?'locked':isDone?'done-step':'active-step';
+      const cls=isLocked?'locked':isDone?'done-step':'active-step';
       let content='';
       if(isDone){
         content=`<div class="slider-done">✅ ${STEPS[i-1]} Done</div>`;
       } else if(isActive){
         if(i===5){
-          // OTP step
           content=`<div class="otp-box">
             <div class="otp-title">🔐 Enter Customer OTP</div>
             <div class="otp-inputs">
@@ -829,15 +838,20 @@ function renderDetail(id){
             <div class="otp-sub">Ask customer for their OTP (Demo: 5678)</div>
             <button class="btn btn-g btn-full" style="margin-top:10px;" onclick="verifyDeliveryOtp('${o.id}')">✅ Verify OTP</button>
           </div>`;
-          cls='active-step';
         } else if(i===6){
           content=`<button class="btn btn-g btn-full" onclick="completeDelivery('${o.id}')">🏁 Mark as Delivered</button>`;
-          cls='active-step';
         } else {
-          content=buildSlider(i,o.id);
+          content=`<div class="swipe-slider" data-step="${i}" data-oid="${o.id}">
+            <div class="swipe-fill" style="width:0%"></div>
+            <div class="swipe-thumb">→</div>
+            <div class="swipe-label">Slide to confirm</div>
+          </div>`;
         }
       }
-      stepFlow+=`<div class="step-item ${cls}"><div class="step-label"><span class="step-num">${isDone?'✓':i}</span>${STEP_ICONS[i-1]} ${STEPS[i-1]}</div>${content}</div>`;
+      stepFlow+=`<div class="step-item ${cls}">
+        <div class="step-label"><span class="step-num">${isDone?'✓':i}</span>${STEP_ICONS[i-1]} ${STEPS[i-1]}</div>
+        ${content}
+      </div>`;
     }
     stepFlow+='</div>';
   }
@@ -889,67 +903,99 @@ function renderDetail(id){
       ${o.status==='done'?`<div class="info-c" style="text-align:center;padding:20px;"><div style="font-size:40px;">✅</div><div style="font-size:15px;font-weight:800;color:var(--g);margin-top:8px;">Delivery Completed!</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">₹${o.earn} added to earnings</div></div>`:''}
       <div style="height:20px;"></div>
     </div>`;
+
   document.getElementById('det-content').scrollTop=0;
-  initSliders();
+  attachSliders();
 }
 
-function buildSlider(step, orderId){
-  return `<div class="slider-wrap" id="sl-${step}-${orderId}" data-step="${step}" data-oid="${orderId}">
-    <div class="slider-track" id="slt-${step}-${orderId}" style="width:0%;"></div>
-    <div class="slider-thumb" id="slth-${step}-${orderId}">→</div>
-    <div class="slider-text">Slide to ${STEPS[step-1]}</div>
-  </div>`;
-}
+// ══════════════════════════════════════
+// SWIPE SLIDER — rewritten with Pointer Events
+// Works on both touch and mouse, no stale listeners
+// ══════════════════════════════════════
+function attachSliders(){
+  document.querySelectorAll('.swipe-slider').forEach(track=>{
+    const thumb=track.querySelector('.swipe-thumb');
+    const fill=track.querySelector('.swipe-fill');
+    if(!thumb||!fill)return;
 
-function initSliders(){
-  document.querySelectorAll('.slider-wrap').forEach(wrap=>{
-    const step=parseInt(wrap.dataset.step);
-    const oid=wrap.dataset.oid;
-    const thumb=document.getElementById(`slth-${step}-${oid}`);
-    const track=document.getElementById(`slt-${step}-${oid}`);
-    let dragging=false,startX=0,currentX=0;
-    const ww=()=>wrap.offsetWidth;
+    let active=false;
+    let startClientX=0;
+    let startThumbLeft=0;
 
-    function onStart(e){
-      dragging=true;
-      startX=(e.touches?e.touches[0].clientX:e.clientX)-thumb.offsetLeft;
-      thumb.style.cursor='grabbing';
-      e.preventDefault();
+    function getThumbLeft(){
+      return parseFloat(thumb.style.left)||5;
     }
-    function onMove(e){
-      if(!dragging)return;
-      const cx=e.touches?e.touches[0].clientX:e.clientX;
-      let nx=cx-startX;
-      const max=ww()-52;
-      nx=Math.max(0,Math.min(nx,max));
-      thumb.style.left=nx+'px';
-      track.style.width=(nx/(max))*100+'%';
-      currentX=nx;
-      e.preventDefault();
+    function getMaxLeft(){
+      return track.offsetWidth - thumb.offsetWidth - 10;
     }
-    function onEnd(){
-      if(!dragging)return;dragging=false;
-      const max=ww()-52;
-      if(currentX/max>0.75){
-        advanceStep(oid,step);
+    function setPos(px){
+      const max=getMaxLeft();
+      const clamped=Math.max(0,Math.min(px,max));
+      thumb.style.left=clamped+'px';
+      fill.style.width=((clamped/max)*100)+'%';
+      return clamped;
+    }
+    function snap(px){
+      const max=getMaxLeft();
+      const ratio=px/max;
+      if(ratio>=0.8){
+        // SUCCESS — trigger step advance
+        thumb.style.left=max+'px';
+        fill.style.width='100%';
+        setTimeout(()=>{
+          const step=parseInt(track.dataset.step);
+          const oid=track.dataset.oid;
+          advanceStep(oid,step);
+        },200);
       } else {
-        thumb.style.left='4px';track.style.width='0%';
+        // SNAP BACK
+        thumb.style.transition='left .3s ease, width .3s ease';
+        fill.style.transition='width .3s ease';
+        thumb.style.left='5px';
+        fill.style.width='0%';
+        setTimeout(()=>{
+          thumb.style.transition='';
+          fill.style.transition='';
+        },320);
       }
-      thumb.style.cursor='grab';
     }
-    thumb.addEventListener('mousedown',onStart);
-    thumb.addEventListener('touchstart',onStart,{passive:false});
-    document.addEventListener('mousemove',onMove);
-    document.addEventListener('touchmove',onMove,{passive:false});
-    document.addEventListener('mouseup',onEnd);
-    document.addEventListener('touchend',onEnd);
+
+    thumb.addEventListener('pointerdown',e=>{
+      active=true;
+      startClientX=e.clientX;
+      startThumbLeft=getThumbLeft();
+      thumb.setPointerCapture(e.pointerId);
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    thumb.addEventListener('pointermove',e=>{
+      if(!active)return;
+      const delta=e.clientX-startClientX;
+      setPos(startThumbLeft+delta);
+      e.preventDefault();
+    });
+
+    thumb.addEventListener('pointerup',e=>{
+      if(!active)return;
+      active=false;
+      snap(getThumbLeft());
+      e.preventDefault();
+    });
+
+    thumb.addEventListener('pointercancel',e=>{
+      if(!active)return;
+      active=false;
+      snap(0);
+    });
   });
 }
 
 function advanceStep(oid,step){
   const o=orders.find(x=>x.id===oid);if(!o)return;
   o.step=step+1;
-  renderAll();renderDetail(oid);
+  renderAll();
+  renderDetail(oid);
   const labels=['','Accepted','Picked Up','Out for Delivery','Money Received','OTP Verified','Delivered'];
   toast('✅ '+labels[step]+'!');
 }
@@ -970,30 +1016,26 @@ function completeDelivery(oid){
   renderAll();renderDetail(oid);toast('🏁 Delivery completed! +₹'+o.earn);
 }
 
-// Payment
 function setPayment(oid,method){
   const o=orders.find(x=>x.id===oid);if(!o)return;
   o.payment=method;renderDetail(oid);
 }
 
-// QR Code generator (simple visual)
 function generateQR(){
-  const cells=21;const size=140/cells;let svg=`<svg class="qr-code" viewBox="0 0 ${cells} ${cells}" xmlns="http://www.w3.org/2000/svg">`;
-  const pattern=[[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,0],[1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,0],[1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,1,1,0,1,0,0],[1,0,1,1,1,0,1,0,1,1,0,1,1,0,1,1,1,0,1,0,0],[1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],[1,1,0,1,1,0,1,1,1,0,1,0,1,1,0,1,1,0,1,0,0],[0,1,1,0,0,1,0,0,0,1,0,1,0,1,1,0,0,1,0,0,0],[1,0,1,1,0,1,1,0,1,0,1,0,1,0,1,1,0,1,1,0,0],[0,1,0,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,0,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,0],[1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,0],[1,0,0,0,0,0,1,0,0,1,1,0,1,0,0,0,0,0,1,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
-  for(let r=0;r<cells;r++){for(let c=0;c<cells&&c<pattern[r].length;c++){if(pattern[r][c])svg+=`<rect x="${c}" y="${r}" width="1" height="1" fill="#111827"/>`;}}
-  svg+='</svg>';
-  return svg;
+  const cells=21;let svg=`<svg class="qr-code" viewBox="0 0 ${cells} ${cells}" xmlns="http://www.w3.org/2000/svg">`;
+  const p=[[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,0],[1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,0],[1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,1,1,0,1,0,0],[1,0,1,1,1,0,1,0,1,1,0,1,1,0,1,1,1,0,1,0,0],[1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],[1,1,0,1,1,0,1,1,1,0,1,0,1,1,0,1,1,0,1,0,0],[0,1,1,0,0,1,0,0,0,1,0,1,0,1,1,0,0,1,0,0,0],[1,0,1,1,0,1,1,0,1,0,1,0,1,0,1,1,0,1,1,0,0],[0,1,0,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,0,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,0],[1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,0],[1,0,0,0,0,0,1,0,0,1,1,0,1,0,0,0,0,0,1,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
+  for(let r=0;r<cells;r++)for(let c=0;c<cells&&c<p[r].length;c++)if(p[r][c])svg+=`<rect x="${c}" y="${r}" width="1" height="1" fill="#111827"/>`;
+  return svg+'</svg>';
 }
 
-// ══ UTILITIES ══
+// ── UTILITIES ──
 function callCust(p){toast('📞 Calling '+p+'...');window.location.href='tel:'+p;}
-function callCC(p){toast('📞 Calling support...');window.location.href='tel:'+p;}
 function openMaps(a){toast('🗺️ Opening Maps...');window.open('https://www.google.com/maps/search/?api=1&query='+a,'_blank');}
 function toggleDark(){darkMode=!darkMode;document.body.toggleAttribute('data-dark',darkMode);const ic=darkMode?'☀️':'🌙';document.getElementById('dark-btn').textContent=ic;document.getElementById('dark-btn2').textContent=ic;toast(darkMode?'🌙 Dark mode on':'☀️ Light mode on');}
 function toast(msg){const tc=document.getElementById('toast-c');const t=document.createElement('div');t.className='toast';t.textContent=msg;tc.innerHTML='';tc.appendChild(t);setTimeout(()=>t.remove(),2800);}
 function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.setValueAtTime(1000,c.currentTime);o.frequency.exponentialRampToValueAtTime(700,c.currentTime+.08);g.gain.setValueAtTime(.4,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.35);o.start();o.stop(c.currentTime+.35);}catch(e){}}
 
-// ══ POPUP ALERT ══
+// ── POPUP ──
 function closePopup(){document.getElementById('popup-ov').classList.add('hidden');}
 function showPopup(o){
   document.getElementById('popup-ov').classList.remove('hidden');
@@ -1005,11 +1047,11 @@ function showPopup(o){
   setTimeout(closePopup,8000);
 }
 
-// ══ AUTO REFRESH ══
+// ── AUTO REFRESH ──
 function startAuto(){
   setInterval(()=>{
     if(demoIdx<DEMO.length){
-      const no={...DEMO[demoIdx],items:[...DEMO[demoIdx].items]};no.ts=Date.now();
+      const no={...DEMO[demoIdx],items:[...DEMO[demoIdx].items]};
       orders.unshift(no);demoIdx++;beep();
       const z=document.getElementById('notif-zone');
       z.innerHTML=`<div class="notif-banner">🔔 New Order: ${no.item} · +₹${no.earn}<span class="nb-close" onclick="this.parentElement.remove()">✕</span></div>`;
