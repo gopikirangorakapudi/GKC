@@ -3,772 +3,1023 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>QuickDrop Annavaram – Agent Portal</title>
+<title>GoCart – Agent Portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--blue:#1a6bff;--blue-dark:#1253cc;--blue-light:#e8f0ff;--green:#00c853;--green-dark:#00a040;--green-light:#e3faf0;--red:#ff3b30;--red-light:#fff0ef;--orange:#ff8c00;--orange-light:#fff5e0;--purple:#7c3aed;--purple-light:#f0ebff;--white:#ffffff;--bg:#f4f7fc;--card:#ffffff;--text:#12192e;--text-muted:#6b7a99;--border:#dde4f0;--shadow:0 2px 16px rgba(26,107,255,0.09);--shadow-lg:0 6px 32px rgba(26,107,255,0.13);--radius:18px;--radius-sm:12px;--transition:0.22s cubic-bezier(.4,0,.2,1);}
-  [data-dark]{--bg:#0e1220;--card:#161d30;--text:#e8edf7;--text-muted:#8891a8;--border:#222c42;--blue-light:#1a2340;--green-light:#0d2418;--red-light:#2a1218;--orange-light:#251a0a;--purple-light:#1e1430;--shadow:0 2px 16px rgba(0,0,0,0.3);--shadow-lg:0 6px 32px rgba(0,0,0,0.4);}
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background var(--transition),color var(--transition);}
-  .page{display:none;min-height:100vh;}
-  .page.active{display:flex;flex-direction:column;}
+:root{
+  --g:#22C55E;--gd:#16A34A;--gl:#DCFCE7;--g2:#BBF7D0;
+  --blue:#3B82F6;--bl:#EFF6FF;
+  --red:#EF4444;--rl:#FEF2F2;
+  --orange:#F59E0B;--ol:#FFFBEB;
+  --purple:#8B5CF6;--pl:#F5F3FF;
+  --bg:#F9FAFB;--card:#FFFFFF;
+  --text:#111827;--t2:#374151;--muted:#6B7280;
+  --border:#E5E7EB;--border2:#D1D5DB;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+  --sh2:0 4px 20px rgba(0,0,0,.08);
+  --sh3:0 10px 40px rgba(0,0,0,.12);
+  --r:16px;--r2:12px;--r3:8px;
+  --ff:'Plus Jakarta Sans',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --tr:.2s cubic-bezier(.4,0,.2,1);
+}
+[data-dark]{
+  --bg:#0D1117;--card:#161B22;--text:#F0F6FC;--t2:#C9D1D9;--muted:#8B949E;
+  --border:#21262D;--border2:#30363D;--gl:#052E16;--g2:#14532D;--bl:#0F172A;
+  --rl:#2D1515;--ol:#1C1507;--pl:#1A1333;
+  --sh:0 1px 3px rgba(0,0,0,.4);--sh2:0 4px 20px rgba(0,0,0,.3);--sh3:0 10px 40px rgba(0,0,0,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;font-family:var(--ff);background:var(--bg);color:var(--text);transition:background .2s,color .2s;}
+.page{display:none;min-height:100vh;flex-direction:column;}
+.page.active{display:flex;}
 
-  /* LOGIN */
-  #login-page{background:linear-gradient(145deg,#1a6bff 0%,#0a3fa8 60%,#041f60 100%);align-items:center;justify-content:center;padding:24px;}
-  .login-box{background:#fff;border-radius:28px;padding:36px 28px 32px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,0.25);animation:slideUp .5s ease forwards;}
-  @keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-  .brand{text-align:center;margin-bottom:28px;}
-  .brand-icon{width:64px;height:64px;background:linear-gradient(135deg,#1a6bff,#00c853);border-radius:18px;display:inline-flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:12px;box-shadow:0 6px 20px rgba(26,107,255,0.3);}
-  .brand h1{font-size:22px;font-weight:900;color:#12192e;}
-  .brand p{font-size:13px;color:#6b7a99;margin-top:4px;font-weight:600;letter-spacing:.5px;}
-  .form-group{margin-bottom:16px;}
-  .form-group label{display:block;font-size:12px;font-weight:700;color:#6b7a99;margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px;}
-  .input-wrap{position:relative;}
-  .input-wrap .icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:18px;pointer-events:none;}
-  .input-wrap .eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;padding:4px;}
-  .form-group input{width:100%;padding:14px 40px 14px 44px;border:2px solid #dde4f0;border-radius:12px;font-size:16px;font-family:'Nunito',sans-serif;font-weight:600;color:#12192e;background:#f8faff;transition:border .2s;-webkit-appearance:none;}
-  .form-group input:focus{outline:none;border-color:#1a6bff;background:#fff;}
-  .form-group input.error{border-color:#ff3b30;}
-  .field-error{font-size:11px;color:#ff3b30;font-weight:700;margin-top:5px;display:none;}
-  .field-error.show{display:block;}
-  .pw-rules{background:#f0f4ff;border-radius:10px;padding:10px 12px;margin-top:8px;display:none;}
-  .pw-rules.show{display:block;}
-  .pw-rule{font-size:11px;font-weight:700;padding:2px 0;color:#6b7a99;}
-  .pw-rule.ok{color:#00a040;}
-  .btn-login{width:100%;padding:16px;background:linear-gradient(135deg,#1a6bff,#1253cc);color:white;border:none;border-radius:12px;font-size:17px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(26,107,255,0.35);transition:transform .2s;margin-top:8px;}
-  .btn-login:active{transform:scale(.97);}
+/* ═══ LOGIN ═══ */
+#pg-login{background:linear-gradient(160deg,#16A34A 0%,#15803D 40%,#052E16 100%);align-items:center;justify-content:center;padding:20px;min-height:100vh;}
+.login-card{background:#fff;border-radius:24px;padding:32px 28px 28px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.2);animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards;}
+@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.logo-wrap{text-align:center;margin-bottom:28px;}
+.logo-mark{width:72px;height:72px;background:linear-gradient(135deg,#22C55E,#16A34A);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:10px;box-shadow:0 8px 24px rgba(34,197,94,.35);}
+.logo-name{font-size:26px;font-weight:900;color:#111827;letter-spacing:-.5px;}
+.logo-sub{font-size:12px;color:#6B7280;font-weight:600;letter-spacing:.5px;margin-top:2px;}
+.fld{margin-bottom:14px;}
+.fld label{display:block;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.inp-w{position:relative;}
+.inp-w .ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:17px;pointer-events:none;}
+.inp-w input{width:100%;padding:13px 40px 13px 42px;border:2px solid #E5E7EB;border-radius:10px;font-size:15px;font-family:var(--ff);font-weight:600;color:#111827;background:#F9FAFB;transition:border .2s,background .2s;-webkit-appearance:none;}
+.inp-w input:focus{outline:none;border-color:#22C55E;background:#fff;box-shadow:0 0 0 3px rgba(34,197,94,.12);}
+.inp-w input.err{border-color:#EF4444;}
+.inp-w .eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;padding:4px;}
+.ferr{font-size:11px;color:#EF4444;font-weight:700;margin-top:4px;display:none;}
+.ferr.on{display:block;}
+.pw-rules{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 12px;margin-top:8px;display:none;}
+.pw-rules.on{display:block;}
+.pwr{font-size:11px;font-weight:600;padding:2px 0;color:#6B7280;}
+.pwr.ok{color:#16A34A;}
+.forgot-link{text-align:right;margin-top:4px;}
+.forgot-link a{font-size:12px;font-weight:700;color:#22C55E;text-decoration:none;cursor:pointer;}
+.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:800;font-family:var(--ff);cursor:pointer;box-shadow:0 6px 20px rgba(34,197,94,.3);transition:transform .15s,box-shadow .15s;margin-top:10px;}
+.btn-primary:active{transform:scale(.97);}
 
-  /* TOPBAR */
-  .topbar{background:var(--card);border-bottom:1.5px solid var(--border);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:var(--shadow);}
-  .topbar-logo{font-size:20px;font-weight:900;color:var(--blue);}
-  .topbar-sub{font-size:11px;color:var(--text-muted);font-weight:700;}
-  .topbar-actions{display:flex;gap:8px;align-items:center;}
-  .icon-btn{width:40px;height:40px;border-radius:12px;border:2px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .2s;color:var(--text);}
-  .icon-btn:hover{border-color:var(--blue);}
+/* ═══ TOPBAR ═══ */
+.topbar{background:var(--card);border-bottom:1.5px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:var(--sh);}
+.tlogo{font-size:20px;font-weight:900;color:var(--g);letter-spacing:-.4px;}
+.tsub{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.3px;}
+.tbtn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;transition:all .15s;color:var(--text);}
+.tbtn:hover{border-color:var(--g);background:var(--gl);}
+.tbtns{display:flex;gap:8px;align-items:center;}
 
-  /* TABS */
-  .tab-bar{background:var(--card);border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;padding:0 12px;scrollbar-width:none;position:sticky;top:69px;z-index:99;}
-  .tab-bar::-webkit-scrollbar{display:none;}
-  .tab-btn{padding:14px 16px;border:none;background:transparent;font-size:13px;font-weight:700;color:var(--text-muted);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:6px;}
-  .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
-  .tab-count{font-size:11px;font-weight:800;padding:2px 7px;border-radius:20px;background:var(--blue-light);color:var(--blue);}
-  .tab-btn.active .tab-count{background:var(--blue);color:white;}
-  .tab-count.red{background:var(--red-light);color:var(--red);}
-  .tab-btn.active .tab-count.red{background:var(--red);color:white;}
+/* ═══ NOTIF BANNER ═══ */
+.notif-banner{background:linear-gradient(90deg,#22C55E,#16A34A);color:#fff;padding:12px 16px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;animation:slideDown .4s ease;}
+.notif-banner .nb-close{margin-left:auto;cursor:pointer;font-size:16px;opacity:.8;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-100%);}to{opacity:1;transform:translateY(0);}}
 
-  /* MAIN */
-  .main-content{flex:1;padding:16px;max-width:520px;width:100%;margin:0 auto;}
-  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
-  .stat-card{background:var(--card);border-radius:12px;padding:14px 10px;text-align:center;border:1.5px solid var(--border);box-shadow:var(--shadow);}
-  .stat-val{font-size:22px;font-weight:900;color:var(--blue);}
-  .stat-val.green{color:var(--green);}
-  .stat-val.orange{color:var(--orange);}
-  .stat-label{font-size:11px;color:var(--text-muted);font-weight:700;margin-top:2px;}
-  .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-  .section-title{font-size:16px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:7px;}
-  .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite;}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,200,83,.5);}50%{box-shadow:0 0 0 6px rgba(0,200,83,0);}}
+/* ═══ POPUP ALERT ═══ */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:20px;animation:fadeIn .2s ease;}
+.popup-overlay.hidden{display:none;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.popup-card{background:var(--card);border-radius:20px;padding:20px;width:100%;max-width:400px;box-shadow:var(--sh3);animation:popUp .35s cubic-bezier(.34,1.56,.64,1);border-top:4px solid var(--g);margin-top:80px;}
+@keyframes popUp{from{opacity:0;transform:scale(.85) translateY(-20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.popup-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.popup-badge{width:48px;height:48px;border-radius:14px;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.popup-title{font-size:16px;font-weight:800;}
+.popup-sub{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px;}
+.popup-earn{font-size:22px;font-weight:900;color:var(--g);margin-bottom:14px;}
+.popup-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-  /* ORDER CARD */
-  .order-card{background:var(--card);border-radius:var(--radius);border:1.5px solid var(--border);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden;}
-  .order-card:active{transform:scale(.98);}
-  .order-card:hover{border-color:var(--blue);box-shadow:var(--shadow-lg);}
-  .order-card.urgent::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),#ffcc00);}
-  .order-card.urgent{border-color:var(--orange);}
-  .card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
-  .item-info{display:flex;align-items:center;gap:10px;}
-  .item-icon{width:44px;height:44px;border-radius:14px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
-  .item-name{font-size:16px;font-weight:800;color:var(--text);}
-  .item-id{font-size:11px;color:var(--text-muted);font-weight:600;font-family:'JetBrains Mono',monospace;}
-  .earn-badge{background:var(--green-light);color:var(--green-dark);font-size:16px;font-weight:900;padding:6px 12px;border-radius:10px;white-space:nowrap;flex-shrink:0;}
-  .urgent-badge{background:var(--orange-light);color:var(--orange);font-size:11px;font-weight:800;padding:4px 9px;border-radius:8px;margin-left:6px;animation:ub 1s ease-in-out infinite alternate;}
-  @keyframes ub{from{opacity:.7;}to{opacity:1;}}
-  .route-row{display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:13px;font-weight:600;}
-  .route-row .loc-icon{font-size:15px;flex-shrink:0;}
-  .route-row .loc-text{color:var(--text);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .card-meta{display:flex;align-items:center;gap:12px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);font-weight:600;}
-  .meta-item{display:flex;align-items:center;gap:4px;}
-  .card-actions{display:flex;gap:10px;margin-top:14px;}
-  .status-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;}
-  .status-done{background:var(--green-light);color:var(--green-dark);}
-  .status-accepted{background:var(--blue-light);color:var(--blue);}
+/* ═══ TABS ═══ */
+.tab-bar{background:var(--card);border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:62px;z-index:150;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tbtn2{flex:1;min-width:80px;padding:13px 8px;border:none;background:transparent;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;font-family:var(--ff);display:flex;flex-direction:column;align-items:center;gap:3px;}
+.tbtn2.active{color:var(--g);border-bottom-color:var(--g);}
+.tab-ico{font-size:18px;}
+.tab-cnt{font-size:10px;font-weight:800;padding:1px 6px;border-radius:20px;background:var(--border);color:var(--muted);}
+.tbtn2.active .tab-cnt{background:var(--g);color:#fff;}
+.tab-cnt.red-cnt{background:var(--rl);color:var(--red);}
+.tbtn2.active .tab-cnt.red-cnt{background:var(--red);color:#fff;}
 
-  /* BUTTONS */
-  .btn{flex:1;padding:13px 6px;border:none;border-radius:12px;font-size:13px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:transform .2s;display:flex;align-items:center;justify-content:center;gap:5px;}
-  .btn:active{transform:scale(.96);}
-  .btn-accept{background:linear-gradient(135deg,#00c853,#00a040);color:white;box-shadow:0 4px 14px rgba(0,200,83,.3);}
-  .btn-reject{background:var(--red-light);color:var(--red);border:1.5px solid #ffd0ce;}
-  .btn-deliver{background:linear-gradient(135deg,#1a6bff,#1253cc);color:white;box-shadow:0 4px 14px rgba(26,107,255,.3);}
-  .btn-full{flex:none;width:100%;}
-  .btn-call{background:var(--green-light);color:var(--green-dark);border:1.5px solid #b0f0ce;}
-  .btn-map{background:var(--blue-light);color:var(--blue);border:1.5px solid #c0d4ff;}
+/* ═══ MAIN CONTENT ═══ */
+.main{flex:1;padding:14px;max-width:520px;width:100%;margin:0 auto;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.scard{background:var(--card);border-radius:var(--r2);padding:14px 10px;text-align:center;border:1.5px solid var(--border);box-shadow:var(--sh);}
+.sv{font-size:22px;font-weight:900;color:var(--g);}
+.sv.ora{color:var(--orange);}
+.sv.blu{color:var(--blue);}
+.slbl{font-size:10px;color:var(--muted);font-weight:700;margin-top:2px;}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.sec-title{font-size:15px;font-weight:800;display:flex;align-items:center;gap:7px;}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--g);animation:pulse 1.4s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5);}50%{box-shadow:0 0 0 6px rgba(34,197,94,0);}}
+.tc{display:none;}
+.tc.active{display:block;}
 
-  /* EMPTY */
-  .empty-state{text-align:center;padding:60px 20px;}
-  .empty-icon{font-size:52px;margin-bottom:12px;opacity:.4;}
-  .empty-text{font-size:15px;color:var(--text-muted);font-weight:700;}
+/* ═══ ORDER CARD ═══ */
+.ocard{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);padding:14px;margin-bottom:12px;box-shadow:var(--sh);cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;position:relative;overflow:hidden;}
+.ocard:active{transform:scale(.985);}
+.ocard:hover{border-color:var(--g);box-shadow:var(--sh2);}
+.ocard.urgent{border-color:var(--orange);}
+.ocard.urgent::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),#FCD34D);}
+.ocard.new-flash{animation:newFlash .6s ease;}
+@keyframes newFlash{0%,100%{background:var(--card);}50%{background:var(--gl);}}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.ci{display:flex;align-items:center;gap:10px;}
+.cico{width:42px;height:42px;border-radius:12px;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.cname{font-size:15px;font-weight:800;}
+.cid{font-size:10px;color:var(--muted);font-weight:600;font-family:var(--mono);margin-top:1px;}
+.earn-tag{background:var(--gl);color:var(--gd);font-size:15px;font-weight:900;padding:5px 11px;border-radius:8px;white-space:nowrap;flex-shrink:0;}
+.urg-tag{background:var(--ol);color:var(--orange);font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;margin-left:5px;animation:ub 1s ease-in-out infinite alternate;}
+@keyframes ub{from{opacity:.6;}to{opacity:1;}}
+.rrow{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:12px;font-weight:600;}
+.rrow .rico{font-size:13px;flex-shrink:0;}
+.rrow .rtxt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--t2);}
+.cmeta{display:flex;align-items:center;gap:10px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);font-weight:600;flex-wrap:wrap;}
+.cactions{display:flex;gap:8px;margin-top:12px;}
+.schap{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:800;}
+.sch-new{background:var(--ol);color:var(--orange);}
+.sch-act{background:var(--bl);color:var(--blue);}
+.sch-done{background:var(--gl);color:var(--gd);}
 
-  /* DETAIL */
-  .detail-hero{background:linear-gradient(135deg,var(--blue),var(--blue-dark));padding:24px 18px 28px;color:white;}
-  .detail-hero-icon{width:64px;height:64px;border-radius:20px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:12px;}
-  .detail-hero h2{font-size:22px;font-weight:900;}
-  .detail-id{font-size:12px;opacity:.7;font-family:'JetBrains Mono',monospace;margin-top:4px;}
-  .detail-earn{font-size:28px;font-weight:900;margin-top:12px;}
-  .detail-earn span{font-size:15px;opacity:.7;}
-  .detail-body{padding:18px;max-width:520px;margin:0 auto;}
-  .info-card{background:var(--card);border-radius:var(--radius);border:1.5px solid var(--border);padding:18px;margin-bottom:14px;box-shadow:var(--shadow);}
-  .info-card-title{font-size:12px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
-  .info-row{display:flex;gap:12px;margin-bottom:12px;}
-  .info-row:last-child{margin-bottom:0;}
-  .info-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
-  .info-label{font-size:11px;color:var(--text-muted);font-weight:700;}
-  .info-value{font-size:15px;font-weight:700;color:var(--text);margin-top:1px;}
-  .route-visual{display:flex;flex-direction:column;position:relative;padding-left:14px;}
-  .route-visual::before{content:'';position:absolute;left:5px;top:22px;bottom:22px;width:2px;background:linear-gradient(to bottom,#1a6bff,#00c853);}
-  .route-point{display:flex;align-items:flex-start;gap:14px;padding:10px 0;}
-  .route-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:4px;position:relative;z-index:1;}
-  .route-dot.pickup{background:var(--blue);box-shadow:0 0 0 3px var(--blue-light);}
-  .route-dot.drop{background:var(--green);box-shadow:0 0 0 3px var(--green-light);}
-  .action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
-  .action-grid .btn{flex:none;padding:14px;font-size:13px;}
-  .deliver-wrap{padding:0 0 24px;}
+/* ═══ BUTTONS ═══ */
+.btn{flex:1;padding:12px 6px;border:none;border-radius:10px;font-size:12px;font-weight:800;font-family:var(--ff);cursor:pointer;transition:transform .15s;display:flex;align-items:center;justify-content:center;gap:5px;}
+.btn:active{transform:scale(.95);}
+.btn-g{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;box-shadow:0 4px 14px rgba(34,197,94,.3);}
+.btn-r{background:var(--rl);color:var(--red);border:1.5px solid #FECACA;}
+.btn-b{background:linear-gradient(135deg,#3B82F6,#2563EB);color:#fff;box-shadow:0 4px 14px rgba(59,130,246,.3);}
+.btn-call{background:var(--gl);color:var(--gd);border:1.5px solid var(--g2);}
+.btn-map{background:var(--bl);color:var(--blue);border:1.5px solid #BFDBFE;}
+.btn-full{flex:none;width:100%;}
+.btn-outline{background:transparent;border:2px solid var(--border);color:var(--t2);}
+.btn-o{background:var(--ol);color:var(--orange);border:1.5px solid #FDE68A;}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.ag .btn{flex:none;padding:13px;font-size:12px;}
 
-  /* BILL TABLE */
-  .bill-table{width:100%;border-collapse:collapse;margin-top:8px;}
-  .bill-table th{font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;padding:6px 0;text-align:left;border-bottom:1.5px solid var(--border);}
-  .bill-table th:last-child{text-align:right;}
-  .bill-table td{font-size:13px;font-weight:600;color:var(--text);padding:8px 0;border-bottom:1px solid var(--border);}
-  .bill-table td:nth-child(2){text-align:center;color:var(--text-muted);}
-  .bill-table td:last-child{text-align:right;font-weight:700;}
-  .bill-table tr:last-child td{border-bottom:none;}
-  .bill-divider{height:1.5px;background:var(--border);margin:10px 0;}
-  .bill-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;}
-  .bill-row.sub{font-size:13px;color:var(--text-muted);font-weight:700;}
-  .bill-row.deli{font-size:13px;color:var(--blue);font-weight:700;}
-  .bill-row.grand{font-size:17px;font-weight:900;}
-  .bill-row.grand .ga{color:var(--green-dark);}
+/* ═══ EMPTY ═══ */
+.empty{text-align:center;padding:50px 20px;}
+.empty .eico{font-size:48px;opacity:.3;margin-bottom:10px;}
+.empty p{font-size:14px;color:var(--muted);font-weight:700;}
 
-  /* PROFILE */
-  .profile-hero{background:linear-gradient(135deg,#1a6bff,#00c853);padding:36px 18px 28px;text-align:center;color:white;}
-  .avatar{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.25);font-size:36px;display:inline-flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.5);margin-bottom:12px;}
-  .profile-name{font-size:22px;font-weight:900;}
-  .profile-phone{font-size:14px;opacity:.8;font-weight:600;}
-  .profile-body{padding:18px;max-width:520px;margin:0 auto;}
-  .profile-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
-  .profile-stat{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:14px 8px;text-align:center;box-shadow:var(--shadow);}
-  .profile-stat .val{font-size:20px;font-weight:900;color:var(--blue);}
-  .profile-stat .lbl{font-size:10px;font-weight:700;color:var(--text-muted);margin-top:2px;}
-  .menu-list{background:var(--card);border-radius:var(--radius);border:1.5px solid var(--border);overflow:hidden;margin-bottom:18px;}
-  .menu-item{display:flex;align-items:center;gap:14px;padding:16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;}
-  .menu-item:last-child{border-bottom:none;}
-  .menu-item:hover{background:var(--bg);}
-  .menu-icon{font-size:22px;width:36px;text-align:center;}
-  .menu-label{font-size:15px;font-weight:700;flex:1;}
-  .menu-arrow{color:var(--text-muted);font-size:18px;}
+/* ═══ STEP SLIDER (delivery flow) ═══ */
+.step-flow{margin-top:14px;}
+.step-item{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:10px;box-shadow:var(--sh);}
+.step-item.done-step{border-color:var(--g);background:var(--gl);}
+.step-item.active-step{border-color:var(--g);box-shadow:0 0 0 3px rgba(34,197,94,.15);}
+.step-item.locked{opacity:.4;pointer-events:none;}
+.step-label{font-size:13px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.step-num{width:24px;height:24px;border-radius:50%;background:var(--g);color:#fff;font-size:11px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-item.done-step .step-num{background:var(--gd);}
+.step-item.locked .step-num{background:var(--border);color:var(--muted);}
+.slider-wrap{position:relative;height:52px;background:var(--border);border-radius:30px;overflow:hidden;cursor:pointer;user-select:none;}
+.slider-track{position:absolute;inset:0;border-radius:30px;background:linear-gradient(90deg,var(--gl),var(--g2));transition:width .1s;}
+.slider-thumb{position:absolute;left:4px;top:4px;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:20px;transition:left .1s;cursor:grab;z-index:2;}
+.slider-thumb:active{cursor:grabbing;}
+.slider-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--gd);pointer-events:none;padding-left:55px;}
+.slider-done{background:linear-gradient(135deg,var(--g),var(--gd));border-radius:30px;height:52px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;gap:6px;}
 
-  /* SUB PAGES */
-  .sub-hero{padding:24px 18px 20px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:white;}
-  .sub-hero h2{font-size:20px;font-weight:900;}
-  .sub-hero p{font-size:13px;opacity:.75;margin-top:4px;font-weight:600;}
-  .sub-body{padding:18px;max-width:520px;margin:0 auto;}
-  .divider-label{font-size:12px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px;}
+/* OTP input */
+.otp-box{background:var(--card);border:2px solid var(--g);border-radius:var(--r2);padding:16px;margin-bottom:10px;}
+.otp-title{font-size:13px;font-weight:800;margin-bottom:10px;color:var(--g);}
+.otp-inputs{display:flex;gap:8px;margin-bottom:12px;}
+.otp-inputs input{flex:1;height:52px;border:2px solid var(--border);border-radius:10px;text-align:center;font-size:20px;font-weight:900;font-family:var(--mono);color:var(--text);background:var(--bg);transition:border .2s;}
+.otp-inputs input:focus{outline:none;border-color:var(--g);}
+.otp-sub{font-size:11px;color:var(--muted);font-weight:600;}
 
-  /* PERFORMANCE */
-  .perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
-  .perf-card{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow);}
-  .perf-card .val{font-size:26px;font-weight:900;}
-  .perf-card .lbl{font-size:12px;color:var(--text-muted);font-weight:700;margin-top:3px;}
-  .perf-card .trend{font-size:11px;font-weight:800;margin-top:6px;}
-  .trend-up{color:var(--green-dark);}
-  .trend-dn{color:var(--red);}
-  .bar-wrap{margin-bottom:12px;}
-  .bar-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;}
-  .bar-track{height:8px;background:var(--border);border-radius:20px;overflow:hidden;}
-  .bar-fill{height:100%;border-radius:20px;}
+/* COD timer */
+.cod-timer{background:linear-gradient(135deg,var(--orange),#D97706);border-radius:var(--r2);padding:14px 16px;color:#fff;display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.cod-timer .timer-ico{font-size:28px;}
+.cod-timer .timer-label{font-size:12px;font-weight:700;opacity:.85;}
+.cod-timer .timer-val{font-size:22px;font-weight:900;font-family:var(--mono);letter-spacing:1px;}
+.cod-timer.warning{background:linear-gradient(135deg,var(--red),#DC2626);}
 
-  /* EARNINGS */
-  .earn-total-bar{background:linear-gradient(135deg,var(--green),var(--green-dark));border-radius:12px;padding:16px;margin-bottom:14px;color:white;display:flex;justify-content:space-between;align-items:center;}
-  .earn-total-bar .lbl{font-size:13px;font-weight:700;opacity:.85;}
-  .earn-total-bar .val{font-size:24px;font-weight:900;}
-  .earn-month{font-size:13px;font-weight:800;color:var(--text-muted);margin:14px 0 8px;text-transform:uppercase;letter-spacing:.4px;}
-  .earn-row{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow);}
-  .earn-row .date{font-size:13px;font-weight:700;}
-  .earn-row .dc{font-size:12px;color:var(--text-muted);font-weight:600;margin-top:2px;}
-  .earn-row .amt{font-size:18px;font-weight:900;color:var(--green-dark);}
+/* Payment card */
+.pay-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:var(--sh);}
+.pay-title{font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.pay-opt{border:2px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .15s;}
+.pay-opt.selected{border-color:var(--g);background:var(--gl);}
+.pay-opt .pico{font-size:26px;margin-bottom:6px;}
+.pay-opt .plbl{font-size:12px;font-weight:800;color:var(--t2);}
+.pay-opt.selected .plbl{color:var(--gd);}
+.qr-wrap{text-align:center;padding:16px;background:var(--bg);border-radius:12px;border:1.5px dashed var(--border2);}
+.qr-code{width:140px;height:140px;margin:0 auto 8px;}
+.qr-code svg{width:100%;height:100%;}
+.qr-label{font-size:12px;color:var(--muted);font-weight:600;}
+.qr-amount{font-size:18px;font-weight:900;color:var(--text);margin-top:4px;}
+.pay-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+.pay-btns .btn{flex:none;}
 
-  /* NOTIFICATIONS */
-  .notif-row{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);}
-  .notif-title{font-size:15px;font-weight:700;}
-  .notif-sub{font-size:12px;color:var(--text-muted);font-weight:600;margin-top:2px;}
-  .toggle-wrap{position:relative;width:50px;height:28px;flex-shrink:0;}
-  .toggle-wrap input{opacity:0;width:0;height:0;}
-  .toggle-track{position:absolute;inset:0;background:#cdd4e0;border-radius:20px;cursor:pointer;transition:.3s;}
-  .toggle-track::before{content:'';position:absolute;width:22px;height:22px;left:3px;top:3px;background:white;border-radius:50%;transition:.3s;box-shadow:0 2px 6px rgba(0,0,0,.2);}
-  .toggle-wrap input:checked+.toggle-track{background:var(--green);}
-  .toggle-wrap input:checked+.toggle-track::before{transform:translateX(22px);}
+/* ═══ DETAIL PAGE ═══ */
+.det-hero{background:linear-gradient(135deg,var(--g),var(--gd));padding:20px 16px 24px;color:#fff;}
+.det-hero-ico{width:60px;height:60px;border-radius:18px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px;}
+.det-hero h2{font-size:20px;font-weight:900;}
+.det-id{font-size:11px;opacity:.7;font-family:var(--mono);margin-top:3px;}
+.det-earn{font-size:26px;font-weight:900;margin-top:10px;}
+.det-earn span{font-size:14px;opacity:.7;}
+.det-body{padding:16px;max-width:520px;margin:0 auto;}
+.info-c{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:var(--sh);}
+.ic-title{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.ir{display:flex;gap:10px;margin-bottom:10px;}
+.ir:last-child{margin-bottom:0;}
+.iico{font-size:18px;flex-shrink:0;margin-top:2px;}
+.ilbl{font-size:10px;color:var(--muted);font-weight:700;}
+.ival{font-size:14px;font-weight:700;color:var(--text);margin-top:1px;}
+.route-vis{display:flex;flex-direction:column;position:relative;padding-left:14px;}
+.route-vis::before{content:'';position:absolute;left:5px;top:20px;bottom:20px;width:2px;background:linear-gradient(to bottom,var(--g),var(--blue));}
+.rpt{display:flex;align-items:flex-start;gap:12px;padding:8px 0;}
+.rdot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;position:relative;z-index:1;}
+.rdot.pu{background:var(--g);box-shadow:0 0 0 3px var(--gl);}
+.rdot.dr{background:var(--blue);box-shadow:0 0 0 3px var(--bl);}
 
-  /* HELP */
-  .faq-item{background:var(--card);border:1.5px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow);}
-  .faq-q{padding:16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
-  .faq-q .arr{transition:transform .2s;display:inline-block;}
-  .faq-item.open .faq-q .arr{transform:rotate(90deg);}
-  .faq-a{padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;}
-  .faq-item.open .faq-a{padding:0 16px 16px;max-height:300px;}
-  .faq-a p{font-size:13px;color:var(--text-muted);font-weight:600;line-height:1.6;}
-  .support-card{background:linear-gradient(135deg,var(--blue),var(--blue-dark));border-radius:var(--radius);padding:18px;color:white;margin-bottom:14px;display:flex;align-items:center;gap:14px;cursor:pointer;}
-  .support-card .si{font-size:30px;}
-  .support-card .st{font-size:16px;font-weight:800;}
-  .support-card .ss{font-size:12px;opacity:.75;font-weight:600;margin-top:2px;}
+/* Bill table */
+.btbl{width:100%;border-collapse:collapse;margin-top:8px;}
+.btbl th{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:5px 0;text-align:left;border-bottom:1.5px solid var(--border);}
+.btbl th:last-child{text-align:right;}
+.btbl td{font-size:13px;font-weight:600;color:var(--t2);padding:7px 0;border-bottom:1px solid var(--border);}
+.btbl td:nth-child(2){text-align:center;color:var(--muted);}
+.btbl td:last-child{text-align:right;font-weight:700;color:var(--text);}
+.btbl tr:last-child td{border-bottom:none;}
+.bdiv{height:1.5px;background:var(--border);margin:8px 0;}
+.brow{display:flex;justify-content:space-between;padding:3px 0;font-size:13px;}
+.brow.sub{color:var(--muted);font-weight:600;}
+.brow.del{color:var(--blue);font-weight:700;}
+.brow.grand{font-size:16px;font-weight:900;}
+.brow.grand .ga{color:var(--gd);}
 
-  /* CUSTOMER CARE */
-  .cc-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;box-shadow:var(--shadow);}
-  .cc-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green-dark);font-size:12px;font-weight:800;padding:5px 12px;border-radius:20px;margin-bottom:12px;}
-  .cc-number{font-size:28px;font-weight:900;color:var(--text);letter-spacing:1px;}
-  .cc-sub{font-size:13px;color:var(--text-muted);font-weight:600;margin-top:4px;}
-  .cc-hours{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--orange);margin-top:8px;}
-  .cc-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
-  .cc-action-grid .btn{flex:none;padding:14px 10px;font-size:13px;}
-  .issue-row{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border:1.5px solid var(--border);border-radius:12px;margin-bottom:10px;cursor:pointer;box-shadow:var(--shadow);transition:border-color .2s;}
-  .issue-row:hover{border-color:var(--blue);}
-  .issue-icon{font-size:22px;width:36px;text-align:center;}
-  .issue-label{font-size:14px;font-weight:700;flex:1;}
+/* ═══ PROFILE ═══ */
+.prof-hero{background:linear-gradient(135deg,#22C55E,#16A34A);padding:32px 16px 24px;text-align:center;color:#fff;}
+.av{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.25);font-size:34px;display:inline-flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.5);margin-bottom:10px;}
+.pname{font-size:20px;font-weight:900;}
+.pphone{font-size:13px;opacity:.8;font-weight:600;}
+.pbody{padding:16px;max-width:520px;margin:0 auto;}
+.psg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.psc{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);padding:12px 8px;text-align:center;box-shadow:var(--sh);}
+.psc .v{font-size:18px;font-weight:900;color:var(--g);}
+.psc .l{font-size:10px;font-weight:700;color:var(--muted);margin-top:2px;}
+.menu{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);overflow:hidden;margin-bottom:16px;}
+.mi{display:flex;align-items:center;gap:12px;padding:15px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.mi:last-child{border-bottom:none;}
+.mi:hover{background:var(--bg);}
+.mico{font-size:20px;width:32px;text-align:center;}
+.mlbl{font-size:14px;font-weight:700;flex:1;}
+.marr{color:var(--muted);font-size:16px;}
 
-  /* BOTTOM NAV */
-  .bottom-nav{background:var(--card);border-top:1.5px solid var(--border);display:flex;padding:8px 0 calc(8px + env(safe-area-inset-bottom));position:sticky;bottom:0;z-index:100;}
-  .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;cursor:pointer;transition:all .2s;border:none;background:transparent;color:var(--text-muted);font-size:10px;font-weight:700;font-family:'Nunito',sans-serif;}
-  .nav-btn .nav-icon{font-size:22px;transition:transform .2s;}
-  .nav-btn.active{color:var(--blue);}
-  .nav-btn.active .nav-icon{transform:scale(1.15);}
+/* Sub pages */
+.sh{padding:20px 16px 18px;background:linear-gradient(135deg,var(--g),var(--gd));color:#fff;}
+.sh h2{font-size:18px;font-weight:900;}
+.sh p{font-size:12px;opacity:.75;margin-top:3px;font-weight:600;}
+.sb{padding:16px;max-width:520px;margin:0 auto;}
+.dlbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 8px;}
+.perf-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.pc{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);padding:14px;box-shadow:var(--sh);}
+.pc .v{font-size:24px;font-weight:900;}
+.pc .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px;}
+.pc .tr{font-size:10px;font-weight:800;margin-top:5px;}
+.tup{color:var(--gd);}
+.bw{margin-bottom:10px;}
+.bl2{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;}
+.bt{height:7px;background:var(--border);border-radius:20px;overflow:hidden;}
+.bf{height:100%;border-radius:20px;}
+.earn-tb{background:linear-gradient(135deg,var(--g),var(--gd));border-radius:var(--r2);padding:14px;margin-bottom:12px;color:#fff;display:flex;justify-content:space-between;align-items:center;}
+.earn-tb .l{font-size:12px;font-weight:700;opacity:.85;}
+.earn-tb .v{font-size:22px;font-weight:900;}
+.erm{font-size:12px;font-weight:800;color:var(--muted);margin:12px 0 7px;text-transform:uppercase;letter-spacing:.4px;}
+.er{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);padding:13px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--sh);}
+.er .dt{font-size:13px;font-weight:700;}
+.er .dc{font-size:11px;color:var(--muted);font-weight:600;margin-top:1px;}
+.er .am{font-size:17px;font-weight:900;color:var(--gd);}
+.nr{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:9px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--sh);}
+.nt{font-size:14px;font-weight:700;}
+.ns{font-size:11px;color:var(--muted);font-weight:600;margin-top:2px;}
+.tw{position:relative;width:48px;height:26px;flex-shrink:0;}
+.tw input{opacity:0;width:0;height:0;}
+.tt{position:absolute;inset:0;background:#D1D5DB;border-radius:20px;cursor:pointer;transition:.3s;}
+.tt::before{content:'';position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.tw input:checked+.tt{background:var(--g);}
+.tw input:checked+.tt::before{transform:translateX(22px);}
+.faq{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);margin-bottom:9px;overflow:hidden;box-shadow:var(--sh);}
+.fq{padding:14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.fa2{display:inline-block;transition:transform .2s;}
+.faq.open .fa2{transform:rotate(90deg);}
+.fa{padding:0 14px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;}
+.faq.open .fa{padding:0 14px 14px;max-height:300px;}
+.fa p{font-size:12px;color:var(--muted);font-weight:600;line-height:1.6;}
+.scard2{background:linear-gradient(135deg,var(--g),var(--gd));border-radius:var(--r);padding:16px;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.cc-c{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px;box-shadow:var(--sh);}
+.cc-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gl);color:var(--gd);font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+.cc-num{font-size:26px;font-weight:900;letter-spacing:1px;}
+.cc-sub{font-size:12px;color:var(--muted);font-weight:600;margin-top:3px;}
+.cc-hrs{font-size:11px;font-weight:700;color:var(--orange);margin-top:6px;}
+.cc-ag{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px;}
+.cc-ag .btn{flex:none;padding:13px;font-size:12px;}
+.irow{display:flex;align-items:center;gap:10px;padding:13px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);margin-bottom:9px;cursor:pointer;box-shadow:var(--sh);transition:border-color .15s;}
+.irow:hover{border-color:var(--g);}
+.iico2{font-size:20px;width:34px;text-align:center;}
+.ilbl2{font-size:13px;font-weight:700;flex:1;}
 
-  /* MISC */
-  .notif-banner{background:linear-gradient(90deg,#00c853,#00a040);color:white;padding:12px 18px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;animation:sld .4s ease;}
-  @keyframes sld{from{opacity:0;transform:translateY(-100%);}to{opacity:1;transform:translateY(0);}}
-  .tab-content{display:none;}
-  .tab-content.active{display:block;}
-  .toast-container{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:1000;pointer-events:none;width:90%;max-width:360px;}
-  .toast{background:#12192e;color:white;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.3);display:flex;align-items:center;gap:8px;animation:tIn .3s ease,tOut .3s ease 2.2s forwards;}
-  [data-dark] .toast{background:#e8edf7;color:#12192e;}
-  @keyframes tIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
-  @keyframes tOut{to{opacity:0;transform:translateY(-10px);}}
-  ::-webkit-scrollbar{width:4px;}
-  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+/* Forgot PW / OTP modal */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;display:flex;align-items:center;justify-content:center;padding:20px;display:none;}
+.modal-ov.on{display:flex;}
+.modal-c{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:380px;box-shadow:var(--sh3);animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+.modal-title{font-size:18px;font-weight:900;margin-bottom:6px;}
+.modal-sub{font-size:13px;color:#6B7280;font-weight:600;margin-bottom:18px;}
+.modal-step{display:none;}
+.modal-step.on{display:block;}
+
+/* ═══ BOTTOM NAV ═══ */
+.bot-nav{background:var(--card);border-top:1.5px solid var(--border);display:flex;padding:6px 0 calc(6px + env(safe-area-inset-bottom));position:sticky;bottom:0;z-index:200;}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px;cursor:pointer;transition:all .15s;border:none;background:transparent;color:var(--muted);font-size:10px;font-weight:700;font-family:var(--ff);}
+.nb .ni{font-size:20px;transition:transform .15s;}
+.nb.active{color:var(--g);}
+.nb.active .ni{transform:scale(1.15);}
+
+/* TOAST */
+.toast-c{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:800;pointer-events:none;width:90%;max-width:340px;}
+.toast{background:#111827;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:700;box-shadow:var(--sh3);display:flex;align-items:center;gap:8px;animation:tIn .3s ease,tOut .3s ease 2.3s forwards;}
+@keyframes tIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes tOut{to{opacity:0;transform:translateY(-8px);}}
+[data-dark] .toast{background:#F0F6FC;color:#111827;}
+
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 </style>
 </head>
 <body>
 
-<div class="toast-container" id="toast-container"></div>
+<div class="toast-c" id="toast-c"></div>
 
-<!-- ══ LOGIN ══ -->
-<div id="login-page" class="page active">
-  <div class="login-box">
-    <div class="brand">
-      <div class="brand-icon">⚡</div>
-      <h1>QuickDrop</h1>
-      <p>📍 ANNAVARAM · AGENT PORTAL</p>
+<!-- POPUP ALERT -->
+<div class="popup-overlay hidden" id="popup-ov">
+  <div class="popup-card">
+    <div class="popup-header">
+      <div class="popup-badge" id="pop-ico">📦</div>
+      <div><div class="popup-title" id="pop-title">New Order!</div><div class="popup-sub" id="pop-sub">Order ID</div></div>
     </div>
-    <div class="form-group">
-      <label>Mobile Number (10 digits)</label>
-      <div class="input-wrap">
-        <span class="icon">📱</span>
-        <input type="tel" id="phone-input" placeholder="9876543210" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')">
-      </div>
-      <div class="field-error" id="phone-err">Please enter a valid 10-digit mobile number</div>
+    <div class="popup-earn" id="pop-earn">₹0 earning</div>
+    <div class="popup-btns">
+      <button class="btn btn-g" id="pop-accept-btn">✅ Accept Now</button>
+      <button class="btn btn-outline" onclick="closePopup()">Skip</button>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <div class="input-wrap">
-        <span class="icon">🔒</span>
-        <input type="password" id="pass-input" placeholder="e.g. Quick@2024" oninput="checkPw(this.value)">
-        <button class="eye-btn" type="button" onclick="togglePw()">👁️</button>
-      </div>
-      <div class="field-error" id="pass-err">Password does not meet all requirements</div>
-      <div class="pw-rules" id="pw-rules">
-        <div class="pw-rule" id="r-len">⬜ At least 8 characters</div>
-        <div class="pw-rule" id="r-up">⬜ One uppercase letter (A–Z)</div>
-        <div class="pw-rule" id="r-low">⬜ One lowercase letter (a–z)</div>
-        <div class="pw-rule" id="r-num">⬜ One number (0–9)</div>
-        <div class="pw-rule" id="r-sp">⬜ One special character (!@#$%^&amp;*)</div>
-      </div>
-    </div>
-    <button class="btn-login" onclick="doLogin()">🚀 LOGIN TO DASHBOARD</button>
   </div>
 </div>
 
-<!-- ══ DASHBOARD ══ -->
-<div id="dashboard-page" class="page">
+<!-- FORGOT PW MODAL -->
+<div class="modal-ov" id="forgot-modal">
+  <div class="modal-c">
+    <div class="modal-step on" id="ms1">
+      <div class="modal-title">🔑 Forgot Password</div>
+      <div class="modal-sub">Enter your registered mobile number to receive an OTP.</div>
+      <div class="fld"><label>Mobile Number</label><div class="inp-w"><span class="ico">📱</span><input type="tel" id="fp-phone" placeholder="9876543210" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"></div></div>
+      <button class="btn-primary" onclick="sendOtp()" style="margin-top:4px;">Send OTP</button>
+      <button class="btn btn-outline btn-full" style="margin-top:8px;" onclick="closeForgot()">Cancel</button>
+    </div>
+    <div class="modal-step" id="ms2">
+      <div class="modal-title">📱 Enter OTP</div>
+      <div class="modal-sub">OTP sent to your mobile. Enter the 4-digit code. (Demo: 1234)</div>
+      <div class="otp-inputs" style="margin-bottom:14px;"><input type="tel" maxlength="1" id="ot1" oninput="otpNav(this,'','ot2')"><input type="tel" maxlength="1" id="ot2" oninput="otpNav(this,'ot1','ot3')"><input type="tel" maxlength="1" id="ot3" oninput="otpNav(this,'ot2','ot4')"><input type="tel" maxlength="1" id="ot4" oninput="otpNav(this,'ot3','')"></div>
+      <button class="btn-primary" onclick="verifyOtp()" style="margin-top:0;">Verify OTP</button>
+    </div>
+    <div class="modal-step" id="ms3">
+      <div class="modal-title">🔐 New Password</div>
+      <div class="modal-sub">Set your new password. Must include uppercase, lowercase, number & special character.</div>
+      <div class="fld" style="margin-top:4px;"><label>New Password</label><div class="inp-w"><span class="ico">🔒</span><input type="password" id="np-input" placeholder="NewPass@123" oninput="checkPw(this.value)"><button class="eye" type="button" onclick="togglePw2()">👁️</button></div></div>
+      <div class="pw-rules on" id="pw-rules2">
+        <div class="pwr" id="r2-len">⬜ At least 8 characters</div>
+        <div class="pwr" id="r2-up">⬜ One uppercase letter (A–Z)</div>
+        <div class="pwr" id="r2-low">⬜ One lowercase letter (a–z)</div>
+        <div class="pwr" id="r2-num">⬜ One number (0–9)</div>
+        <div class="pwr" id="r2-sp">⬜ One special character (!@#$%^&*)</div>
+      </div>
+      <button class="btn-primary" onclick="resetPw()" style="margin-top:12px;">Reset Password</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ LOGIN PAGE ══════════════ -->
+<div id="pg-login" class="page active">
+  <div class="login-card">
+    <div class="logo-wrap">
+      <div class="logo-mark">🛒</div>
+      <div class="logo-name">GoCart</div>
+      <div class="logo-sub">📍 ANNAVARAM · AGENT PORTAL</div>
+    </div>
+    <div class="fld">
+      <label>Mobile Number (10 digits)</label>
+      <div class="inp-w"><span class="ico">📱</span><input type="tel" id="ph" placeholder="9876543210" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"></div>
+      <div class="ferr" id="ph-err">Please enter a valid 10-digit number</div>
+    </div>
+    <div class="fld">
+      <label>Password</label>
+      <div class="inp-w"><span class="ico">🔒</span><input type="password" id="pw" placeholder="e.g. GoCart@2024" oninput="checkPw(this.value)"><button class="eye" type="button" onclick="togglePw()">👁️</button></div>
+      <div class="ferr" id="pw-err">Password does not meet requirements</div>
+      <div class="pw-rules" id="pw-rules">
+        <div class="pwr" id="r-len">⬜ At least 8 characters</div>
+        <div class="pwr" id="r-up">⬜ One uppercase letter (A–Z)</div>
+        <div class="pwr" id="r-low">⬜ One lowercase letter (a–z)</div>
+        <div class="pwr" id="r-num">⬜ One number (0–9)</div>
+        <div class="pwr" id="r-sp">⬜ One special character (!@#$%^&*)</div>
+      </div>
+    </div>
+    <div class="forgot-link"><a onclick="openForgot()">Forgot Password?</a></div>
+    <button class="btn-primary" onclick="doLogin()">🚀 LOGIN TO DASHBOARD</button>
+  </div>
+</div>
+
+<!-- ══════════════ DASHBOARD ══════════════ -->
+<div id="pg-dash" class="page">
   <div class="topbar">
-    <div><div class="topbar-logo">⚡ QuickDrop</div><div class="topbar-sub">📍 ANNAVARAM</div></div>
-    <div class="topbar-actions">
-      <button class="icon-btn" id="dark-btn" onclick="toggleDark()">🌙</button>
-      <button class="icon-btn" onclick="showPage('profile-page')">👤</button>
+    <div><div class="tlogo">🛒 GoCart</div><div class="tsub">📍 ANNAVARAM</div></div>
+    <div class="tbtns">
+      <button class="tbtn" id="dark-btn" onclick="toggleDark()">🌙</button>
+      <button class="tbtn" onclick="goPage('pg-prof')">👤</button>
     </div>
   </div>
   <div id="notif-zone"></div>
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('new',this)">🆕 New <span class="tab-count red" id="new-count">0</span></button>
-    <button class="tab-btn" onclick="switchTab('accepted',this)">🚴 Active <span class="tab-count" id="accepted-count">0</span></button>
-    <button class="tab-btn" onclick="switchTab('done',this)">✅ Done <span class="tab-count" id="done-count">0</span></button>
+    <button class="tbtn2 active" onclick="switchTab('new',this)"><span class="tab-ico">📦</span>New<span class="tab-cnt red-cnt" id="cnt-new">0</span></button>
+    <button class="tbtn2" onclick="switchTab('act',this)"><span class="tab-ico">🚴</span>Active<span class="tab-cnt" id="cnt-act">0</span></button>
+    <button class="tbtn2" onclick="switchTab('done',this)"><span class="tab-ico">✅</span>Done<span class="tab-cnt" id="cnt-done">0</span></button>
   </div>
-  <div class="main-content">
+  <div class="main">
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-val orange" id="stat-new">0</div><div class="stat-label">New Orders</div></div>
-      <div class="stat-card"><div class="stat-val green" id="stat-earn">₹0</div><div class="stat-label">Today Earned</div></div>
-      <div class="stat-card"><div class="stat-val" id="stat-done">0</div><div class="stat-label">Delivered</div></div>
+      <div class="scard"><div class="sv ora" id="st-new">0</div><div class="slbl">New</div></div>
+      <div class="scard"><div class="sv" id="st-earn">₹0</div><div class="slbl">Earned</div></div>
+      <div class="scard"><div class="sv blu" id="st-done">0</div><div class="slbl">Delivered</div></div>
     </div>
-    <div class="tab-content active" id="tab-new">
-      <div class="section-header"><div class="section-title"><div class="pulse-dot"></div>Live Orders</div><span style="font-size:11px;color:var(--text-muted);font-weight:700;">Auto-refresh</span></div>
-      <div id="new-orders-list"></div>
+    <div class="tc active" id="tc-new">
+      <div class="sec-hdr"><div class="sec-title"><div class="live-dot"></div>Live Orders</div><span style="font-size:11px;color:var(--muted);font-weight:700;">Auto-refresh</span></div>
+      <div id="list-new"></div>
     </div>
-    <div class="tab-content" id="tab-accepted">
-      <div class="section-header"><div class="section-title">🚴 My Active Deliveries</div></div>
-      <div id="accepted-orders-list"></div>
+    <div class="tc" id="tc-act">
+      <div class="sec-hdr"><div class="sec-title">🚴 My Active Deliveries</div></div>
+      <div id="list-act"></div>
     </div>
-    <div class="tab-content" id="tab-done">
-      <div class="section-header"><div class="section-title">✅ Completed Today</div></div>
-      <div id="done-orders-list"></div>
+    <div class="tc" id="tc-done">
+      <div class="sec-hdr"><div class="sec-title">✅ Completed Today</div></div>
+      <div id="list-done"></div>
     </div>
   </div>
-  <div class="bottom-nav">
-    <button class="nav-btn active" onclick="switchTab('new',null);setNav(this)"><span class="nav-icon">📦</span>Orders</button>
-    <button class="nav-btn" onclick="switchTab('accepted',null);setNav(this)"><span class="nav-icon">🚴</span>Active</button>
-    <button class="nav-btn" onclick="switchTab('done',null);setNav(this)"><span class="nav-icon">✅</span>Done</button>
-    <button class="nav-btn" onclick="showPage('profile-page');setNav(this)"><span class="nav-icon">👤</span>Profile</button>
+  <div class="bot-nav">
+    <button class="nb active" onclick="switchTab('new',null);setNav(this)"><span class="ni">📦</span>Orders</button>
+    <button class="nb" onclick="switchTab('act',null);setNav(this)"><span class="ni">🚴</span>Active</button>
+    <button class="nb" onclick="switchTab('done',null);setNav(this)"><span class="ni">✅</span>Done</button>
+    <button class="nb" onclick="goPage('pg-prof');setNav(this)"><span class="ni">👤</span>Profile</button>
   </div>
 </div>
 
-<!-- ══ ORDER DETAIL ══ -->
-<div id="detail-page" class="page">
+<!-- ══════════════ ORDER DETAIL ══════════════ -->
+<div id="pg-det" class="page">
   <div class="topbar">
-    <button class="icon-btn" onclick="showPage('dashboard-page')">←</button>
-    <div style="font-weight:800;font-size:16px;">Order Details</div>
-    <div style="width:40px;"></div>
+    <button class="tbtn" onclick="goPage('pg-dash')">←</button>
+    <div style="font-weight:800;font-size:15px;">Order Details</div>
+    <div style="width:38px;"></div>
   </div>
-  <div id="detail-content" style="overflow-y:auto;flex:1;"></div>
+  <div id="det-content" style="overflow-y:auto;flex:1;"></div>
 </div>
 
-<!-- ══ PROFILE ══ -->
-<div id="profile-page" class="page">
+<!-- ══════════════ PROFILE ══════════════ -->
+<div id="pg-prof" class="page">
   <div class="topbar">
-    <button class="icon-btn" onclick="showPage('dashboard-page')">←</button>
-    <div style="font-weight:800;font-size:16px;">My Profile</div>
-    <button class="icon-btn" id="dark-btn2" onclick="toggleDark()">🌙</button>
+    <button class="tbtn" onclick="goPage('pg-dash')">←</button>
+    <div style="font-weight:800;font-size:15px;">My Profile</div>
+    <button class="tbtn" id="dark-btn2" onclick="toggleDark()">🌙</button>
   </div>
   <div style="overflow-y:auto;flex:1;">
-    <div class="profile-hero">
-      <div class="avatar">🧑‍💼</div>
-      <div class="profile-name" id="agent-name">Agent</div>
-      <div class="profile-phone" id="agent-phone">📱 —</div>
+    <div class="prof-hero">
+      <div class="av">🧑‍💼</div>
+      <div class="pname" id="ag-name">Agent</div>
+      <div class="pphone" id="ag-phone">📱 —</div>
     </div>
-    <div class="profile-body">
-      <div class="profile-stat-grid">
-        <div class="profile-stat"><div class="val" id="p-done">0</div><div class="lbl">Delivered</div></div>
-        <div class="profile-stat"><div class="val" style="color:var(--green)" id="p-earn">₹0</div><div class="lbl">Earned</div></div>
-        <div class="profile-stat"><div class="val" style="color:var(--orange)">⭐4.8</div><div class="lbl">Rating</div></div>
+    <div class="pbody">
+      <div class="psg">
+        <div class="psc"><div class="v" id="p-done">0</div><div class="l">Delivered</div></div>
+        <div class="psc"><div class="v" id="p-earn">₹0</div><div class="l">Earned</div></div>
+        <div class="psc"><div class="v" style="color:var(--orange)">⭐4.8</div><div class="l">Rating</div></div>
       </div>
-      <div class="menu-list">
-        <div class="menu-item" onclick="showPage('perf-page')"><span class="menu-icon">📊</span><span class="menu-label">Performance Stats</span><span class="menu-arrow">›</span></div>
-        <div class="menu-item" onclick="showPage('earn-page')"><span class="menu-icon">💰</span><span class="menu-label">Earnings History</span><span class="menu-arrow">›</span></div>
-        <div class="menu-item" onclick="showPage('notif-page')"><span class="menu-icon">🔔</span><span class="menu-label">Notification Settings</span><span class="menu-arrow">›</span></div>
-        <div class="menu-item" onclick="showPage('cc-page')"><span class="menu-icon">🎧</span><span class="menu-label">Customer Care</span><span class="menu-arrow">›</span></div>
-        <div class="menu-item" onclick="showPage('help-page')"><span class="menu-icon">🆘</span><span class="menu-label">Help &amp; Support</span><span class="menu-arrow">›</span></div>
-        <div class="menu-item" onclick="doLogout()"><span class="menu-icon">🚪</span><span class="menu-label" style="color:var(--red)">Logout</span><span class="menu-arrow" style="color:var(--red)">›</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ PERFORMANCE STATS ══ -->
-<div id="perf-page" class="page">
-  <div class="topbar">
-    <button class="icon-btn" onclick="showPage('profile-page')">←</button>
-    <div style="font-weight:800;font-size:16px;">Performance Stats</div>
-    <div style="width:40px;"></div>
-  </div>
-  <div style="overflow-y:auto;flex:1;">
-    <div class="sub-hero"><h2>📊 Your Performance</h2><p>Track delivery stats, ratings &amp; achievements</p></div>
-    <div class="sub-body">
-      <div class="perf-grid">
-        <div class="perf-card"><div class="val" style="color:var(--blue)" id="ps-total">0</div><div class="lbl">Total Deliveries</div><div class="trend trend-up">↑ +12% this week</div></div>
-        <div class="perf-card"><div class="val" style="color:var(--green-dark)" id="ps-earn">₹0</div><div class="lbl">Total Earned</div><div class="trend trend-up">↑ Best month</div></div>
-        <div class="perf-card"><div class="val" style="color:var(--orange)">⭐4.8</div><div class="lbl">Avg Rating</div><div class="trend trend-up">↑ Top 10%</div></div>
-        <div class="perf-card"><div class="val" style="color:var(--purple)">97%</div><div class="lbl">On-Time Rate</div><div class="trend trend-up">↑ Excellent</div></div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">📈 Deliveries This Week</div>
-        <div class="bar-wrap"><div class="bar-label"><span>Mon</span><span>8</span></div><div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--blue);"></div></div></div>
-        <div class="bar-wrap"><div class="bar-label"><span>Tue</span><span>6</span></div><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--blue);"></div></div></div>
-        <div class="bar-wrap"><div class="bar-label"><span>Wed</span><span>10</span></div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--green);"></div></div></div>
-        <div class="bar-wrap"><div class="bar-label"><span>Thu</span><span>7</span></div><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--blue);"></div></div></div>
-        <div class="bar-wrap"><div class="bar-label"><span>Fri</span><span>9</span></div><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--blue);"></div></div></div>
-        <div class="bar-wrap"><div class="bar-label"><span>Sat</span><span>5</span></div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--orange);"></div></div></div>
-        <div class="bar-wrap"><div class="bar-label"><span>Sun</span><span>3</span></div><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--orange);"></div></div></div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">📦 Order Breakdown</div>
-        <div class="bill-row sub"><span>Food & Groceries</span><span>42%</span></div>
-        <div class="bar-track" style="margin-bottom:10px;"><div class="bar-fill" style="width:42%;background:var(--green);"></div></div>
-        <div class="bill-row sub"><span>Medicine / Pharmacy</span><span>24%</span></div>
-        <div class="bar-track" style="margin-bottom:10px;"><div class="bar-fill" style="width:24%;background:var(--blue);"></div></div>
-        <div class="bill-row sub"><span>Electronics / Gadgets</span><span>18%</span></div>
-        <div class="bar-track" style="margin-bottom:10px;"><div class="bar-fill" style="width:18%;background:var(--purple);"></div></div>
-        <div class="bill-row sub"><span>Documents / Others</span><span>16%</span></div>
-        <div class="bar-track"><div class="bar-fill" style="width:16%;background:var(--orange);"></div></div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">🏅 Achievements</div>
-        <div class="info-row"><span class="info-icon">🥇</span><div><div class="info-value">Speed Racer</div><div class="info-label">All deliveries on time this month</div></div></div>
-        <div class="info-row"><span class="info-icon">💯</span><div><div class="info-value">Perfect Week</div><div class="info-label">Zero rejected or missed orders</div></div></div>
-        <div class="info-row"><span class="info-icon">⭐</span><div><div class="info-value">Top Rated Agent</div><div class="info-label">Maintained 4.8+ rating for 30 days</div></div></div>
+      <div class="menu">
+        <div class="mi" onclick="goPage('pg-perf')"><span class="mico">📊</span><span class="mlbl">Performance Stats</span><span class="marr">›</span></div>
+        <div class="mi" onclick="goPage('pg-earn')"><span class="mico">💰</span><span class="mlbl">Earnings History</span><span class="marr">›</span></div>
+        <div class="mi" onclick="goPage('pg-notif')"><span class="mico">🔔</span><span class="mlbl">Notification Settings</span><span class="marr">›</span></div>
+        <div class="mi" onclick="goPage('pg-cc')"><span class="mico">🎧</span><span class="mlbl">Customer Care</span><span class="marr">›</span></div>
+        <div class="mi" onclick="goPage('pg-help')"><span class="mico">🆘</span><span class="mlbl">Help &amp; Support</span><span class="marr">›</span></div>
+        <div class="mi" onclick="doLogout()"><span class="mico">🚪</span><span class="mlbl" style="color:var(--red)">Logout</span><span class="marr" style="color:var(--red)">›</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══ EARNINGS HISTORY ══ -->
-<div id="earn-page" class="page">
-  <div class="topbar">
-    <button class="icon-btn" onclick="showPage('profile-page')">←</button>
-    <div style="font-weight:800;font-size:16px;">Earnings History</div>
-    <div style="width:40px;"></div>
-  </div>
+<!-- ══ PERFORMANCE ══ -->
+<div id="pg-perf" class="page">
+  <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Performance Stats</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
-    <div class="sub-hero"><h2>💰 Your Earnings</h2><p>Full earnings history &amp; payment breakdown</p></div>
-    <div class="sub-body">
-      <div class="earn-total-bar">
-        <div><div class="lbl">Total (This Month)</div><div class="val" id="eh-total">₹975</div></div>
-        <div style="font-size:36px;">💰</div>
+    <div class="sh"><h2>📊 Your Performance</h2><p>Track deliveries, ratings & achievements</p></div>
+    <div class="sb">
+      <div class="perf-g">
+        <div class="pc"><div class="v" style="color:var(--g)" id="ps-tot">0</div><div class="l">Total Deliveries</div><div class="tr tup">↑ +12% this week</div></div>
+        <div class="pc"><div class="v" style="color:var(--gd)" id="ps-earn">₹0</div><div class="l">Total Earned</div><div class="tr tup">↑ Best month</div></div>
+        <div class="pc"><div class="v" style="color:var(--orange)">⭐4.8</div><div class="l">Avg Rating</div><div class="tr tup">↑ Top 10%</div></div>
+        <div class="pc"><div class="v" style="color:var(--purple)">97%</div><div class="l">On-Time Rate</div><div class="tr tup">↑ Excellent</div></div>
       </div>
-      <div class="info-card" style="margin-bottom:14px;">
-        <div class="info-card-title">💳 Payment Breakdown</div>
-        <div class="bill-row sub"><span>COD Orders</span><span id="eh-cod">₹580</span></div>
-        <div class="bill-row sub"><span>Online Orders</span><span id="eh-online">₹370</span></div>
-        <div class="bill-row sub"><span>Urgent Bonus</span><span style="color:var(--orange)">₹25</span></div>
-        <div class="bill-divider"></div>
-        <div class="bill-row grand"><span>Total Paid Out</span><span class="ga" id="eh-grand">₹975</span></div>
+      <div class="info-c">
+        <div class="ic-title">📈 Weekly Deliveries</div>
+        <div class="bw"><div class="bl2"><span>Mon</span><span>8</span></div><div class="bt"><div class="bf" style="width:80%;background:var(--g);"></div></div></div>
+        <div class="bw"><div class="bl2"><span>Tue</span><span>6</span></div><div class="bt"><div class="bf" style="width:60%;background:var(--g);"></div></div></div>
+        <div class="bw"><div class="bl2"><span>Wed</span><span>10</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gd);"></div></div></div>
+        <div class="bw"><div class="bl2"><span>Thu</span><span>7</span></div><div class="bt"><div class="bf" style="width:70%;background:var(--g);"></div></div></div>
+        <div class="bw"><div class="bl2"><span>Fri</span><span>9</span></div><div class="bt"><div class="bf" style="width:90%;background:var(--g);"></div></div></div>
+        <div class="bw"><div class="bl2"><span>Sat</span><span>5</span></div><div class="bt"><div class="bf" style="width:50%;background:var(--orange);"></div></div></div>
+        <div class="bw"><div class="bl2"><span>Sun</span><span>3</span></div><div class="bt"><div class="bf" style="width:30%;background:var(--orange);"></div></div></div>
       </div>
-      <div class="earn-month">May 2025</div>
-      <div class="earn-row"><div><div class="date">Today, 03 May</div><div class="dc" id="eh-today-del">0 deliveries</div></div><div class="amt" id="eh-today">₹0</div></div>
-      <div class="earn-row"><div><div class="date">02 May, Fri</div><div class="dc">8 deliveries</div></div><div class="amt">₹520</div></div>
-      <div class="earn-row"><div><div class="date">01 May, Thu</div><div class="dc">7 deliveries</div></div><div class="amt">₹455</div></div>
-      <div class="earn-month">April 2025</div>
-      <div class="earn-row"><div><div class="date">30 Apr, Wed</div><div class="dc">10 deliveries</div></div><div class="amt">₹680</div></div>
-      <div class="earn-row"><div><div class="date">29 Apr, Tue</div><div class="dc">6 deliveries</div></div><div class="amt">₹390</div></div>
-      <div class="earn-row"><div><div class="date">28 Apr, Mon</div><div class="dc">9 deliveries</div></div><div class="amt">₹570</div></div>
+      <div class="info-c"><div class="ic-title">🏅 Achievements</div>
+        <div class="ir"><span class="iico">🥇</span><div><div class="ival">Speed Racer</div><div class="ilbl">All deliveries on time this month</div></div></div>
+        <div class="ir"><span class="iico">💯</span><div><div class="ival">Perfect Week</div><div class="ilbl">Zero rejected or missed orders</div></div></div>
+        <div class="ir"><span class="iico">⭐</span><div><div class="ival">Top Rated Agent</div><div class="ilbl">4.8+ rating for 30 days</div></div></div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══ NOTIFICATION SETTINGS ══ -->
-<div id="notif-page" class="page">
-  <div class="topbar">
-    <button class="icon-btn" onclick="showPage('profile-page')">←</button>
-    <div style="font-weight:800;font-size:16px;">Notification Settings</div>
-    <div style="width:40px;"></div>
-  </div>
+<!-- ══ EARNINGS ══ -->
+<div id="pg-earn" class="page">
+  <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Earnings History</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
-    <div class="sub-hero"><h2>🔔 Notifications</h2><p>Control how and when you get alerts</p></div>
-    <div class="sub-body">
-      <div class="divider-label">Order Alerts</div>
-      <div class="notif-row"><div><div class="notif-title">New Order Sound</div><div class="notif-sub">Play beep when a new order arrives</div></div><label class="toggle-wrap"><input type="checkbox" checked onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
-      <div class="notif-row"><div><div class="notif-title">Urgent Order Alert</div><div class="notif-sub">Vibrate for urgent / time-sensitive orders</div></div><label class="toggle-wrap"><input type="checkbox" checked onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
-      <div class="notif-row"><div><div class="notif-title">Order Assigned</div><div class="notif-sub">Notify when you accept an order</div></div><label class="toggle-wrap"><input type="checkbox" checked onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
-      <div class="notif-row"><div><div class="notif-title">Order Cancelled</div><div class="notif-sub">Alert when customer cancels</div></div><label class="toggle-wrap"><input type="checkbox" onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
-      <div class="divider-label">Earnings & Payments</div>
-      <div class="notif-row"><div><div class="notif-title">Earning Credited</div><div class="notif-sub">Alert when delivery pay is added</div></div><label class="toggle-wrap"><input type="checkbox" checked onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
-      <div class="notif-row"><div><div class="notif-title">Weekly Summary</div><div class="notif-sub">Earnings report every Monday</div></div><label class="toggle-wrap"><input type="checkbox" checked onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
-      <div class="divider-label">General</div>
-      <div class="notif-row"><div><div class="notif-title">App Updates</div><div class="notif-sub">Notify about new features</div></div><label class="toggle-wrap"><input type="checkbox" onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
-      <div class="notif-row"><div><div class="notif-title">WhatsApp Alerts</div><div class="notif-sub">Send order alerts via WhatsApp</div></div><label class="toggle-wrap"><input type="checkbox" onchange="showToast('🔔 Setting saved')"><div class="toggle-track"></div></label></div>
+    <div class="sh"><h2>💰 Your Earnings</h2><p>Full history & payment breakdown</p></div>
+    <div class="sb">
+      <div class="earn-tb"><div><div class="l">Total (This Month)</div><div class="v" id="eh-tot">₹975</div></div><div style="font-size:32px;">💰</div></div>
+      <div class="info-c" style="margin-bottom:12px;">
+        <div class="ic-title">💳 Breakdown</div>
+        <div class="brow sub"><span>COD Orders</span><span id="eh-cod">₹580</span></div>
+        <div class="brow sub"><span>Online Orders</span><span id="eh-on">₹370</span></div>
+        <div class="brow sub"><span>Urgent Bonus</span><span style="color:var(--orange)">₹25</span></div>
+        <div class="bdiv"></div>
+        <div class="brow grand"><span>Total</span><span class="ga" id="eh-grand">₹975</span></div>
+      </div>
+      <div class="erm">May 2025</div>
+      <div class="er"><div><div class="dt">Today, 03 May</div><div class="dc" id="eh-td-d">0 deliveries</div></div><div class="am" id="eh-td">₹0</div></div>
+      <div class="er"><div><div class="dt">02 May, Fri</div><div class="dc">8 deliveries</div></div><div class="am">₹520</div></div>
+      <div class="er"><div><div class="dt">01 May, Thu</div><div class="dc">7 deliveries</div></div><div class="am">₹455</div></div>
+      <div class="erm">April 2025</div>
+      <div class="er"><div><div class="dt">30 Apr, Wed</div><div class="dc">10 deliveries</div></div><div class="am">₹680</div></div>
+      <div class="er"><div><div class="dt">29 Apr, Tue</div><div class="dc">6 deliveries</div></div><div class="am">₹390</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NOTIFICATIONS ══ -->
+<div id="pg-notif" class="page">
+  <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Notification Settings</div><div style="width:38px;"></div></div>
+  <div style="overflow-y:auto;flex:1;">
+    <div class="sh"><h2>🔔 Notifications</h2><p>Control alerts & sounds</p></div>
+    <div class="sb">
+      <div class="dlbl">Order Alerts</div>
+      <div class="nr"><div><div class="nt">New Order Sound</div><div class="ns">Play beep for new orders</div></div><label class="tw"><input type="checkbox" checked onchange="toast('🔔 Saved')"><div class="tt"></div></label></div>
+      <div class="nr"><div><div class="nt">Urgent Order Vibrate</div><div class="ns">Vibrate for urgent orders</div></div><label class="tw"><input type="checkbox" checked onchange="toast('🔔 Saved')"><div class="tt"></div></label></div>
+      <div class="nr"><div><div class="nt">Order Cancelled</div><div class="ns">Alert on customer cancellation</div></div><label class="tw"><input type="checkbox" onchange="toast('🔔 Saved')"><div class="tt"></div></label></div>
+      <div class="dlbl">Payments</div>
+      <div class="nr"><div><div class="nt">Earning Credited</div><div class="ns">Alert when pay is added</div></div><label class="tw"><input type="checkbox" checked onchange="toast('🔔 Saved')"><div class="tt"></div></label></div>
+      <div class="nr"><div><div class="nt">COD Timer Warning</div><div class="ns">Alert 30 min before COD expires</div></div><label class="tw"><input type="checkbox" checked onchange="toast('🔔 Saved')"><div class="tt"></div></label></div>
+      <div class="dlbl">General</div>
+      <div class="nr"><div><div class="nt">WhatsApp Alerts</div><div class="ns">Send order updates via WhatsApp</div></div><label class="tw"><input type="checkbox" onchange="toast('🔔 Saved')"><div class="tt"></div></label></div>
     </div>
   </div>
 </div>
 
 <!-- ══ CUSTOMER CARE ══ -->
-<div id="cc-page" class="page">
-  <div class="topbar">
-    <button class="icon-btn" onclick="showPage('profile-page')">←</button>
-    <div style="font-weight:800;font-size:16px;">Customer Care</div>
-    <div style="width:40px;"></div>
-  </div>
+<div id="pg-cc" class="page">
+  <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Customer Care</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
-    <div class="sub-hero"><h2>🎧 We're Here to Help</h2><p>Reach our agent support team anytime</p></div>
-    <div class="sub-body">
-      <div class="cc-card">
-        <div class="cc-badge">🟢 Support Live Now</div>
-        <div class="cc-number">📞 1800-123-4567</div>
-        <div class="cc-sub">QuickDrop Agent Support Helpline (Toll Free)</div>
-        <div class="cc-hours">⏰ 7:00 AM – 10:00 PM · All Days</div>
-        <div class="cc-action-grid">
-          <button class="btn btn-accept" onclick="callCC('18001234567')">📞 Call Now</button>
-          <button class="btn btn-map" onclick="showToast('💬 Opening WhatsApp...')">💬 WhatsApp</button>
+    <div class="sh"><h2>🎧 We're Here to Help</h2><p>Agent support team available now</p></div>
+    <div class="sb">
+      <div class="cc-c">
+        <div class="cc-badge">🟢 Live Support</div>
+        <div class="cc-num">📞 1800-123-4567</div>
+        <div class="cc-sub">GoCart Agent Helpline (Toll Free)</div>
+        <div class="cc-hrs">⏰ 7:00 AM – 10:00 PM · All Days</div>
+        <div class="cc-ag">
+          <button class="btn btn-g" onclick="toast('📞 Calling support...')">📞 Call Now</button>
+          <button class="btn btn-map" onclick="toast('💬 Opening WhatsApp...')">💬 WhatsApp</button>
         </div>
       </div>
-      <div class="cc-card">
-        <div class="info-card-title">📧 Other Contact Options</div>
-        <div class="info-row"><span class="info-icon">✉️</span><div><div class="info-label">Email Support</div><div class="info-value">support@quickdrop.in</div></div></div>
-        <div class="info-row"><span class="info-icon">💬</span><div><div class="info-label">WhatsApp Business</div><div class="info-value">+91 98001 12345</div></div></div>
-        <div class="info-row"><span class="info-icon">🏢</span><div><div class="info-label">Hub Address</div><div class="info-value">QuickDrop Hub, Near Bus Stand, Annavaram – 533406</div></div></div>
+      <div class="cc-c">
+        <div class="ic-title">📧 Contact Options</div>
+        <div class="ir"><span class="iico">✉️</span><div><div class="ilbl">Email</div><div class="ival">support@gocart.in</div></div></div>
+        <div class="ir"><span class="iico">💬</span><div><div class="ilbl">WhatsApp</div><div class="ival">+91 98001 12345</div></div></div>
+        <div class="ir"><span class="iico">🏢</span><div><div class="ilbl">Hub Address</div><div class="ival">GoCart Hub, Near Bus Stand, Annavaram – 533406</div></div></div>
       </div>
-      <div class="divider-label">Report an Issue</div>
-      <div class="issue-row" onclick="showToast('📋 Opening issue form...')"><span class="issue-icon">📦</span><span class="issue-label">Order not assigned / missing</span><span style="color:var(--text-muted)">›</span></div>
-      <div class="issue-row" onclick="showToast('📋 Opening issue form...')"><span class="issue-icon">💰</span><span class="issue-label">Payment not credited</span><span style="color:var(--text-muted)">›</span></div>
-      <div class="issue-row" onclick="showToast('📋 Opening issue form...')"><span class="issue-icon">🗺️</span><span class="issue-label">Wrong address / map issue</span><span style="color:var(--text-muted)">›</span></div>
-      <div class="issue-row" onclick="showToast('📋 Opening issue form...')"><span class="issue-icon">👤</span><span class="issue-label">Customer not responding</span><span style="color:var(--text-muted)">›</span></div>
-      <div class="issue-row" onclick="showToast('📋 Opening issue form...')"><span class="issue-icon">⚠️</span><span class="issue-label">App problem / bug report</span><span style="color:var(--text-muted)">›</span></div>
+      <div class="dlbl">Report Issue</div>
+      <div class="irow" onclick="toast('📋 Opening form...')"><span class="iico2">📦</span><span class="ilbl2">Order missing / not assigned</span><span style="color:var(--muted)">›</span></div>
+      <div class="irow" onclick="toast('📋 Opening form...')"><span class="iico2">💰</span><span class="ilbl2">Payment not credited</span><span style="color:var(--muted)">›</span></div>
+      <div class="irow" onclick="toast('📋 Opening form...')"><span class="iico2">🗺️</span><span class="ilbl2">Wrong address / map issue</span><span style="color:var(--muted)">›</span></div>
+      <div class="irow" onclick="toast('📋 Opening form...')"><span class="iico2">👤</span><span class="ilbl2">Customer not responding</span><span style="color:var(--muted)">›</span></div>
     </div>
   </div>
 </div>
 
-<!-- ══ HELP & SUPPORT ══ -->
-<div id="help-page" class="page">
-  <div class="topbar">
-    <button class="icon-btn" onclick="showPage('profile-page')">←</button>
-    <div style="font-weight:800;font-size:16px;">Help &amp; Support</div>
-    <div style="width:40px;"></div>
-  </div>
+<!-- ══ HELP ══ -->
+<div id="pg-help" class="page">
+  <div class="topbar"><button class="tbtn" onclick="goPage('pg-prof')">←</button><div style="font-weight:800;font-size:15px;">Help &amp; Support</div><div style="width:38px;"></div></div>
   <div style="overflow-y:auto;flex:1;">
-    <div class="sub-hero"><h2>🆘 Help Center</h2><p>Answers to common agent questions</p></div>
-    <div class="sub-body">
-      <div class="support-card" onclick="showPage('cc-page')">
-        <span class="si">🎧</span>
-        <div><div class="st">Talk to Support</div><div class="ss">Call or WhatsApp our agent helpline</div></div>
-      </div>
-      <div class="divider-label">Frequently Asked Questions</div>
-      <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How do I accept an order? <span class="arr">›</span></div><div class="faq-a"><p>Go to the "New Orders" tab. Tap the green ACCEPT button on any order card. The order moves to your "Active" tab and is locked to you — no other agent can take it.</p></div></div>
-      <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How is my delivery earning calculated? <span class="arr">›</span></div><div class="faq-a"><p>Each order shows the earning (₹) before you accept. Urgent orders include a bonus. Earnings are automatically added once you tap Mark as Delivered.</p></div></div>
-      <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What if the customer doesn't pick up? <span class="arr">›</span></div><div class="faq-a"><p>Try calling 3 times. If no response, wait 5 minutes at the drop location, then contact customer care at 1800-123-4567. Do not leave the package unattended.</p></div></div>
-      <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How and when do I get paid? <span class="arr">›</span></div><div class="faq-a"><p>Earnings are credited to your UPI account every Monday for the previous week. COD amounts must be deposited at the QuickDrop hub within 24 hours.</p></div></div>
-      <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How do I update my bank/UPI details? <span class="arr">›</span></div><div class="faq-a"><p>Visit the hub in person with a valid ID and passbook, or email support@quickdrop.in with your agent ID and new account details. Changes take 2–3 business days.</p></div></div>
-      <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What if an order item is damaged? <span class="arr">›</span></div><div class="faq-a"><p>Do not deliver damaged goods. Photograph the item immediately and call the support line. Never return items to the shop without supervisor approval.</p></div></div>
-      <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How do I get a higher rating? <span class="arr">›</span></div><div class="faq-a"><p>Be punctual, polite, and careful with items. Deliver within estimated time and confirm the customer's name before handing over. A 4.5+ rating qualifies you for priority orders.</p></div></div>
+    <div class="sh"><h2>🆘 Help Center</h2><p>Answers to common agent questions</p></div>
+    <div class="sb">
+      <div class="scard2" onclick="goPage('pg-cc')"><span style="font-size:28px;">🎧</span><div><div style="font-size:15px;font-weight:800;">Talk to Support</div><div style="font-size:12px;opacity:.75;margin-top:2px;">Call or WhatsApp helpline</div></div></div>
+      <div class="dlbl">FAQ</div>
+      <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">How do I accept an order?<span class="fa2">›</span></div><div class="fa"><p>Tap the green Accept slider on any new order card. Once accepted, the order moves to your Active tab and is locked to you only.</p></div></div>
+      <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">What are the 6 delivery steps?<span class="fa2">›</span></div><div class="fa"><p>1) Accept Order → 2) Order Picked Up → 3) Out for Delivery → 4) Money Received → 5) Enter Customer OTP → 6) Mark as Delivered.</p></div></div>
+      <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">What is the COD timer?<span class="fa2">›</span></div><div class="fa"><p>For Cash on Delivery orders, you have 5 hours to complete the delivery. If the timer expires, the order is flagged. The timer is visible on the order tracking page.</p></div></div>
+      <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">How and when do I get paid?<span class="fa2">›</span></div><div class="fa"><p>Earnings are credited to your UPI every Monday for the previous week. COD must be deposited at the GoCart hub within 24 hours.</p></div></div>
+      <div class="faq" onclick="this.classList.toggle('open')"><div class="fq">What if the customer doesn't respond?<span class="fa2">›</span></div><div class="fa"><p>Call 3 times, wait 5 minutes at drop location, then contact support at 1800-123-4567. Never leave packages unattended.</p></div></div>
     </div>
   </div>
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────
+// ══ DATA ══
 let orders=[
-  {id:'QD-1021',item:'Groceries',icon:'🛒',pickup:'Ram Nagar, Annavaram',drop:'Lakshmi Colony, Uppada',earn:65,time:'18 min',customer:'Priya Lakshmi',phone:'8885551230',desc:'2 bags – vegetables, fruits, milk',payment:'COD',payAmt:65,shopName:'Sri Balaji Supermarket',items:[{name:'Vegetables (mixed)',qty:1,price:120},{name:'Fruits (assorted)',qty:1,price:85},{name:'Milk 1L',qty:2,price:60},{name:'Bread',qty:1,price:35}],deliveryCharge:65,status:'new',urgent:true},
-  {id:'QD-1022',item:'Medicine',icon:'💊',pickup:'Annavaram Pharmacy, Main Rd',drop:'Konda Vari St, Kakinada Rd',earn:40,time:'12 min',customer:'Suresh Babu',phone:'9993334455',desc:'Prescription medicines – 1 packet',payment:'Online',payAmt:40,shopName:'Annavaram Medical Stores',items:[{name:'Paracetamol 500mg x10',qty:1,price:28},{name:'Azithromycin 500mg x5',qty:1,price:95},{name:'Vitamin C 500mg x10',qty:1,price:45}],deliveryCharge:40,status:'new',urgent:false},
-  {id:'QD-1023',item:'Food',icon:'🍱',pickup:'Krishna Hotel, Temple Rd',drop:'Bus Stand Colony',earn:50,time:'10 min',customer:'Anitha Devi',phone:'7776665544',desc:'Biryani 2 plates, cold drinks x2',payment:'COD',payAmt:50,shopName:'Krishna Hotel & Restaurant',items:[{name:'Chicken Biryani (Full)',qty:2,price:150},{name:'Cold Drink 600ml',qty:2,price:40},{name:'Raita',qty:1,price:20}],deliveryCharge:50,status:'new',urgent:true},
-  {id:'QD-1024',item:'Parcel',icon:'📦',pickup:'Post Office, Annavaram',drop:'Visakha Nagar Extension',earn:80,time:'25 min',customer:'Raju Naidu',phone:'9876543210',desc:'Amazon parcel – medium box, fragile',payment:'Online',payAmt:80,shopName:'Amazon Local Pickup Hub',items:[{name:'Amazon Package (Fragile)',qty:1,price:0}],deliveryCharge:80,status:'new',urgent:false},
+  {id:'GC-1021',item:'Groceries',icon:'🛒',pickup:'Ram Nagar, Annavaram',drop:'Lakshmi Colony, Uppada',earn:65,time:'18 min',customer:'Priya Lakshmi',phone:'8885551230',desc:'2 bags – vegetables, fruits, milk',payment:'COD',payAmt:65,shopName:'Sri Balaji Supermarket',items:[{name:'Vegetables (mixed)',qty:1,price:120},{name:'Fruits (assorted)',qty:1,price:85},{name:'Milk 1L',qty:2,price:60},{name:'Bread',qty:1,price:35}],deliveryCharge:65,status:'new',urgent:true,step:0,codTimer:18000},
+  {id:'GC-1022',item:'Medicine',icon:'💊',pickup:'Annavaram Pharmacy, Main Rd',drop:'Konda Vari St, Kakinada Rd',earn:40,time:'12 min',customer:'Suresh Babu',phone:'9993334455',desc:'Prescription medicines – 1 packet',payment:'Online',payAmt:40,shopName:'Annavaram Medical Stores',items:[{name:'Paracetamol 500mg',qty:1,price:28},{name:'Azithromycin 500mg',qty:1,price:95},{name:'Vitamin C',qty:1,price:45}],deliveryCharge:40,status:'new',urgent:false,step:0,codTimer:0},
+  {id:'GC-1023',item:'Food',icon:'🍱',pickup:'Krishna Hotel, Temple Rd',drop:'Bus Stand Colony',earn:50,time:'10 min',customer:'Anitha Devi',phone:'7776665544',desc:'Biryani 2 plates, cold drinks',payment:'COD',payAmt:50,shopName:'Krishna Hotel',items:[{name:'Chicken Biryani (Full)',qty:2,price:150},{name:'Cold Drink 600ml',qty:2,price:40},{name:'Raita',qty:1,price:20}],deliveryCharge:50,status:'new',urgent:true,step:0,codTimer:18000},
+  {id:'GC-1024',item:'Parcel',icon:'📦',pickup:'Post Office, Annavaram',drop:'Visakha Nagar Extension',earn:80,time:'25 min',customer:'Raju Naidu',phone:'9876543210',desc:'Amazon parcel – fragile',payment:'Online',payAmt:80,shopName:'Amazon Hub',items:[{name:'Amazon Package (Fragile)',qty:1,price:0}],deliveryCharge:80,status:'new',urgent:false,step:0,codTimer:0},
 ];
 const DEMO=[
-  {id:'QD-1025',item:'Bag',icon:'👜',pickup:'Fashion Street, Annavaram',drop:'NH-16 Service Rd, Tuni',earn:70,time:'20 min',customer:'Kavitha Reddy',phone:'9988776655',desc:'Ladies handbag – packaged',payment:'Online',payAmt:70,shopName:'Style Zone Fashion',items:[{name:'Ladies Handbag',qty:1,price:650}],deliveryCharge:70,status:'new',urgent:false},
-  {id:'QD-1026',item:'Electronics',icon:'📱',pickup:'Mobile Zone, Temple Rd',drop:'Near SBI, Annavaram',earn:90,time:'8 min',customer:'Vijay Teja',phone:'8877554433',desc:'Charger & earphones',payment:'COD',payAmt:90,shopName:'Mobile Zone Electronics',items:[{name:'Type-C Fast Charger',qty:1,price:350},{name:'Earphones (wired)',qty:1,price:199}],deliveryCharge:90,status:'new',urgent:true},
-  {id:'QD-1027',item:'Documents',icon:'📄',pickup:'District Office, Annavaram',drop:'Kakinada Road Colony',earn:35,time:'15 min',customer:'Sarada Devi',phone:'9090909090',desc:'Govt sealed envelope',payment:'Online',payAmt:35,shopName:'Govt. Documents Dispatch',items:[{name:'Sealed Envelope (Docs)',qty:1,price:0}],deliveryCharge:35,status:'new',urgent:false},
+  {id:'GC-1025',item:'Bag',icon:'👜',pickup:'Fashion Street, Annavaram',drop:'NH-16, Tuni',earn:70,time:'20 min',customer:'Kavitha Reddy',phone:'9988776655',desc:'Ladies handbag',payment:'Online',payAmt:70,shopName:'Style Zone',items:[{name:'Ladies Handbag',qty:1,price:650}],deliveryCharge:70,status:'new',urgent:false,step:0,codTimer:0},
+  {id:'GC-1026',item:'Electronics',icon:'📱',pickup:'Mobile Zone, Temple Rd',drop:'Near SBI, Annavaram',earn:90,time:'8 min',customer:'Vijay Teja',phone:'8877554433',desc:'Charger & earphones',payment:'COD',payAmt:90,shopName:'Mobile Zone',items:[{name:'Type-C Charger',qty:1,price:350},{name:'Earphones',qty:1,price:199}],deliveryCharge:90,status:'new',urgent:true,step:0,codTimer:18000},
 ];
 
-let todayEarned=0,completedCount=0,darkMode=false,demoIdx=0;
-let agentPhone='';
+const STEPS=['Accept Order','Order Picked Up','Out for Delivery','Money Received','Enter OTP','Mark as Delivered'];
+const STEP_ICONS=['🤝','🏪','🛵','💵','🔐','✅'];
 
-// ── PASSWORD CHECK ────────────────────────────────────────────────────
+let todayEarned=0,completedCount=0,darkMode=false,demoIdx=0;
+let currentOTP='1234';
+let codTimers={};
+
+// ══ PASSWORD ══
 function checkPw(v){
-  const rules={
-    'r-len':v.length>=8,
-    'r-up':/[A-Z]/.test(v),
-    'r-low':/[a-z]/.test(v),
-    'r-num':/[0-9]/.test(v),
-    'r-sp':/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(v)
-  };
-  const labels={'r-len':'At least 8 characters','r-up':'One uppercase letter (A–Z)','r-low':'One lowercase letter (a–z)','r-num':'One number (0–9)','r-sp':'One special character (!@#$%^&*)'};
-  document.getElementById('pw-rules').classList.toggle('show',v.length>0);
+  const r={'r-len':v.length>=8,'r-up':/[A-Z]/.test(v),'r-low':/[a-z]/.test(v),'r-num':/[0-9]/.test(v),'r-sp':/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(v)};
+  const lbs={'r-len':'At least 8 characters','r-up':'One uppercase letter (A–Z)','r-low':'One lowercase letter (a–z)','r-num':'One number (0–9)','r-sp':'One special character (!@#$%^&*)'};
+  const pw2={'r2-len':v.length>=8,'r2-up':/[A-Z]/.test(v),'r2-low':/[a-z]/.test(v),'r2-num':/[0-9]/.test(v),'r2-sp':/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(v)};
+  const lbs2={'r2-len':'At least 8 characters','r2-up':'One uppercase (A–Z)','r2-low':'One lowercase (a–z)','r2-num':'One number (0–9)','r2-sp':'One special character'};
+  const pwr=document.getElementById('pw-rules');
+  if(pwr) pwr.classList.toggle('on',v.length>0);
   let all=true;
-  for(const[id,ok] of Object.entries(rules)){
-    const el=document.getElementById(id);
-    el.textContent=(ok?'✅ ':'⬜ ')+labels[id];
-    el.classList.toggle('ok',ok);
-    if(!ok)all=false;
-  }
+  for(const[id,ok] of Object.entries(r)){const el=document.getElementById(id);if(el){el.textContent=(ok?'✅ ':'⬜ ')+lbs[id];el.classList.toggle('ok',ok);}if(!ok)all=false;}
+  for(const[id,ok] of Object.entries(pw2)){const el=document.getElementById(id);if(el){el.textContent=(ok?'✅ ':'⬜ ')+lbs2[id];el.classList.toggle('ok',ok);}}
   return all;
 }
+function togglePw(){const i=document.getElementById('pw');if(i)i.type=i.type==='password'?'text':'password';}
+function togglePw2(){const i=document.getElementById('np-input');if(i)i.type=i.type==='password'?'text':'password';}
 
-function togglePw(){
-  const i=document.getElementById('pass-input');
-  i.type=i.type==='password'?'text':'password';
-}
-
-// ── LOGIN ─────────────────────────────────────────────────────────────
+// ══ LOGIN ══
 function doLogin(){
-  const ph=document.getElementById('phone-input').value.trim();
-  const pw=document.getElementById('pass-input').value;
+  const ph=document.getElementById('ph').value.trim();
+  const pw=document.getElementById('pw').value;
   let ok=true;
-  if(!/^\d{10}$/.test(ph)){
-    document.getElementById('phone-err').classList.add('show');
-    document.getElementById('phone-input').classList.add('error');
-    ok=false;
-  } else {
-    document.getElementById('phone-err').classList.remove('show');
-    document.getElementById('phone-input').classList.remove('error');
-  }
-  if(!checkPw(pw)){
-    document.getElementById('pass-err').classList.add('show');
-    document.getElementById('pw-rules').classList.add('show');
-    ok=false;
-  } else {
-    document.getElementById('pass-err').classList.remove('show');
-  }
-  if(!ok) return;
-  agentPhone=ph;
-  document.getElementById('agent-name').textContent='Agent '+ph.slice(-4);
-  document.getElementById('agent-phone').textContent='📱 +91 '+ph;
-  showPage('dashboard-page');
-  renderAll();
-  startAutoRefresh();
-  showToast('✅ Welcome, Agent '+ph.slice(-4)+'!');
+  if(!/^\d{10}$/.test(ph)){document.getElementById('ph-err').classList.add('on');document.getElementById('ph').classList.add('err');ok=false;}
+  else{document.getElementById('ph-err').classList.remove('on');document.getElementById('ph').classList.remove('err');}
+  if(!checkPw(pw)){document.getElementById('pw-err').classList.add('on');document.getElementById('pw-rules').classList.add('on');ok=false;}
+  else{document.getElementById('pw-err').classList.remove('on');}
+  if(!ok)return;
+  document.getElementById('ag-name').textContent='Agent '+ph.slice(-4);
+  document.getElementById('ag-phone').textContent='📱 +91 '+ph;
+  goPage('pg-dash');renderAll();startAuto();
+  toast('✅ Welcome, Agent '+ph.slice(-4)+'!');
 }
+function doLogout(){goPage('pg-login');toast('👋 Logged out');}
 
-function doLogout(){showPage('login-page');showToast('👋 Logged out');}
+// ══ FORGOT PW ══
+function openForgot(){document.getElementById('forgot-modal').classList.add('on');}
+function closeForgot(){document.getElementById('forgot-modal').classList.remove('on');['ms1','ms2','ms3'].forEach((id,i)=>{document.getElementById(id).classList.toggle('on',i===0);});}
+function sendOtp(){
+  const ph=document.getElementById('fp-phone').value;
+  if(!/^\d{10}$/.test(ph)){toast('❌ Enter valid 10-digit number');return;}
+  document.getElementById('ms1').classList.remove('on');
+  document.getElementById('ms2').classList.add('on');
+  toast('📱 OTP sent to +91 '+ph);
+}
+function verifyOtp(){
+  const entered=[document.getElementById('ot1'),document.getElementById('ot2'),document.getElementById('ot3'),document.getElementById('ot4')].map(i=>i.value).join('');
+  if(entered===currentOTP){document.getElementById('ms2').classList.remove('on');document.getElementById('ms3').classList.add('on');toast('✅ OTP Verified!');}
+  else toast('❌ Wrong OTP. Try: 1234');
+}
+function resetPw(){
+  const v=document.getElementById('np-input').value;
+  if(!checkPw(v)){toast('❌ Password does not meet requirements');return;}
+  closeForgot();toast('✅ Password reset successfully!');
+}
+function otpNav(el,prevId,nextId){if(el.value&&nextId)document.getElementById(nextId)?.focus();if(!el.value&&prevId)document.getElementById(prevId)?.focus();}
 
-// ── NAVIGATION ────────────────────────────────────────────────────────
-function showPage(id){
+// ══ NAVIGATION ══
+function goPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  if(id==='perf-page'){document.getElementById('ps-total').textContent=completedCount;document.getElementById('ps-earn').textContent='₹'+todayEarned;}
-  if(id==='earn-page'){document.getElementById('eh-today').textContent='₹'+todayEarned;document.getElementById('eh-today-del').textContent=completedCount+' deliveries';const t=todayEarned+975;document.getElementById('eh-total').textContent='₹'+t;document.getElementById('eh-grand').textContent='₹'+t;document.getElementById('eh-cod').textContent='₹'+Math.round(t*0.6);document.getElementById('eh-online').textContent='₹'+Math.round(t*0.4);}
+  if(id==='pg-perf'){document.getElementById('ps-tot').textContent=completedCount;document.getElementById('ps-earn').textContent='₹'+todayEarned;}
+  if(id==='pg-earn'){const t=todayEarned+975;document.getElementById('eh-td').textContent='₹'+todayEarned;document.getElementById('eh-td-d').textContent=completedCount+' deliveries';document.getElementById('eh-tot').textContent='₹'+t;document.getElementById('eh-grand').textContent='₹'+t;document.getElementById('eh-cod').textContent='₹'+Math.round(t*.6);document.getElementById('eh-on').textContent='₹'+Math.round(t*.4);}
 }
-
-function switchTab(tab,btn){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  else document.querySelectorAll('.tab-btn')[{new:0,accepted:1,done:2}[tab]]?.classList.add('active');
-  document.getElementById('tab-'+tab).classList.add('active');
+function switchTab(t,btn){
+  document.querySelectorAll('.tbtn2').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  else document.querySelectorAll('.tbtn2')[{new:0,act:1,done:2}[t]]?.classList.add('active');
+  document.getElementById('tc-'+t).classList.add('active');
 }
+function setNav(el){document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
 
-function setNav(el){document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
-
-// ── RENDER ────────────────────────────────────────────────────────────
+// ══ RENDER ══
 function renderAll(){
-  const nw=orders.filter(o=>o.status==='new');
-  const ac=orders.filter(o=>o.status==='accepted');
-  const dn=orders.filter(o=>o.status==='done');
-  ['new-count','accepted-count','done-count'].forEach((id,i)=>document.getElementById(id).textContent=[nw,ac,dn][i].length);
-  document.getElementById('stat-new').textContent=nw.length;
-  document.getElementById('stat-earn').textContent='₹'+todayEarned;
-  document.getElementById('stat-done').textContent=completedCount;
+  const nw=orders.filter(o=>o.status==='new'),ac=orders.filter(o=>o.status==='accepted'),dn=orders.filter(o=>o.status==='done');
+  ['cnt-new','cnt-act','cnt-done'].forEach((id,i)=>document.getElementById(id).textContent=[nw,ac,dn][i].length);
+  document.getElementById('st-new').textContent=nw.length;
+  document.getElementById('st-earn').textContent='₹'+todayEarned;
+  document.getElementById('st-done').textContent=completedCount;
   document.getElementById('p-done').textContent=completedCount;
   document.getElementById('p-earn').textContent='₹'+todayEarned;
-  renderList('new-orders-list',nw,'new');
-  renderList('accepted-orders-list',ac,'accepted');
-  renderList('done-orders-list',dn,'done');
+  renderList('list-new',nw,'new');renderList('list-act',ac,'accepted');renderList('list-done',dn,'done');
 }
 
 function renderList(cid,list,type){
   const el=document.getElementById(cid);
-  if(!list.length){el.innerHTML=`<div class="empty-state"><div class="empty-icon">${type==='new'?'🎉':type==='accepted'?'🚴':'📦'}</div><div class="empty-text">${type==='new'?'No new orders right now':'No orders here yet'}</div></div>`;return;}
+  if(!list.length){el.innerHTML=`<div class="empty"><div class="eico">${type==='new'?'🎉':type==='accepted'?'🚴':'📦'}</div><p>${type==='new'?'No new orders right now':'Nothing here yet'}</p></div>`;return;}
   el.innerHTML=list.map(o=>buildCard(o,type)).join('');
 }
 
 function buildCard(o,type){
   const acts=type==='new'
-    ?`<div class="card-actions"><button class="btn btn-accept" onclick="acceptOrder('${o.id}');event.stopPropagation()">✅ ACCEPT</button><button class="btn btn-reject" onclick="rejectOrder('${o.id}');event.stopPropagation()">✗ REJECT</button></div>`
+    ?`<div class="cactions"><button class="btn btn-g" onclick="acceptOrder('${o.id}');event.stopPropagation()">✅ ACCEPT</button><button class="btn btn-r" onclick="rejectOrder('${o.id}');event.stopPropagation()">✗ REJECT</button></div>`
     :type==='accepted'
-    ?`<div class="card-actions"><button class="btn btn-deliver" style="flex:1" onclick="deliverOrder('${o.id}');event.stopPropagation()">🏁 MARK AS DELIVERED</button></div>`:'';
-  const chip=type==='done'?'<span class="status-chip status-done">✅ Done</span>':type==='accepted'?'<span class="status-chip status-accepted">🚴 On way</span>':'';
-  return `<div class="order-card ${o.urgent&&type==='new'?'urgent':''}" onclick="openDetail('${o.id}')">
-    <div class="card-header"><div class="item-info"><div class="item-icon">${o.icon}</div><div><div class="item-name">${o.item}${o.urgent&&type==='new'?'<span class="urgent-badge">🔥 URGENT</span>':''}</div><div class="item-id">${o.id}</div></div></div><div class="earn-badge">₹${o.earn}</div></div>
-    <div class="route-row"><span class="loc-icon">🟢</span><span class="loc-text">${o.pickup}</span></div>
-    <div class="route-row"><span class="loc-icon">🔴</span><span class="loc-text">${o.drop}</span></div>
-    <div class="card-meta"><div class="meta-item">⏱️ ${o.time}</div><div class="meta-item">💳 ${o.payment}</div>${chip}</div>
+    ?`<div class="cactions"><button class="btn btn-b" style="flex:1" onclick="openDetail('${o.id}');event.stopPropagation()">👉 Continue Delivery</button></div>`:'';
+  const chip=type==='done'?'<span class="schap sch-done">✅ Done</span>':type==='accepted'?`<span class="schap sch-act">🚴 Step ${o.step}/5</span>`:'';
+  const cod=o.payment==='COD'&&type==='accepted'&&o.codTimer>0?`<span class="schap" style="background:var(--ol);color:var(--orange);">⏱️ ${fmtTimer(o.codTimer)}</span>`:'';
+  return `<div class="ocard ${o.urgent&&type==='new'?'urgent':''}" onclick="openDetail('${o.id}')">
+    <div class="ch"><div class="ci"><div class="cico">${o.icon}</div><div><div class="cname">${o.item}${o.urgent&&type==='new'?'<span class="urg-tag">🔥 URGENT</span>':''}</div><div class="cid">${o.id}</div></div></div><div class="earn-tag">₹${o.earn}</div></div>
+    <div class="rrow"><span class="rico">🟢</span><span class="rtxt">${o.pickup}</span></div>
+    <div class="rrow"><span class="rico">🔴</span><span class="rtxt">${o.drop}</span></div>
+    <div class="cmeta"><span>⏱️ ${o.time}</span><span>💳 ${o.payment}</span>${chip}${cod}</div>
     ${acts}
   </div>`;
 }
 
-// ── ORDER ACTIONS ─────────────────────────────────────────────────────
+// ══ ORDER ACTIONS ══
 function acceptOrder(id){
   const o=orders.find(x=>x.id===id);if(!o)return;
-  o.status='accepted';renderAll();showToast('✅ Accepted: '+id);
-  switchTab('accepted',document.querySelectorAll('.tab-btn')[1]);
+  o.status='accepted';o.step=1;
+  if(o.payment==='COD')startCodTimer(o);
+  renderAll();toast('✅ Accepted: '+id);
+  switchTab('act',document.querySelectorAll('.tbtn2')[1]);
 }
-function rejectOrder(id){orders=orders.filter(x=>x.id!==id);renderAll();showToast('✗ Order rejected');}
-function deliverOrder(id){
-  const o=orders.find(x=>x.id===id);if(!o)return;
-  o.status='done';todayEarned+=o.earn;completedCount++;
-  renderAll();showToast('🏁 Delivered! +₹'+o.earn);
-}
+function rejectOrder(id){orders=orders.filter(x=>x.id!==id);renderAll();toast('✗ Order rejected');}
 
-// ── ORDER DETAIL ──────────────────────────────────────────────────────
-function openDetail(id){
+function startCodTimer(o){
+  if(codTimers[o.id])clearInterval(codTimers[o.id]);
+  codTimers[o.id]=setInterval(()=>{
+    if(o.codTimer>0){o.codTimer--;renderAll();if(document.getElementById('det-content').innerHTML&&o.status==='accepted')refreshDetail(o.id);}
+    else{clearInterval(codTimers[o.id]);toast('⚠️ COD timer expired for '+o.id);o.codTimer=0;}
+  },1000);
+}
+function fmtTimer(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;}
+
+// ══ ORDER DETAIL ══
+let currentDetId=null;
+function openDetail(id){currentDetId=id;renderDetail(id);goPage('pg-det');}
+function refreshDetail(id){if(currentDetId===id&&document.getElementById('pg-det').classList.contains('active'))renderDetail(id);}
+
+function renderDetail(id){
   const o=orders.find(x=>x.id===id);if(!o)return;
-  let itemsHtml='',itemsTotal=0;
-  if(o.items&&o.items.length){
-    itemsHtml+='<table class="bill-table"><thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead><tbody>';
-    o.items.forEach(it=>{const lt=it.price*it.qty;itemsTotal+=lt;itemsHtml+=`<tr><td>${it.name}</td><td>${it.qty}</td><td>${lt?'₹'+lt:'—'}</td></tr>`;});
-    itemsHtml+='</tbody></table>';
-  }
-  const grandTotal=itemsTotal?itemsTotal+o.deliveryCharge:o.payAmt;
-  document.getElementById('detail-content').innerHTML=`
-    <div class="detail-hero">
-      <div class="detail-hero-icon">${o.icon}</div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <h2>${o.item}</h2>
-        ${o.urgent?'<span style="background:rgba(255,140,0,.3);color:#ffcc66;font-size:12px;font-weight:800;padding:4px 10px;border-radius:20px;">🔥 URGENT</span>':''}
-      </div>
-      <div class="detail-id"># ${o.id}</div>
-      <div class="detail-earn">₹${o.earn} <span>delivery earning</span></div>
+  let iHtml='',iTotal=0;
+  if(o.items){iHtml='<table class="btbl"><thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead><tbody>';o.items.forEach(it=>{const lt=it.price*it.qty;iTotal+=lt;iHtml+=`<tr><td>${it.name}</td><td>${it.qty}</td><td>${lt?'₹'+lt:'—'}</td></tr>`;});iHtml+='</tbody></table>';}
+  const grand=iTotal?iTotal+o.deliveryCharge:o.payAmt;
+
+  // Payment section
+  const paySection=`<div class="pay-card">
+    <div class="pay-title">💳 Payment Method</div>
+    <div class="pay-methods">
+      <div class="pay-opt ${o.payment==='UPI'?'selected':''}" onclick="setPayment('${o.id}','UPI')"><div class="pico">📲</div><div class="plbl">UPI / QR</div></div>
+      <div class="pay-opt ${o.payment==='COD'?'selected':''}" onclick="setPayment('${o.id}','COD')"><div class="pico">💵</div><div class="plbl">Cash on Delivery</div></div>
     </div>
-    <div class="detail-body">
-      <div class="info-card">
-        <div class="info-card-title">👤 Customer Info</div>
-        <div class="info-row"><span class="info-icon">👤</span><div><div class="info-label">Name</div><div class="info-value">${o.customer}</div></div></div>
-        <div class="info-row"><span class="info-icon">📱</span><div><div class="info-label">Phone</div><div class="info-value">${o.phone}</div></div></div>
-        <div class="info-row"><span class="info-icon">💳</span><div><div class="info-label">Payment Mode</div><div class="info-value">${o.payment} · ₹${o.payAmt}</div></div></div>
+    ${o.payment==='UPI'?`<div class="qr-wrap">${generateQR()}<div class="qr-label">Scan to Pay</div><div class="qr-amount">₹${grand}</div><div class="pay-btns"><button class="btn btn-g" onclick="toast('✅ Payment confirmed!')">💸 Pay Now</button><button class="btn btn-outline" onclick="toast('⏳ Pay Later selected')">⏳ Pay Later</button></div></div>`:''}
+    ${o.payment==='COD'?`<div style="text-align:center;padding:12px;background:var(--ol);border-radius:10px;color:var(--orange);font-weight:800;font-size:14px;">💵 Collect ₹${grand} in Cash</div>`:''}
+  </div>`;
+
+  // COD timer
+  const codSection=o.payment==='COD'&&o.status==='accepted'?`<div class="cod-timer ${o.codTimer<1800?'warning':''}">
+    <span class="timer-ico">⏱️</span>
+    <div><div class="timer-label">COD Delivery Window</div><div class="timer-val" id="cod-disp-${o.id}">${fmtTimer(o.codTimer)}</div></div>
+  </div>`:'';
+
+  // Step flow (only for accepted orders)
+  let stepFlow='';
+  if(o.status==='accepted'){
+    stepFlow='<div class="step-flow">';
+    for(let i=1;i<=6;i++){
+      const isDone=o.step>i;
+      const isActive=o.step===i;
+      const isLocked=o.step<i;
+      let cls=isLocked?'locked':isDone?'done-step':'active-step';
+      let content='';
+      if(isDone){
+        content=`<div class="slider-done">✅ ${STEPS[i-1]} Done</div>`;
+      } else if(isActive){
+        if(i===5){
+          // OTP step
+          content=`<div class="otp-box">
+            <div class="otp-title">🔐 Enter Customer OTP</div>
+            <div class="otp-inputs">
+              <input type="tel" maxlength="1" id="otp-a" oninput="otpN(this,'','otp-b')">
+              <input type="tel" maxlength="1" id="otp-b" oninput="otpN(this,'otp-a','otp-c')">
+              <input type="tel" maxlength="1" id="otp-c" oninput="otpN(this,'otp-b','otp-d')">
+              <input type="tel" maxlength="1" id="otp-d" oninput="otpN(this,'otp-c','')">
+            </div>
+            <div class="otp-sub">Ask customer for their OTP (Demo: 5678)</div>
+            <button class="btn btn-g btn-full" style="margin-top:10px;" onclick="verifyDeliveryOtp('${o.id}')">✅ Verify OTP</button>
+          </div>`;
+          cls='active-step';
+        } else if(i===6){
+          content=`<button class="btn btn-g btn-full" onclick="completeDelivery('${o.id}')">🏁 Mark as Delivered</button>`;
+          cls='active-step';
+        } else {
+          content=buildSlider(i,o.id);
+        }
+      }
+      stepFlow+=`<div class="step-item ${cls}"><div class="step-label"><span class="step-num">${isDone?'✓':i}</span>${STEP_ICONS[i-1]} ${STEPS[i-1]}</div>${content}</div>`;
+    }
+    stepFlow+='</div>';
+  }
+
+  document.getElementById('det-content').innerHTML=`
+    <div class="det-hero">
+      <div class="det-hero-ico">${o.icon}</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <h2>${o.item}</h2>
+        ${o.urgent?'<span style="background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;">🔥 URGENT</span>':''}
       </div>
-      <div class="info-card">
-        <div class="info-card-title">🧾 Bill Details</div>
-        <div class="info-row" style="margin-bottom:12px;"><span class="info-icon">🏪</span><div><div class="info-label">Shop / Restaurant</div><div class="info-value">${o.shopName}</div></div></div>
-        ${itemsHtml}
-        <div class="bill-divider"></div>
-        <div class="bill-row sub"><span>Items Subtotal</span><span>₹${itemsTotal||'—'}</span></div>
-        <div class="bill-row deli"><span>🚴 Delivery Charge</span><span>₹${o.deliveryCharge}</span></div>
-        <div class="bill-divider"></div>
-        <div class="bill-row grand"><span>Grand Total</span><span class="ga">₹${grandTotal}</span></div>
+      <div class="det-id"># ${o.id}</div>
+      <div class="det-earn">₹${o.earn} <span>delivery earning</span></div>
+    </div>
+    <div class="det-body">
+      <div class="info-c">
+        <div class="ic-title">👤 Customer Info</div>
+        <div class="ir"><span class="iico">👤</span><div><div class="ilbl">Name</div><div class="ival">${o.customer}</div></div></div>
+        <div class="ir"><span class="iico">📱</span><div><div class="ilbl">Phone</div><div class="ival">${o.phone}</div></div></div>
       </div>
-      <div class="info-card">
-        <div class="info-card-title">📍 Route</div>
-        <div class="route-visual">
-          <div class="route-point"><div class="route-dot pickup"></div><div><div class="info-label">PICKUP</div><div class="info-value">${o.pickup}</div></div></div>
-          <div class="route-point"><div class="route-dot drop"></div><div><div class="info-label">DROP</div><div class="info-value">${o.drop}</div></div></div>
+      <div class="info-c">
+        <div class="ic-title">🧾 Bill Details</div>
+        <div class="ir" style="margin-bottom:10px;"><span class="iico">🏪</span><div><div class="ilbl">Shop</div><div class="ival">${o.shopName}</div></div></div>
+        ${iHtml}
+        <div class="bdiv"></div>
+        <div class="brow sub"><span>Subtotal</span><span>₹${iTotal||'—'}</span></div>
+        <div class="brow del"><span>🚴 Delivery</span><span>₹${o.deliveryCharge}</span></div>
+        <div class="bdiv"></div>
+        <div class="brow grand"><span>Grand Total</span><span class="ga">₹${grand}</span></div>
+      </div>
+      ${paySection}
+      ${codSection}
+      <div class="info-c">
+        <div class="ic-title">📍 Route</div>
+        <div class="route-vis">
+          <div class="rpt"><div class="rdot pu"></div><div><div class="ilbl">PICKUP</div><div class="ival">${o.pickup}</div></div></div>
+          <div class="rpt"><div class="rdot dr"></div><div><div class="ilbl">DROP</div><div class="ival">${o.drop}</div></div></div>
         </div>
-        <div class="card-meta" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
-          <div class="meta-item">⏱️ ${o.time}</div><div class="meta-item">📦 ${o.desc}</div>
+        <div class="cmeta" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
+          <span>⏱️ ${o.time}</span><span>📦 ${o.desc}</span>
         </div>
       </div>
-      <div class="action-grid">
-        <button class="btn btn-call" onclick="callCustomer('${o.phone}')">📞 Call Customer</button>
-        <button class="btn btn-map" onclick="openMaps('${encodeURIComponent(o.drop)}')">🗺️ Open Maps</button>
+      <div class="ag">
+        <button class="btn btn-call" onclick="callCust('${o.phone}')">📞 Call Customer</button>
+        <button class="btn btn-map" onclick="openMaps('${encodeURIComponent(o.drop)}')">🗺️ Maps</button>
       </div>
-      ${o.status==='accepted'?`<div class="deliver-wrap"><button class="btn btn-deliver btn-full" onclick="deliverOrder('${o.id}');showPage('dashboard-page')">🏁 MARK AS DELIVERED</button></div>`:''}
-      ${o.status==='new'?`<div class="action-grid"><button class="btn btn-accept" onclick="acceptOrder('${o.id}');showPage('dashboard-page')">✅ ACCEPT</button><button class="btn btn-reject" onclick="rejectOrder('${o.id}');showPage('dashboard-page')">✗ REJECT</button></div>`:''}
-      ${o.status==='done'?`<div class="info-card" style="text-align:center;padding:24px;"><div style="font-size:40px;">✅</div><div style="font-size:16px;font-weight:800;color:var(--green);margin-top:8px;">Delivery Completed!</div><div style="font-size:13px;color:var(--text-muted);margin-top:4px;">₹${o.earn} added to earnings</div></div>`:''}
+      ${stepFlow}
+      ${o.status==='new'?`<div class="ag"><button class="btn btn-g" onclick="acceptOrder('${o.id}');goPage('pg-dash')">✅ ACCEPT</button><button class="btn btn-r" onclick="rejectOrder('${o.id}');goPage('pg-dash')">✗ REJECT</button></div>`:''}
+      ${o.status==='done'?`<div class="info-c" style="text-align:center;padding:20px;"><div style="font-size:40px;">✅</div><div style="font-size:15px;font-weight:800;color:var(--g);margin-top:8px;">Delivery Completed!</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">₹${o.earn} added to earnings</div></div>`:''}
+      <div style="height:20px;"></div>
     </div>`;
-  document.getElementById('detail-content').scrollTop=0;
-  showPage('detail-page');
+  document.getElementById('det-content').scrollTop=0;
+  initSliders();
 }
 
-// ── UTILITIES ─────────────────────────────────────────────────────────
-function callCustomer(p){showToast('📞 Calling '+p+'...');window.location.href='tel:'+p;}
-function callCC(p){showToast('📞 Calling support...');window.location.href='tel:'+p;}
-function openMaps(a){showToast('🗺️ Opening Maps...');window.open('https://www.google.com/maps/search/?api=1&query='+a,'_blank');}
-function toggleDark(){darkMode=!darkMode;document.body.toggleAttribute('data-dark',darkMode);const ic=darkMode?'☀️':'🌙';document.getElementById('dark-btn').textContent=ic;document.getElementById('dark-btn2').textContent=ic;showToast(darkMode?'🌙 Dark mode on':'☀️ Light mode on');}
-function showToast(msg){const tc=document.getElementById('toast-container');const t=document.createElement('div');t.className='toast';t.textContent=msg;tc.innerHTML='';tc.appendChild(t);setTimeout(()=>t.remove(),2800);}
-function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.setValueAtTime(880,c.currentTime);o.frequency.exponentialRampToValueAtTime(660,c.currentTime+.1);g.gain.setValueAtTime(.3,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.4);o.start();o.stop(c.currentTime+.4);}catch(e){}}
+function buildSlider(step, orderId){
+  return `<div class="slider-wrap" id="sl-${step}-${orderId}" data-step="${step}" data-oid="${orderId}">
+    <div class="slider-track" id="slt-${step}-${orderId}" style="width:0%;"></div>
+    <div class="slider-thumb" id="slth-${step}-${orderId}">→</div>
+    <div class="slider-text">Slide to ${STEPS[step-1]}</div>
+  </div>`;
+}
 
-function startAutoRefresh(){
+function initSliders(){
+  document.querySelectorAll('.slider-wrap').forEach(wrap=>{
+    const step=parseInt(wrap.dataset.step);
+    const oid=wrap.dataset.oid;
+    const thumb=document.getElementById(`slth-${step}-${oid}`);
+    const track=document.getElementById(`slt-${step}-${oid}`);
+    let dragging=false,startX=0,currentX=0;
+    const ww=()=>wrap.offsetWidth;
+
+    function onStart(e){
+      dragging=true;
+      startX=(e.touches?e.touches[0].clientX:e.clientX)-thumb.offsetLeft;
+      thumb.style.cursor='grabbing';
+      e.preventDefault();
+    }
+    function onMove(e){
+      if(!dragging)return;
+      const cx=e.touches?e.touches[0].clientX:e.clientX;
+      let nx=cx-startX;
+      const max=ww()-52;
+      nx=Math.max(0,Math.min(nx,max));
+      thumb.style.left=nx+'px';
+      track.style.width=(nx/(max))*100+'%';
+      currentX=nx;
+      e.preventDefault();
+    }
+    function onEnd(){
+      if(!dragging)return;dragging=false;
+      const max=ww()-52;
+      if(currentX/max>0.75){
+        advanceStep(oid,step);
+      } else {
+        thumb.style.left='4px';track.style.width='0%';
+      }
+      thumb.style.cursor='grab';
+    }
+    thumb.addEventListener('mousedown',onStart);
+    thumb.addEventListener('touchstart',onStart,{passive:false});
+    document.addEventListener('mousemove',onMove);
+    document.addEventListener('touchmove',onMove,{passive:false});
+    document.addEventListener('mouseup',onEnd);
+    document.addEventListener('touchend',onEnd);
+  });
+}
+
+function advanceStep(oid,step){
+  const o=orders.find(x=>x.id===oid);if(!o)return;
+  o.step=step+1;
+  renderAll();renderDetail(oid);
+  const labels=['','Accepted','Picked Up','Out for Delivery','Money Received','OTP Verified','Delivered'];
+  toast('✅ '+labels[step]+'!');
+}
+
+function verifyDeliveryOtp(oid){
+  const entered=[document.getElementById('otp-a'),document.getElementById('otp-b'),document.getElementById('otp-c'),document.getElementById('otp-d')].map(i=>i?i.value:'').join('');
+  if(entered==='5678'){
+    const o=orders.find(x=>x.id===oid);if(!o)return;
+    o.step=6;toast('✅ OTP Verified! Please mark as delivered.');renderAll();renderDetail(oid);
+  } else toast('❌ Wrong OTP. Ask customer for their 4-digit code. (Demo: 5678)');
+}
+function otpN(el,p,n){if(el.value&&n)document.getElementById(n)?.focus();if(!el.value&&p)document.getElementById(p)?.focus();}
+
+function completeDelivery(oid){
+  const o=orders.find(x=>x.id===oid);if(!o)return;
+  if(codTimers[oid])clearInterval(codTimers[oid]);
+  o.status='done';todayEarned+=o.earn;completedCount++;
+  renderAll();renderDetail(oid);toast('🏁 Delivery completed! +₹'+o.earn);
+}
+
+// Payment
+function setPayment(oid,method){
+  const o=orders.find(x=>x.id===oid);if(!o)return;
+  o.payment=method;renderDetail(oid);
+}
+
+// QR Code generator (simple visual)
+function generateQR(){
+  const cells=21;const size=140/cells;let svg=`<svg class="qr-code" viewBox="0 0 ${cells} ${cells}" xmlns="http://www.w3.org/2000/svg">`;
+  const pattern=[[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,0],[1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,0],[1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,1,1,0,1,0,0],[1,0,1,1,1,0,1,0,1,1,0,1,1,0,1,1,1,0,1,0,0],[1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],[1,1,0,1,1,0,1,1,1,0,1,0,1,1,0,1,1,0,1,0,0],[0,1,1,0,0,1,0,0,0,1,0,1,0,1,1,0,0,1,0,0,0],[1,0,1,1,0,1,1,0,1,0,1,0,1,0,1,1,0,1,1,0,0],[0,1,0,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,0,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,0],[1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,0],[1,0,0,0,0,0,1,0,0,1,1,0,1,0,0,0,0,0,1,0,0],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
+  for(let r=0;r<cells;r++){for(let c=0;c<cells&&c<pattern[r].length;c++){if(pattern[r][c])svg+=`<rect x="${c}" y="${r}" width="1" height="1" fill="#111827"/>`;}}
+  svg+='</svg>';
+  return svg;
+}
+
+// ══ UTILITIES ══
+function callCust(p){toast('📞 Calling '+p+'...');window.location.href='tel:'+p;}
+function callCC(p){toast('📞 Calling support...');window.location.href='tel:'+p;}
+function openMaps(a){toast('🗺️ Opening Maps...');window.open('https://www.google.com/maps/search/?api=1&query='+a,'_blank');}
+function toggleDark(){darkMode=!darkMode;document.body.toggleAttribute('data-dark',darkMode);const ic=darkMode?'☀️':'🌙';document.getElementById('dark-btn').textContent=ic;document.getElementById('dark-btn2').textContent=ic;toast(darkMode?'🌙 Dark mode on':'☀️ Light mode on');}
+function toast(msg){const tc=document.getElementById('toast-c');const t=document.createElement('div');t.className='toast';t.textContent=msg;tc.innerHTML='';tc.appendChild(t);setTimeout(()=>t.remove(),2800);}
+function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.setValueAtTime(1000,c.currentTime);o.frequency.exponentialRampToValueAtTime(700,c.currentTime+.08);g.gain.setValueAtTime(.4,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.35);o.start();o.stop(c.currentTime+.35);}catch(e){}}
+
+// ══ POPUP ALERT ══
+function closePopup(){document.getElementById('popup-ov').classList.add('hidden');}
+function showPopup(o){
+  document.getElementById('popup-ov').classList.remove('hidden');
+  document.getElementById('pop-ico').textContent=o.icon;
+  document.getElementById('pop-title').textContent='New Order: '+o.item;
+  document.getElementById('pop-sub').textContent=o.id+' · '+o.pickup+' → '+o.drop;
+  document.getElementById('pop-earn').textContent='₹'+o.earn+' delivery earning';
+  document.getElementById('pop-accept-btn').onclick=()=>{acceptOrder(o.id);closePopup();};
+  setTimeout(closePopup,8000);
+}
+
+// ══ AUTO REFRESH ══
+function startAuto(){
   setInterval(()=>{
     if(demoIdx<DEMO.length){
-      const no={...DEMO[demoIdx]};no.ts=Date.now();orders.unshift(no);demoIdx++;beep();
+      const no={...DEMO[demoIdx],items:[...DEMO[demoIdx].items]};no.ts=Date.now();
+      orders.unshift(no);demoIdx++;beep();
       const z=document.getElementById('notif-zone');
-      z.innerHTML=`<div class="notif-banner">🔔 New Order: ${no.item} · +₹${no.earn}</div>`;
-      setTimeout(()=>{z.innerHTML='';},4000);
-      renderAll();
+      z.innerHTML=`<div class="notif-banner">🔔 New Order: ${no.item} · +₹${no.earn}<span class="nb-close" onclick="this.parentElement.remove()">✕</span></div>`;
+      setTimeout(()=>{if(z.firstChild)z.innerHTML='';},5000);
+      showPopup(no);renderAll();
     }
   },14000);
 }
 
-document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('login-page').classList.contains('active'))doLogin();});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('pg-login').classList.contains('active'))doLogin();});
 </script>
 </body>
 </html>
