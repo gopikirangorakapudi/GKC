@@ -1,1217 +1,751 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GreenGrid — Renewable Energy Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sri Saradha – iPhone 17 Pro Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --green-50: #EAF3DE;
-    --green-100: #C0DD97;
-    --green-200: #97C459;
-    --green-400: #639922;
-    --green-600: #3B6D11;
-    --green-800: #27500A;
-    --green-900: #173404;
-    --teal-50: #E1F5EE;
-    --teal-200: #5DCAA5;
-    --teal-400: #1D9E75;
-    --teal-600: #0F6E56;
-    --amber-50: #FAEEDA;
-    --amber-200: #EF9F27;
-    --amber-400: #BA7517;
-    --blue-50: #E6F1FB;
-    --blue-400: #378ADD;
-    --blue-600: #185FA5;
-    --coral-50: #FAECE7;
-    --coral-400: #D85A30;
-    --bg: #0D1F0A;
-    --bg2: #132810;
-    --bg3: #1A3416;
-    --card: #1F3D1A;
-    --card2: #243F1E;
-    --text: #E8F5E0;
-    --text2: #A8C898;
-    --text3: #72946A;
-    --border: rgba(100, 180, 80, 0.15);
-    --accent: #7DC84A;
-    --accent2: #4FA830;
-    --glow: rgba(125, 200, 74, 0.08);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem;
-    height: 64px;
-    background: rgba(13, 31, 10, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-    display: flex; align-items: center; gap: 8px;
-  }
-
-  .nav-logo span {
-    color: var(--text);
-    font-weight: 400;
-  }
-
-  .nav-links {
-    display: flex; gap: 2rem; list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text2);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: color 0.2s;
-    letter-spacing: 0.02em;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--green-900);
-    border: none;
-    padding: 8px 20px;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .nav-cta:hover { background: #8FD85C; transform: translateY(-1px); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg-grid {
-    position: absolute; inset: 0; z-index: 0;
-    background-image:
-      linear-gradient(rgba(125, 200, 74, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(125, 200, 74, 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  .hero-orb {
-    position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0;
-  }
-
-  .hero-orb-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(63, 140, 30, 0.18), transparent 70%);
-    top: 10%; left: 50%; transform: translateX(-50%);
-  }
-
-  .hero-orb-2 {
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(29, 158, 117, 0.12), transparent 70%);
-    bottom: 20%; right: 10%;
-  }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(125, 200, 74, 0.1);
-    border: 1px solid rgba(125, 200, 74, 0.25);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 0.8rem;
-    color: var(--accent);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    position: relative; z-index: 1;
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse-dot 2s infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.7); }
-  }
-
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 7vw, 6.5rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    position: relative; z-index: 1;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: var(--text2);
-    font-weight: 300;
-    max-width: 560px;
-    line-height: 1.7;
-    position: relative; z-index: 1;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-actions {
-    display: flex; gap: 1rem; align-items: center;
-    position: relative; z-index: 1;
-    flex-wrap: wrap; justify-content: center;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--green-900);
-    border: none;
-    padding: 14px 32px;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem; font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-primary:hover { background: #8FD85C; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(125, 200, 74, 0.25); }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text2);
-    border: 1px solid var(--border);
-    padding: 14px 32px;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem; font-weight: 400;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-ghost:hover { border-color: rgba(125, 200, 74, 0.4); color: var(--accent); }
-
-  /* ── STATS TICKER ── */
-  .stats-bar {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.2rem 0;
-    overflow: hidden;
-  }
-
-  .stats-track {
-    display: flex; gap: 3rem;
-    animation: scroll-left 30s linear infinite;
-    white-space: nowrap;
-    width: max-content;
-  }
-
-  @keyframes scroll-left {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .stat-item {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 0.85rem;
-  }
-
-  .stat-label { color: var(--text3); }
-  .stat-val { color: var(--accent); font-family: 'Syne', sans-serif; font-weight: 600; }
-  .stat-sep { color: var(--text3); }
-
-  /* ── SECTION COMMON ── */
-  section { padding: 6rem 2rem; }
-
-  .section-tag {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .section-sub {
-    color: var(--text2);
-    font-weight: 300;
-    max-width: 520px;
-    line-height: 1.7;
-  }
-
-  .container { max-width: 1200px; margin: 0 auto; }
-
-  /* ── DASHBOARD SECTION ── */
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: border-color 0.2s;
-  }
-
-  .card:hover { border-color: rgba(125, 200, 74, 0.3); }
-
-  .card-label {
-    font-size: 0.75rem;
-    color: var(--text3);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.03em;
-  }
-
-  .card-unit { font-size: 1rem; color: var(--text3); font-family: 'DM Sans', sans-serif; font-weight: 300; }
-
-  .card-delta {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 0.8rem;
-    color: var(--accent);
-    background: rgba(125, 200, 74, 0.1);
-    padding: 3px 10px;
-    border-radius: 100px;
-    margin-top: 0.5rem;
-  }
-
-  /* Bar chart */
-  .bar-chart {
-    display: flex; align-items: flex-end; gap: 8px;
-    height: 120px; margin-top: 1.5rem;
-  }
-
-  .bar-wrap {
-    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
-  }
-
-  .bar {
-    width: 100%;
-    border-radius: 4px 4px 0 0;
-    transition: opacity 0.2s;
-    position: relative;
-  }
-
-  .bar:hover { opacity: 0.8; }
-  .bar-label { font-size: 0.65rem; color: var(--text3); }
-
-  /* Donut */
-  .donut-section { display: flex; gap: 1.5rem; align-items: center; margin-top: 1rem; }
-
-  .donut-legend { flex: 1; }
-  .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .legend-name { font-size: 0.8rem; color: var(--text2); }
-  .legend-pct { font-size: 0.8rem; font-weight: 500; color: var(--text); margin-left: auto; }
-
-  .metric-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .metric-card {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.2rem;
-  }
-
-  .metric-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .metric-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .metric-desc { font-size: 0.78rem; color: var(--text3); margin-top: 2px; }
-
-  /* ── SOURCES SECTION ── */
-  .sources-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .source-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
-    transition: all 0.2s;
-    cursor: pointer;
-    position: relative; overflow: hidden;
-  }
-
-  .source-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .source-card:hover { transform: translateY(-4px); border-color: rgba(125, 200, 74, 0.3); }
-  .source-card:hover::before { opacity: 1; }
-
-  .source-card.solar::before { background: var(--amber-200); }
-  .source-card.wind::before { background: var(--blue-400); }
-  .source-card.hydro::before { background: var(--teal-200); }
-  .source-card.geo::before { background: var(--coral-400); }
-  .source-card.bio::before { background: var(--green-200); }
-
-  .source-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .source-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .source-desc {
-    font-size: 0.83rem;
-    color: var(--text3);
-    line-height: 1.6;
-  }
-
-  .source-cap {
-    margin-top: 1.2rem;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-
-  .progress-bar {
-    flex: 1; height: 4px;
-    background: var(--bg2);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-right: 10px;
-  }
-
-  .progress-fill { height: 100%; border-radius: 4px; }
-
-  .progress-label { font-size: 0.75rem; color: var(--text2); font-weight: 500; }
-
-  /* ── MAP SECTION ── */
-  .map-section { background: var(--bg2); }
-
-  .map-container {
-    margin-top: 3rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    height: 420px;
-    position: relative;
-  }
-
-  .map-bg {
-    width: 100%; height: 100%;
-    background:
-      radial-gradient(ellipse at 30% 40%, rgba(125, 200, 74, 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 60%, rgba(29, 158, 117, 0.05) 0%, transparent 50%);
-  }
-
-  /* SVG map dots */
-  .map-dot {
-    position: absolute;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .map-dot::before {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border-radius: 50%;
-    border: 1px solid currentColor;
-    opacity: 0.3;
-    animation: ring-pulse 2s infinite;
-  }
-
-  @keyframes ring-pulse {
-    0% { transform: scale(0.8); opacity: 0.4; }
-    100% { transform: scale(1.6); opacity: 0; }
-  }
-
-  .map-dot.solar { background: var(--amber-200); color: var(--amber-200); }
-  .map-dot.wind { background: var(--blue-400); color: var(--blue-400); }
-  .map-dot.hydro { background: var(--teal-200); color: var(--teal-200); }
-
-  .map-legend {
-    position: absolute; bottom: 1.5rem; right: 1.5rem;
-    background: rgba(13, 31, 10, 0.8);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    display: flex; flex-direction: column; gap: 8px;
-  }
-
-  .map-legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--text2); }
-  .map-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-  /* ── CALCULATOR ── */
-  .calc-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .calc-panel {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-  }
-
-  .calc-panel h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group { margin-bottom: 1.2rem; }
-
-  .form-label {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--text3);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.4rem;
-  }
-
-  .form-select, .form-input {
-    width: 100%;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    padding: 10px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-    appearance: none;
-  }
-
-  .form-select:focus, .form-input:focus {
-    border-color: rgba(125, 200, 74, 0.5);
-  }
-
-  .form-select option { background: #1A3416; }
-
-  .range-group { margin-bottom: 1.2rem; }
-
-  .range-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
-  .range-name { font-size: 0.8rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; }
-  .range-val { font-size: 0.85rem; font-weight: 500; color: var(--accent); }
-
-  input[type="range"] {
-    width: 100%; -webkit-appearance: none;
-    height: 4px;
-    background: var(--bg2);
-    border-radius: 4px;
-    outline: none;
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: var(--accent);
-    cursor: pointer;
-    border: 2px solid var(--bg);
-  }
-
-  .results-panel {
-    display: flex; flex-direction: column; gap: 1rem;
-  }
-
-  .result-item {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.2rem;
-  }
-
-  .result-item-label { font-size: 0.78rem; color: var(--text3); margin-bottom: 0.4rem; }
-
-  .result-item-val {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .result-item-val.green { color: var(--accent); }
-  .result-item-val.teal { color: var(--teal-200); }
-  .result-item-val.amber { color: var(--amber-200); }
-
-  .calc-btn {
-    width: 100%;
-    background: var(--accent);
-    color: var(--green-900);
-    border: none;
-    border-radius: 100px;
-    padding: 12px;
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 0.5rem;
-    transition: all 0.2s;
-  }
-
-  .calc-btn:hover { background: #8FD85C; transform: translateY(-1px); }
-
-  /* ── NEWS ── */
-  .news-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .news-main {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.2s;
-  }
-
-  .news-main:hover { border-color: rgba(125, 200, 74, 0.3); }
-
-  .news-img {
-    height: 220px;
-    background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 4rem;
-    position: relative;
-  }
-
-  .news-cat {
-    position: absolute; top: 1rem; left: 1rem;
-    background: rgba(125, 200, 74, 0.15);
-    border: 1px solid rgba(125, 200, 74, 0.3);
-    color: var(--accent);
-    font-size: 0.7rem; text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 4px 10px; border-radius: 100px;
-  }
-
-  .news-body { padding: 1.5rem; }
-
-  .news-date { font-size: 0.75rem; color: var(--text3); margin-bottom: 0.5rem; }
-
-  .news-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 0.75rem;
-  }
-
-  .news-excerpt { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
-
-  .news-sidebar { display: flex; flex-direction: column; gap: 1rem; }
-
-  .news-small {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.2rem;
-    cursor: pointer;
-    transition: border-color 0.2s;
-  }
-
-  .news-small:hover { border-color: rgba(125, 200, 74, 0.3); }
-  .news-small-date { font-size: 0.7rem; color: var(--text3); margin-bottom: 0.4rem; }
-  .news-small-title { font-size: 0.9rem; font-weight: 500; line-height: 1.35; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    padding: 3rem 2rem;
-    text-align: center;
-  }
-
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-tagline { font-size: 0.85rem; color: var(--text3); margin-bottom: 2rem; }
-
-  .footer-links {
-    display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
-    list-style: none; margin-bottom: 2rem;
-  }
-
-  .footer-links a { color: var(--text2); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--accent); }
-
-  .footer-copy { font-size: 0.78rem; color: var(--text3); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero > * { animation: fade-up 0.6s ease forwards; opacity: 0; }
-  .hero-badge { animation-delay: 0.1s; }
-  .hero h1 { animation-delay: 0.2s; }
-  .hero-sub { animation-delay: 0.3s; }
-  .hero-actions { animation-delay: 0.4s; }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100vh;font-family:'Inter',sans-serif;background:#ccc8c2;display:flex;align-items:center;justify-content:center;padding:40px 20px;}
+
+/* ─── OUTER PAGE ─── */
+.page-wrap{display:flex;flex-direction:column;align-items:center;gap:24px;}
+.page-label{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:#7a7570;letter-spacing:.06em;text-transform:uppercase;}
+
+/* ─── PHONE FRAME ─── */
+.phone{
+  position:relative;width:320px;height:650px;
+  background:linear-gradient(145deg,#c8714a 0%,#d4835e 30%,#b85e38 60%,#a04e2c 100%);
+  border-radius:50px;
+  box-shadow:0 50px 100px rgba(0,0,0,0.45),0 10px 28px rgba(0,0,0,0.28),inset 0 1px 0 rgba(255,255,255,0.22),inset 0 -1px 0 rgba(0,0,0,0.3);
+  padding:7px;
+}
+/* left buttons */
+.phone::before{content:'';position:absolute;left:-5px;top:128px;width:5px;height:38px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,#8e4020,#b86040);box-shadow:-2px 0 8px rgba(0,0,0,0.35);}
+.phone::after{content:'';position:absolute;left:-5px;top:180px;width:5px;height:38px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,#8e4020,#b86040);box-shadow:-2px 0 8px rgba(0,0,0,0.35);}
+.phone-right{position:absolute;right:-5px;top:148px;width:5px;height:70px;border-radius:0 3px 3px 0;background:linear-gradient(90deg,#c8714a,#9a4a22);box-shadow:2px 0 8px rgba(0,0,0,0.35);}
+
+/* ─── SCREEN ─── */
+.screen{
+  width:100%;height:100%;
+  background:#07080f;
+  border-radius:44px;
+  overflow:hidden;
+  position:relative;
+  display:flex;flex-direction:column;
+}
+
+/* ─── STATUS BAR ─── */
+.status-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 22px 5px;
+  background:#07080f;
+  font-size:12px;font-weight:600;color:#eef0f7;
+  flex-shrink:0;position:relative;z-index:30;
+}
+.dynamic-island{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:90px;height:24px;background:#000;border-radius:20px;z-index:40;
+}
+.sb-right{display:flex;align-items:center;gap:5px;}
+
+/* ─── APP HEADER ─── */
+.app-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 16px 8px;
+  background:#0e1018;border-bottom:1px solid rgba(255,255,255,.07);
+  flex-shrink:0;z-index:20;
+}
+.ahl{display:flex;align-items:center;gap:9px;}
+.logo-badge{
+  width:32px;height:32px;border-radius:9px;
+  background:linear-gradient(135deg,#5b6ef5,#7c5ce8);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;
+}
+.school-name{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:#eef0f7;line-height:1.2;}
+.school-sub{font-size:9px;color:#8c93b0;}
+.ahr{display:flex;gap:7px;}
+.icon-btn{
+  width:30px;height:30px;border-radius:8px;
+  background:#141720;border:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:13px;position:relative;
+  transition:background .15s;
+}
+.icon-btn:active{background:#1a1e2a;}
+.red-pip{position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:#f0504b;border:1.5px solid #0e1018;}
+
+/* ─── SCROLL AREA ─── */
+.scroll-area{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:12px 13px 74px;
+  background:#07080f;
+}
+.scroll-area::-webkit-scrollbar{display:none;}
+
+/* ─── PAGES ─── */
+.page{display:none;animation:fadeUp .28s ease forwards;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── BOTTOM NAV ─── */
+.bottom-nav{
+  position:absolute;left:0;right:0;bottom:0;
+  height:64px;
+  background:#0e1018;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;
+  padding-bottom:4px;z-index:20;
+}
+.bni{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+  cursor:pointer;padding:6px 0;
+  background:none;border:none;color:#4f5570;
+  font-family:'Inter',sans-serif;position:relative;
+  transition:all .18s;
+}
+.bni-ico{font-size:18px;transition:transform .18s;}
+.bni-lbl{font-size:9px;}
+.bni.active .bni-ico{color:#5b6ef5;transform:translateY(-2px);}
+.bni.active .bni-lbl{color:#5b6ef5;font-weight:600;}
+.bni-badge{
+  position:absolute;top:2px;right:calc(50% - 14px);
+  background:#f0504b;border-radius:5px;padding:1px 4px;
+  font-size:8px;font-weight:700;color:#fff;border:1.5px solid #0e1018;
+}
+
+/* ─── MORE OVERLAY ─── */
+.more-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;border-radius:44px;}
+.more-drawer{
+  position:absolute;left:0;right:0;bottom:0;
+  background:#0e1018;border-top:1px solid rgba(255,255,255,.1);
+  border-radius:22px 22px 44px 44px;
+  z-index:60;padding:12px 14px 70px;
+  transform:translateY(100%);transition:transform .28s cubic-bezier(.3,0,.2,1);
+}
+.more-drawer.open{transform:translateY(0);}
+.more-handle{width:32px;height:3px;border-radius:2px;background:rgba(255,255,255,.15);margin:0 auto 14px;}
+.more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.more-item{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:11px 4px;border-radius:13px;
+  background:#141720;border:1px solid rgba(255,255,255,.07);
+  cursor:pointer;transition:background .15s;
+}
+.more-item:active{background:#1a1e2a;}
+.more-item-ico{font-size:19px;}
+.more-item-lbl{font-size:9px;color:#8c93b0;font-weight:500;text-align:center;}
+
+/* ─── CARDS ─── */
+.card{background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:13px;margin-bottom:11px;}
+.card-sm{background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:11px 13px;margin-bottom:9px;}
+.sec-head{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:#eef0f7;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+.sec-head span{font-family:'Inter',sans-serif;font-size:9px;color:#8c93b0;font-weight:400;}
+
+/* ─── WELCOME ─── */
+.welcome-card{
+  border-radius:16px;padding:14px 15px;
+  background:rgba(91,110,245,.18);border:1px solid rgba(91,110,245,.28);
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;
+}
+.wname{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#eef0f7;}
+.wsub{font-size:10px;color:#8c93b0;margin-top:3px;}
+.av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#e85ca0);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;}
+
+/* ─── STAT GRID ─── */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px;}
+.stat-tile{padding:11px 12px 10px;border-radius:14px;border:1px solid;}
+.sv{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;line-height:1;margin-bottom:3px;}
+.sl{font-size:10px;color:#8c93b0;font-weight:500;}
+.sd{font-size:9px;color:#4f5570;margin-top:1px;}
+
+/* ─── ROW ITEMS ─── */
+.ri{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.ri:last-child{border-bottom:none;padding-bottom:0;}
+.ri-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.ri-t{font-size:12px;font-weight:600;color:#eef0f7;}
+.ri-s{font-size:10px;color:#8c93b0;margin-top:1px;}
+.rbadge{padding:2px 7px;border-radius:5px;font-size:9px;font-weight:600;margin-left:auto;flex-shrink:0;}
+
+/* ─── PROGRESS ─── */
+.prog{background:rgba(255,255,255,.06);border-radius:5px;height:6px;overflow:hidden;}
+.prog-f{height:100%;border-radius:5px;transition:width 1s ease;}
+
+/* ─── BUTTONS ─── */
+.btn-p{background:linear-gradient(135deg,#5b6ef5,#7c5ce8);border:none;color:#fff;padding:10px 14px;border-radius:11px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;transition:transform .15s;white-space:nowrap;}
+.btn-p:active{transform:scale(.96);}
+.btn-s{background:#141720;border:1px solid rgba(255,255,255,.12);color:#eef0f7;padding:9px 12px;border-radius:11px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;transition:background .15s;}
+.btn-s:active{background:#1a1e2a;}
+
+/* ─── TABS ─── */
+.tabs{display:flex;gap:6px;margin-bottom:11px;overflow-x:auto;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab-btn{padding:6px 13px;border-radius:8px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;white-space:nowrap;transition:all .2s;background:#1a1e2a;color:#8c93b0;}
+.tab-btn.active{background:linear-gradient(135deg,#5b6ef5,#7c5ce8);color:#fff;font-weight:600;}
+
+/* ─── PROFILE ─── */
+.profile-hero{border-radius:16px;padding:18px;background:rgba(91,110,245,.12);border:1px solid rgba(91,110,245,.2);text-align:center;margin-bottom:11px;}
+.pav-lg{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#e85ca0);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#fff;margin:0 auto 10px;border:2px solid rgba(91,110,245,.3);}
+.pname{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#eef0f7;}
+.psub{font-size:11px;color:#8c93b0;margin-top:3px;}
+.ptags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px;}
+.ptag{padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:9px;color:#8c93b0;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.dtile{padding:11px 12px;background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:12px;}
+.dlbl{font-size:9px;color:#4f5570;margin-bottom:3px;}
+.dval{font-size:12px;font-weight:500;color:#eef0f7;}
+
+/* ─── ID CARD ─── */
+.id-card{max-width:240px;margin:0 auto;padding:18px;border-radius:18px;background:linear-gradient(135deg,rgba(91,110,245,.28),rgba(124,92,232,.15));border:1px solid rgba(91,110,245,.35);box-shadow:0 10px 30px rgba(91,110,245,.18);}
+.qr-grid{display:grid;grid-template-columns:repeat(9,7px);gap:2px;padding:10px;background:#fff;border-radius:8px;margin:12px auto;width:fit-content;}
+.qr-cell{width:7px;height:7px;border-radius:1px;}
+
+/* ─── ATTENDANCE ─── */
+.att-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.att-day{width:38px;height:42px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;}
+
+/* ─── TIMETABLE ─── */
+.tt-wrap{overflow-x:auto;}
+.tt-wrap::-webkit-scrollbar{display:none;}
+.tt-table{border-collapse:collapse;min-width:500px;width:100%;}
+.tt-table th{padding:7px 5px;font-size:9px;color:#8c93b0;font-weight:600;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);}
+.tt-table th:first-child{text-align:left;}
+.tt-table td{padding:5px 3px;text-align:center;border-bottom:1px solid rgba(255,255,255,.03);}
+.tt-table td:first-child{text-align:left;font-size:10px;font-weight:600;color:#8c93b0;}
+.tt-pill{padding:4px 5px;border-radius:6px;font-size:8px;font-weight:600;display:inline-block;}
+
+/* ─── FEE ALERT ─── */
+.fee-alert{padding:13px 15px;border-radius:14px;margin-bottom:11px;background:rgba(240,80,75,.08);border:1px solid rgba(240,80,75,.22);display:flex;justify-content:space-between;align-items:center;}
+
+/* ─── NOTICES ─── */
+.notice-item{display:flex;gap:10px;padding:12px;border-radius:14px;margin-bottom:9px;border-left:3px solid;}
+
+/* ─── CHAT ─── */
+.teacher-list{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:11px;}
+.teacher-list::-webkit-scrollbar{display:none;}
+.t-chip{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;cursor:pointer;padding:9px 10px;border-radius:13px;background:#141720;border:1px solid rgba(255,255,255,.07);transition:all .18s;min-width:62px;}
+.t-chip.active{background:rgba(91,110,245,.15);border-color:rgba(91,110,245,.3);}
+.t-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#12c0d4);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;position:relative;}
+.t-pip{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;border:2px solid #141720;}
+.t-name{font-size:9px;font-weight:600;color:#eef0f7;text-align:center;white-space:nowrap;}
+.t-sub{font-size:8px;color:#8c93b0;}
+.chat-box{background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:16px;display:flex;flex-direction:column;height:320px;}
+.chat-hdr{padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px;flex-shrink:0;}
+.chat-msgs{flex:1;overflow-y:auto;padding:11px;display:flex;flex-direction:column;gap:9px;}
+.chat-msgs::-webkit-scrollbar{display:none;}
+.chat-footer{padding:9px 11px;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:7px;flex-shrink:0;}
+.chat-inp{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:8px 10px;color:#eef0f7;font-size:11px;font-family:'Inter',sans-serif;outline:none;}
+.chat-inp:focus{border-color:#5b6ef5;}
+.chat-inp::placeholder{color:#4f5570;}
+.msg{max-width:72%;padding:8px 11px;font-size:11px;line-height:1.5;}
+.msg-me{background:linear-gradient(135deg,#5b6ef5,#7c5ce8);border-radius:13px 13px 3px 13px;align-self:flex-end;}
+.msg-them{background:#1a1e2a;border:1px solid rgba(255,255,255,.07);border-radius:13px 13px 13px 3px;align-self:flex-start;}
+.msg-sender{font-size:9px;color:#8c93b0;font-weight:600;margin-bottom:2px;}
+.msg-time{font-size:9px;opacity:.5;text-align:right;margin-top:2px;}
+
+/* ─── MATERIALS ─── */
+.mat-row{display:flex;align-items:center;gap:11px;padding:11px 13px;background:#141720;border:1px solid rgba(255,255,255,.07);border-radius:13px;margin-bottom:9px;transition:background .15s;}
+.mat-row:active{background:#1a1e2a;}
+
+.hidden{display:none!important;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">🌿 Green<span>Grid</span></div>
-  <ul class="nav-links">
-    <li><a href="#dashboard">Dashboard</a></li>
-    <li><a href="#sources">Energy Sources</a></li>
-    <li><a href="#map">Live Map</a></li>
-    <li><a href="#calculator">Calculator</a></li>
-    <li><a href="#news">News</a></li>
-  </ul>
-  <button class="nav-cta">Connect Grid</button>
-</nav>
+<div class="page-wrap">
+  <div class="page-label">Sri Saradha EM High School · Student Portal</div>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
+  <!-- ═══════════════ PHONE ═══════════════ -->
+  <div class="phone">
+    <div class="phone-right"></div>
+    <div class="screen">
 
-  <div class="hero-badge">● Live Grid Status — 94.2% Renewable Today</div>
-  <h1>Power the World<br>with <em>Clean Energy</em></h1>
-  <p class="hero-sub">
-    Monitor, manage, and maximize your renewable energy portfolio. Real-time data across solar, wind, hydro, and beyond.
-  </p>
-  <div class="hero-actions">
-    <button class="btn-primary" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">View Dashboard</button>
-    <button class="btn-ghost">Explore Sources →</button>
-  </div>
-</section>
+      <!-- STATUS BAR -->
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="dynamic-island"></div>
+        <div class="sb-right">
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><rect x="0" y="3" width="3" height="7" rx=".5" fill="#eef0f7"/><rect x="4" y="2" width="3" height="8" rx=".5" fill="#eef0f7"/><rect x="8" y="0" width="3" height="10" rx=".5" fill="#eef0f7"/><rect x="12" y="0" width="2" height="10" rx=".5" fill="rgba(255,255,255,.3)"/></svg>
+          <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M6 2C7.8 2 9.4 2.8 10.5 4L12 2.5C10.5 1 8.4 0 6 0C3.6 0 1.5 1 0 2.5L1.5 4C2.6 2.8 4.2 2 6 2Z" fill="#eef0f7"/><path d="M6 5C7 5 7.9 5.4 8.5 6L10 4.5C9 3.6 7.6 3 6 3C4.4 3 3 3.6 2 4.5L3.5 6C4.1 5.4 5 5 6 5Z" fill="#eef0f7"/><circle cx="6" cy="9" r="1.5" fill="#eef0f7"/></svg>
+          <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x=".5" y="1.5" width="17" height="7" rx="1.5" stroke="#eef0f7" stroke-width="1"/><rect x="1.5" y="2.5" width="12" height="5" rx="1" fill="#eef0f7"/><path d="M19 3.5V6.5C20 6.1 21 5.5 21 5S20 3.9 19 3.5Z" fill="#eef0f7"/></svg>
+        </div>
+      </div>
 
-<!-- STATS TICKER -->
-<div class="stats-bar">
-  <div class="stats-track" id="ticker"></div>
+      <!-- LOGIN SCREEN -->
+      <div id="login-screen" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:#07080f;">
+        <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#5b6ef5,#7c5ce8);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:16px;box-shadow:0 6px 20px rgba(91,110,245,.5);">S</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#eef0f7;text-align:center;margin-bottom:4px;">Sri Saradha EM<br/>High School</div>
+        <div style="font-size:11px;color:#8c93b0;margin-bottom:24px;">Student Portal</div>
+        <div style="width:100%;max-width:260px;">
+          <div style="font-size:10px;font-weight:600;color:#8c93b0;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;">Student ID</div>
+          <input id="l-id" type="text" placeholder="STU-2024-XXXX" style="width:100%;padding:11px 13px;border-radius:11px;background:#141720;border:1px solid rgba(255,255,255,.1);color:#eef0f7;font-size:13px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;"/>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <div style="font-size:10px;font-weight:600;color:#8c93b0;letter-spacing:.04em;text-transform:uppercase;">Password</div>
+            <a style="font-size:10px;color:#5b6ef5;text-decoration:none;">Forgot?</a>
+          </div>
+          <input id="l-pw" type="password" placeholder="Enter password" style="width:100%;padding:11px 13px;border-radius:11px;background:#141720;border:1px solid rgba(255,255,255,.1);color:#eef0f7;font-size:13px;font-family:'Inter',sans-serif;outline:none;margin-bottom:4px;"/>
+          <div id="l-err" style="font-size:11px;color:#f0504b;text-align:center;margin-bottom:8px;min-height:16px;"></div>
+          <button id="l-btn" class="btn-p" style="width:100%;padding:12px;font-size:14px;">Sign In →</button>
+          <div style="font-size:10px;color:#4f5570;text-align:center;margin-top:10px;">Demo: any ID + 4+ chars</div>
+        </div>
+      </div>
+
+      <!-- APP SHELL -->
+      <div id="app-shell" style="display:none;flex:1;flex-direction:column;overflow:hidden;position:relative;">
+
+        <!-- APP HEADER -->
+        <div class="app-header">
+          <div class="ahl">
+            <div class="logo-badge">S</div>
+            <div>
+              <div class="school-name">Sri Saradha HS</div>
+              <div class="school-sub">Student Portal</div>
+            </div>
+          </div>
+          <div class="ahr">
+            <div class="icon-btn" id="notif-btn">🔔<div class="red-pip" id="notif-pip"></div></div>
+            <div class="icon-btn" id="signout-btn" title="Sign out" style="font-size:11px;font-weight:600;color:#8c93b0;">←</div>
+          </div>
+        </div>
+
+        <!-- SCROLL AREA -->
+        <div class="scroll-area" id="scroll-area">
+
+          <!-- ── DASHBOARD ── -->
+          <div class="page active" id="pg-dashboard">
+            <div class="welcome-card">
+              <div><div class="wname">Hello, Subu! 👋</div><div class="wsub">Class 10-A · Roll 42 · STU-2024-0892</div></div>
+              <div class="av">S</div>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-tile" style="background:rgba(18,199,116,.09);border-color:rgba(18,199,116,.2)"><div class="sv" style="color:#18c774">88%</div><div class="sl">Attendance</div><div class="sd">This month</div></div>
+              <div class="stat-tile" style="background:rgba(244,167,43,.09);border-color:rgba(244,167,43,.2)"><div class="sv" style="color:#f4a72b">3</div><div class="sl">Pending HW</div><div class="sd">Assignments due</div></div>
+              <div class="stat-tile" style="background:rgba(240,80,75,.09);border-color:rgba(240,80,75,.2)"><div class="sv" style="color:#f0504b">₹9.2k</div><div class="sl">Fee Due</div><div class="sd">Term 2 – 2025</div></div>
+              <div class="stat-tile" style="background:rgba(91,110,245,.09);border-color:rgba(91,110,245,.2)"><div class="sv" style="color:#5b6ef5">84%</div><div class="sl">Avg Score</div><div class="sd">All subjects</div></div>
+            </div>
+            <div class="card"><div class="sec-head">📝 Upcoming Exams <span>Next 7 days</span></div><div id="d-exams"></div></div>
+            <div class="card"><div class="sec-head">📢 Announcements</div><div id="d-notices"></div></div>
+            <div class="card"><div class="sec-head">📚 Recent Homework</div><div id="d-hw"></div></div>
+          </div>
+
+          <!-- ── ATTENDANCE ── -->
+          <div class="page" id="pg-attendance">
+            <div class="stat-grid" style="grid-template-columns:1fr 1fr 1fr;gap:7px;">
+              <div class="stat-tile" style="background:rgba(18,199,116,.09);border-color:rgba(18,199,116,.2)"><div class="sv" style="color:#18c774">15</div><div class="sl">Present</div></div>
+              <div class="stat-tile" style="background:rgba(240,80,75,.09);border-color:rgba(240,80,75,.2)"><div class="sv" style="color:#f0504b">2</div><div class="sl">Absent</div></div>
+              <div class="stat-tile" style="background:rgba(244,167,43,.09);border-color:rgba(244,167,43,.2)"><div class="sv" style="color:#f4a72b">1</div><div class="sl">Leave</div></div>
+            </div>
+            <div class="card">
+              <div class="sec-head">May 2025 <span>88% · 15/17 days</span></div>
+              <div class="prog" style="margin-bottom:8px"><div class="prog-f" style="width:88%;background:linear-gradient(90deg,#18c774,#12c0d4)"></div></div>
+              <div class="att-grid" id="att-cal" style="margin-top:10px;"></div>
+              <div style="display:flex;gap:12px;margin-top:10px;font-size:10px;color:#8c93b0"><span>🟢 Present</span><span>🔴 Absent</span><span>🟡 Leave</span></div>
+            </div>
+          </div>
+
+          <!-- ── HOMEWORK ── -->
+          <div class="page" id="pg-homework">
+            <div class="tabs" id="hw-tabs">
+              <button class="tab-btn active" data-hw="All">All</button>
+              <button class="tab-btn" data-hw="Pending">Pending</button>
+              <button class="tab-btn" data-hw="Submitted">Submitted</button>
+            </div>
+            <div id="hw-list"></div>
+          </div>
+
+          <!-- ── EXAMS ── -->
+          <div class="page" id="pg-exams">
+            <div class="card" style="background:rgba(91,110,245,.07);border-color:rgba(91,110,245,.2);margin-bottom:11px">
+              <div style="display:flex;align-items:center;gap:11px"><div style="font-size:26px">📝</div><div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#eef0f7">Unit Test – May 2025</div><div style="font-size:10px;color:#8c93b0">5 subjects · Starting 20 May</div></div></div>
+            </div>
+            <div id="exams-list"></div>
+          </div>
+
+          <!-- ── RESULTS ── -->
+          <div class="page" id="pg-results">
+            <div class="stat-grid" style="grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:11px">
+              <div class="stat-tile" style="background:rgba(91,110,245,.09);border-color:rgba(91,110,245,.2);text-align:center"><div class="sv" style="color:#5b6ef5">84%</div><div class="sl">Average</div></div>
+              <div class="stat-tile" style="background:rgba(18,199,116,.09);border-color:rgba(18,199,116,.2);text-align:center"><div class="sv" style="color:#18c774;font-size:12px;margin-top:4px">Comp.</div><div class="sl">Best</div></div>
+              <div class="stat-tile" style="background:rgba(244,167,43,.09);border-color:rgba(244,167,43,.2);text-align:center"><div class="sv" style="color:#f4a72b">A</div><div class="sl">Grade</div></div>
+            </div>
+            <div class="card"><div class="sec-head">Subject Performance</div><div id="res-bars"></div></div>
+            <div style="display:flex;gap:8px;margin-top:4px">
+              <button class="btn-p" style="flex:1;padding:10px;font-size:11px">📥 Report Card</button>
+              <button class="btn-s" style="flex:1;padding:10px;text-align:center;font-size:11px">📊 Analytics</button>
+            </div>
+          </div>
+
+          <!-- ── FEES ── -->
+          <div class="page" id="pg-fees">
+            <div class="fee-alert">
+              <div><div style="color:#f0504b;font-weight:700;font-size:14px">⚠️ ₹9,200 Due</div><div style="font-size:10px;color:#8c93b0">Term 2 – 2025 · Due 31 May</div></div>
+              <button class="btn-p" style="background:linear-gradient(135deg,#ef4444,#f97316);font-size:11px;padding:8px 11px">Pay →</button>
+            </div>
+            <div class="card"><div class="sec-head">Fee Breakup</div><div id="fee-struct"></div></div>
+            <div class="card"><div class="sec-head">Payment History</div><div id="fee-hist"></div></div>
+            <div class="card">
+              <div class="sec-head">Pay via</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px">
+                <button class="btn-s" style="padding:12px 5px;text-align:center;border-radius:12px"><div style="font-size:18px;margin-bottom:3px">💳</div><div style="font-size:9px">Card</div></button>
+                <button class="btn-s" style="padding:12px 5px;text-align:center;border-radius:12px"><div style="font-size:18px;margin-bottom:3px">📱</div><div style="font-size:9px">UPI</div></button>
+                <button class="btn-s" style="padding:12px 5px;text-align:center;border-radius:12px"><div style="font-size:18px;margin-bottom:3px">🏦</div><div style="font-size:9px">Net Banking</div></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TIMETABLE ── -->
+          <div class="page" id="pg-timetable">
+            <div class="card" style="padding:12px 8px">
+              <div class="sec-head" style="padding:0 5px">Weekly Timetable</div>
+              <div class="tt-wrap"><table class="tt-table" id="tt-table"></table></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px" id="tt-legend"></div>
+          </div>
+
+          <!-- ── MATERIALS ── -->
+          <div class="page" id="pg-materials">
+            <div id="mat-list"></div>
+          </div>
+
+          <!-- ── CHAT ── -->
+          <div class="page" id="pg-chat">
+            <div class="teacher-list" id="teacher-list"></div>
+            <div class="chat-box">
+              <div class="chat-hdr">
+                <div class="t-av" style="width:32px;height:32px;font-size:12px">K</div>
+                <div><div style="font-weight:600;font-size:12px;color:#eef0f7">Mrs. Kapoor</div><div style="font-size:9px;color:#18c774">● Online</div></div>
+              </div>
+              <div class="chat-msgs" id="chat-msgs"></div>
+              <div class="chat-footer">
+                <input class="chat-inp" id="chat-inp" placeholder="Type a message…"/>
+                <button class="btn-p" id="chat-send" style="padding:7px 11px;font-size:11px">Send</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── NOTICES ── -->
+          <div class="page" id="pg-notices">
+            <div id="notices-list"></div>
+          </div>
+
+          <!-- ── PROFILE ── -->
+          <div class="page" id="pg-profile">
+            <div class="profile-hero">
+              <div class="pav-lg">S</div>
+              <div class="pname">Subu Medisetti</div>
+              <div class="psub">10th Grade – Section A · Roll 42</div>
+              <div class="ptags">
+                <span class="ptag">🎂 12 Mar 2009</span>
+                <span class="ptag">🩸 B+</span>
+                <span class="ptag">📅 Apr 2019</span>
+              </div>
+            </div>
+            <div class="tabs">
+              <button class="tab-btn active" data-ptab="pt-details">Details</button>
+              <button class="tab-btn" data-ptab="pt-parent">Parent</button>
+              <button class="tab-btn" data-ptab="pt-idcard">ID Card</button>
+            </div>
+            <div id="pt-details" class="detail-grid">
+              <div class="dtile"><div class="dlbl">🪪 Student ID</div><div class="dval" style="font-size:10px">STU-2024-0892</div></div>
+              <div class="dtile"><div class="dlbl">🎓 Class</div><div class="dval">10th – A</div></div>
+              <div class="dtile"><div class="dlbl">🎂 Date of Birth</div><div class="dval">12 Mar 2009</div></div>
+              <div class="dtile"><div class="dlbl">🩸 Blood Group</div><div class="dval">B+</div></div>
+              <div class="dtile"><div class="dlbl">📧 Email</div><div class="dval" style="font-size:10px">subu@school.edu</div></div>
+              <div class="dtile"><div class="dlbl">📱 Phone</div><div class="dval" style="font-size:10px">+91 98765 43210</div></div>
+              <div class="dtile" style="grid-column:1/-1"><div class="dlbl">📍 Address</div><div class="dval">42, Sunrise Colony, Hyderabad</div></div>
+            </div>
+            <div id="pt-parent" class="detail-grid hidden">
+              <div class="dtile"><div class="dlbl">👨 Guardian</div><div class="dval">Mr. Ramesh Medisetti</div></div>
+              <div class="dtile"><div class="dlbl">📱 Phone</div><div class="dval" style="font-size:10px">+91 99887 66554</div></div>
+              <div class="dtile"><div class="dlbl">👤 Relation</div><div class="dval">Father</div></div>
+              <div class="dtile"><div class="dlbl">💼 Occupation</div><div class="dval">Business</div></div>
+              <div class="dtile" style="grid-column:1/-1"><div class="dlbl">📧 Email</div><div class="dval">ramesh.m@gmail.com</div></div>
+            </div>
+            <div id="pt-idcard" class="hidden">
+              <div class="id-card">
+                <div style="text-align:center;margin-bottom:14px"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:#eef0f7">Sri Saradha EM High School</div><div style="font-size:9px;color:#8c93b0">Student Identity Card</div></div>
+                <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+                  <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#5b6ef5,#e85ca0);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff;flex-shrink:0">S</div>
+                  <div><div style="font-weight:700;font-size:13px;color:#eef0f7">Subu Medisetti</div><div style="font-size:10px;color:#8c93b0">10th Grade – Section A</div><div style="font-size:10px;color:#8c93b0">Roll: 42</div><div style="font-size:10px;color:#5b6ef5">STU-2024-0892</div></div>
+                </div>
+                <div id="big-qr" class="qr-grid"></div>
+                <div style="text-align:center;font-size:9px;color:#8c93b0;margin-top:10px">Scan to verify · Valid 2024–25</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /scroll-area -->
+
+        <!-- BOTTOM NAV -->
+        <div class="bottom-nav" id="bottom-nav">
+          <button class="bni active" data-page="dashboard"><div class="bni-ico">⊞</div><div class="bni-lbl">Home</div></button>
+          <button class="bni" data-page="attendance"><div class="bni-ico">◎</div><div class="bni-lbl">Attend.</div></button>
+          <button class="bni" data-page="homework"><div class="bni-ico">✎</div><div class="bni-lbl">HW</div><div class="bni-badge">3</div></button>
+          <button class="bni" data-page="results"><div class="bni-ico">◇</div><div class="bni-lbl">Results</div></button>
+          <button class="bni" id="more-btn"><div class="bni-ico">⋯</div><div class="bni-lbl">More</div></button>
+        </div>
+
+        <!-- MORE OVERLAY + DRAWER -->
+        <div class="more-overlay" id="more-overlay"></div>
+        <div class="more-drawer" id="more-drawer">
+          <div class="more-handle"></div>
+          <div class="more-grid">
+            <div class="more-item" data-page="profile"><div class="more-item-ico">◉</div><div class="more-item-lbl">Profile</div></div>
+            <div class="more-item" data-page="exams"><div class="more-item-ico">📝</div><div class="more-item-lbl">Exams</div></div>
+            <div class="more-item" data-page="fees"><div class="more-item-ico">💰</div><div class="more-item-lbl">Fees</div></div>
+            <div class="more-item" data-page="timetable"><div class="more-item-ico">🗓</div><div class="more-item-lbl">Timetable</div></div>
+            <div class="more-item" data-page="materials"><div class="more-item-ico">📄</div><div class="more-item-lbl">Materials</div></div>
+            <div class="more-item" data-page="chat"><div class="more-item-ico">💬</div><div class="more-item-lbl">Messages</div></div>
+            <div class="more-item" data-page="notices"><div class="more-item-ico">📢</div><div class="more-item-lbl">Notices</div></div>
+          </div>
+        </div>
+
+      </div><!-- /app-shell -->
+
+    </div><!-- /screen -->
+  </div><!-- /phone -->
+
+  <div style="font-size:11px;color:#9a9590;text-align:center;">Tap any section to navigate · All features work</div>
 </div>
 
-<!-- DASHBOARD -->
-<section id="dashboard">
-  <div class="container">
-    <p class="section-tag">Live Dashboard</p>
-    <h2 class="section-title">Energy at a Glance</h2>
-    <p class="section-sub">Real-time metrics from the national renewable grid. Updated every 60 seconds.</p>
-
-    <div class="metric-cards">
-      <div class="metric-card">
-        <div class="metric-icon" style="background: rgba(125,200,74,0.12)">☀️</div>
-        <div class="metric-num" style="color: var(--accent)">4.82</div>
-        <div class="metric-desc">GW Solar Output</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-icon" style="background: rgba(55,138,221,0.12)">💨</div>
-        <div class="metric-num" style="color: #5DB8FF">3.14</div>
-        <div class="metric-desc">GW Wind Output</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-icon" style="background: rgba(29,158,117,0.12)">💧</div>
-        <div class="metric-num" style="color: var(--teal-200)">1.96</div>
-        <div class="metric-desc">GW Hydro Output</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-icon" style="background: rgba(239,159,39,0.12)">🌡️</div>
-        <div class="metric-num" style="color: var(--amber-200)">0.72</div>
-        <div class="metric-desc">GW Geothermal</div>
-      </div>
-    </div>
-
-    <div class="dashboard-grid">
-      <!-- Chart card -->
-      <div class="card">
-        <div class="card-label">Weekly Generation (GWh)</div>
-        <div style="display:flex; align-items:baseline; gap:8px;">
-          <div class="card-value">74.3 <span class="card-unit">GWh</span></div>
-          <span class="card-delta">↑ 12.4% vs last week</span>
-        </div>
-        <div class="bar-chart" id="barChart"></div>
-        <div style="display:flex; gap:8px; margin-top:8px;" id="barLabels"></div>
-      </div>
-
-      <!-- Donut card -->
-      <div class="card">
-        <div class="card-label">Energy Mix</div>
-        <div class="donut-section">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <circle cx="55" cy="55" r="40" fill="none" stroke="#1F3D1A" stroke-width="18"/>
-            <!-- Solar 42% -->
-            <circle cx="55" cy="55" r="40" fill="none" stroke="#EF9F27" stroke-width="18"
-              stroke-dasharray="105.56 145.73" stroke-dashoffset="0" stroke-linecap="butt"/>
-            <!-- Wind 28% -->
-            <circle cx="55" cy="55" r="40" fill="none" stroke="#378ADD" stroke-width="18"
-              stroke-dasharray="70.37 180.92" stroke-dashoffset="-105.56" stroke-linecap="butt"/>
-            <!-- Hydro 18% -->
-            <circle cx="55" cy="55" r="40" fill="none" stroke="#5DCAA5" stroke-width="18"
-              stroke-dasharray="45.24 206.05" stroke-dashoffset="-175.93" stroke-linecap="butt"/>
-            <!-- Geo 12% -->
-            <circle cx="55" cy="55" r="40" fill="none" stroke="#7DC84A" stroke-width="18"
-              stroke-dasharray="30.16 221.13" stroke-dashoffset="-221.17" stroke-linecap="butt"/>
-            <text x="55" y="50" text-anchor="middle" fill="#E8F5E0" font-size="14" font-weight="700" font-family="Syne">94%</text>
-            <text x="55" y="65" text-anchor="middle" fill="#72946A" font-size="9" font-family="DM Sans">Renewable</text>
-          </svg>
-
-          <div class="donut-legend">
-            <div class="legend-item">
-              <div class="legend-dot" style="background: var(--amber-200)"></div>
-              <span class="legend-name">Solar</span>
-              <span class="legend-pct">42%</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot" style="background: #378ADD"></div>
-              <span class="legend-name">Wind</span>
-              <span class="legend-pct">28%</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot" style="background: var(--teal-200)"></div>
-              <span class="legend-name">Hydro</span>
-              <span class="legend-pct">18%</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot" style="background: var(--accent)"></div>
-              <span class="legend-name">Geo/Bio</span>
-              <span class="legend-pct">12%</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="border-top: 1px solid var(--border); margin-top:1rem; padding-top:1rem;">
-          <div class="card-label">CO₂ Avoided Today</div>
-          <div style="font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; color:var(--teal-200)">18,420 <span style="font-size:0.85rem;color:var(--text3);font-family:'DM Sans',sans-serif">tonnes</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOURCES -->
-<section id="sources" style="background: var(--bg2);">
-  <div class="container">
-    <p class="section-tag">Energy Sources</p>
-    <h2 class="section-title">The Power Behind<br>Tomorrow</h2>
-    <p class="section-sub">Five primary renewable sources powering the green transition worldwide.</p>
-
-    <div class="sources-grid">
-      <div class="source-card solar">
-        <div class="source-icon">☀️</div>
-        <div class="source-name">Solar Power</div>
-        <div class="source-desc">Photovoltaic panels and concentrated solar plants convert sunlight into electricity with zero emissions.</div>
-        <div class="source-cap">
-          <div class="progress-bar"><div class="progress-fill" style="width:78%; background:var(--amber-200)"></div></div>
-          <span class="progress-label">78% capacity</span>
-        </div>
-      </div>
-
-      <div class="source-card wind">
-        <div class="source-icon">💨</div>
-        <div class="source-name">Wind Energy</div>
-        <div class="source-desc">Onshore and offshore turbines harness kinetic wind energy — the fastest-growing renewable globally.</div>
-        <div class="source-cap">
-          <div class="progress-bar"><div class="progress-fill" style="width:64%; background:#378ADD"></div></div>
-          <span class="progress-label">64% capacity</span>
-        </div>
-      </div>
-
-      <div class="source-card hydro">
-        <div class="source-icon">💧</div>
-        <div class="source-name">Hydropower</div>
-        <div class="source-desc">River dams and run-of-river systems provide reliable baseload power from flowing water.</div>
-        <div class="source-cap">
-          <div class="progress-bar"><div class="progress-fill" style="width:92%; background:var(--teal-200)"></div></div>
-          <span class="progress-label">92% capacity</span>
-        </div>
-      </div>
-
-      <div class="source-card geo">
-        <div class="source-icon">🌋</div>
-        <div class="source-name">Geothermal</div>
-        <div class="source-desc">Earth's internal heat drives turbines 24/7, unaffected by weather — ideal for grid stability.</div>
-        <div class="source-cap">
-          <div class="progress-bar"><div class="progress-fill" style="width:88%; background:var(--coral-400)"></div></div>
-          <span class="progress-label">88% capacity</span>
-        </div>
-      </div>
-
-      <div class="source-card bio">
-        <div class="source-icon">🌿</div>
-        <div class="source-name">Biomass Energy</div>
-        <div class="source-desc">Organic waste and purpose-grown crops are combusted or converted to biogas for clean power generation.</div>
-        <div class="source-cap">
-          <div class="progress-bar"><div class="progress-fill" style="width:51%; background:var(--green-200)"></div></div>
-          <span class="progress-label">51% capacity</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LIVE MAP -->
-<section id="map" class="map-section">
-  <div class="container">
-    <p class="section-tag">Live Map</p>
-    <h2 class="section-title">Active Generation Sites</h2>
-    <p class="section-sub">Real-time tracking of renewable installations across the grid network.</p>
-
-    <div class="map-container">
-      <div class="map-bg">
-        <!-- SVG world silhouette (simplified) -->
-        <svg width="100%" height="100%" viewBox="0 0 1200 420" style="position:absolute;inset:0">
-          <!-- Simplified continents -->
-          <g opacity="0.06" fill="#7DC84A">
-            <!-- N America -->
-            <path d="M 60 80 L 200 70 L 240 100 L 260 140 L 220 200 L 180 240 L 140 260 L 80 240 L 40 200 L 30 150 Z"/>
-            <!-- S America -->
-            <path d="M 160 270 L 210 260 L 230 300 L 220 360 L 190 390 L 160 380 L 140 340 L 140 300 Z"/>
-            <!-- Europe -->
-            <path d="M 480 60 L 560 50 L 580 80 L 560 120 L 520 130 L 480 110 Z"/>
-            <!-- Africa -->
-            <path d="M 480 140 L 560 130 L 580 200 L 570 290 L 540 340 L 510 360 L 480 340 L 460 280 L 460 200 Z"/>
-            <!-- Asia -->
-            <path d="M 580 50 L 900 40 L 950 100 L 920 180 L 840 220 L 760 230 L 660 200 L 600 160 L 580 100 Z"/>
-            <!-- Australia -->
-            <path d="M 840 270 L 950 260 L 980 310 L 950 370 L 880 380 L 840 340 L 820 300 Z"/>
-          </g>
-        </svg>
-      </div>
-
-      <!-- Map dots - positioned as percentages -->
-      <div class="map-dot solar" style="top:28%; left:18%; animation-delay:0s" title="Mojave Solar Plant"></div>
-      <div class="map-dot solar" style="top:40%; left:42%; animation-delay:0.3s" title="Sahara Solar Farm"></div>
-      <div class="map-dot solar" style="top:35%; left:72%; animation-delay:0.6s" title="Rajasthan Solar Park"></div>
-      <div class="map-dot wind" style="top:20%; left:40%; animation-delay:0.2s" title="North Sea Wind"></div>
-      <div class="map-dot wind" style="top:25%; left:16%; animation-delay:0.5s" title="Texas Wind Farm"></div>
-      <div class="map-dot wind" style="top:30%; left:80%; animation-delay:0.8s" title="Taiwan Offshore Wind"></div>
-      <div class="map-dot hydro" style="top:32%; left:24%; animation-delay:0.1s" title="Hoover Dam"></div>
-      <div class="map-dot hydro" style="top:38%; left:68%; animation-delay:0.4s" title="Three Gorges Dam"></div>
-      <div class="map-dot hydro" style="top:62%; left:36%; animation-delay:0.7s" title="Itaipu Dam"></div>
-      <div class="map-dot solar" style="top:68%; left:80%; animation-delay:0.9s" title="Australia Solar"></div>
-      <div class="map-dot wind" style="top:55%; left:55%; animation-delay:0.35s" title="East Africa Wind"></div>
-
-      <div class="map-legend">
-        <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--amber-200)"></div> Solar</div>
-        <div class="map-legend-item"><div class="map-legend-dot" style="background:#378ADD"></div> Wind</div>
-        <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--teal-200)"></div> Hydro</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CALCULATOR -->
-<section id="calculator">
-  <div class="container">
-    <p class="section-tag">ROI Calculator</p>
-    <h2 class="section-title">Calculate Your<br>Energy Savings</h2>
-    <p class="section-sub">Estimate your potential savings and environmental impact from switching to renewables.</p>
-
-    <div class="calc-grid">
-      <div class="calc-panel">
-        <h3>Your Setup</h3>
-
-        <div class="form-group">
-          <label class="form-label">Energy Source</label>
-          <select class="form-select" id="calcSource" onchange="recalc()">
-            <option value="solar">Solar Panels</option>
-            <option value="wind">Small Wind Turbine</option>
-            <option value="geo">Geothermal System</option>
-          </select>
-        </div>
-
-        <div class="range-group">
-          <div class="range-header">
-            <span class="range-name">System Size (kW)</span>
-            <span class="range-val" id="sizeVal">10 kW</span>
-          </div>
-          <input type="range" min="2" max="100" value="10" step="1" id="sizeRange" oninput="document.getElementById('sizeVal').textContent=this.value+' kW'; recalc()">
-        </div>
-
-        <div class="range-group">
-          <div class="range-header">
-            <span class="range-name">Current Monthly Bill</span>
-            <span class="range-val" id="billVal">₹8,000</span>
-          </div>
-          <input type="range" min="1000" max="50000" value="8000" step="500" id="billRange" oninput="document.getElementById('billVal').textContent='₹'+Number(this.value).toLocaleString(); recalc()">
-        </div>
-
-        <div class="range-group">
-          <div class="range-header">
-            <span class="range-name">Peak Sun/Wind Hours (daily)</span>
-            <span class="range-val" id="hoursVal">5.5 hrs</span>
-          </div>
-          <input type="range" min="2" max="10" value="5.5" step="0.5" id="hoursRange" oninput="document.getElementById('hoursVal').textContent=this.value+' hrs'; recalc()">
-        </div>
-
-        <button class="calc-btn" onclick="recalc()">Calculate Savings ⚡</button>
-      </div>
-
-      <div class="results-panel">
-        <div class="result-item">
-          <div class="result-item-label">Annual Energy Generation</div>
-          <div class="result-item-val green" id="resGen">20,075 kWh</div>
-        </div>
-        <div class="result-item">
-          <div class="result-item-label">Estimated Annual Savings</div>
-          <div class="result-item-val green" id="resSave">₹56,000</div>
-        </div>
-        <div class="result-item">
-          <div class="result-item-label">Payback Period</div>
-          <div class="result-item-val amber" id="resPayback">6.2 years</div>
-        </div>
-        <div class="result-item">
-          <div class="result-item-label">CO₂ Avoided Per Year</div>
-          <div class="result-item-val teal" id="resCO2">14.2 tonnes</div>
-        </div>
-        <div class="result-item">
-          <div class="result-item-label">25-Year Net Benefit</div>
-          <div class="result-item-val green" id="res25">₹8.4 L</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWS -->
-<section id="news" style="background: var(--bg2);">
-  <div class="container">
-    <p class="section-tag">Latest News</p>
-    <h2 class="section-title">Energy Headlines</h2>
-    <p class="section-sub">Stay current with renewable energy breakthroughs, policy, and market moves.</p>
-
-    <div class="news-grid">
-      <div class="news-main">
-        <div class="news-img">
-          🌞
-          <span class="news-cat">Solar</span>
-        </div>
-        <div class="news-body">
-          <div class="news-date">May 12, 2026</div>
-          <div class="news-title">India Reaches 300 GW Renewable Milestone Ahead of 2030 Target</div>
-          <p class="news-excerpt">India's installed renewable energy capacity crossed the 300 gigawatt threshold this week, five years ahead of its ambitious national clean energy target, driven by record solar panel installations across Rajasthan and Gujarat.</p>
-        </div>
-      </div>
-
-      <div class="news-sidebar">
-        <div class="news-small">
-          <div class="news-small-date">May 11, 2026 · Wind</div>
-          <div class="news-small-title">Offshore wind auction breaks global price record at $28/MWh</div>
-        </div>
-        <div class="news-small">
-          <div class="news-small-date">May 10, 2026 · Storage</div>
-          <div class="news-small-title">New sodium-ion battery achieves 500 Wh/kg energy density</div>
-        </div>
-        <div class="news-small">
-          <div class="news-small-date">May 9, 2026 · Policy</div>
-          <div class="news-small-title">G20 nations pledge to triple renewable capacity by 2030</div>
-        </div>
-        <div class="news-small">
-          <div class="news-small-date">May 8, 2026 · Hydro</div>
-          <div class="news-small-title">Pumped hydro storage sees $200B investment wave in Asia</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">🌿 GreenGrid</div>
-  <p class="footer-tagline">Powering the renewable future, one watt at a time.</p>
-  <ul class="footer-links">
-    <li><a href="#">Dashboard</a></li>
-    <li><a href="#">API Access</a></li>
-    <li><a href="#">Data Sources</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><a href="#">Privacy Policy</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 GreenGrid Energy Portal. Data for illustration purposes.</p>
-</footer>
-
 <script>
-// Stats ticker
-const tickerData = [
-  { label: 'Global Renewable Share', val: '38.4%' },
-  { label: 'Solar Installed', val: '2.8 TW' },
-  { label: 'Wind Installed', val: '1.9 TW' },
-  { label: 'CO₂ Saved Today', val: '142M tonnes' },
-  { label: 'Active Projects', val: '48,200' },
-  { label: 'Grid Frequency', val: '50.02 Hz' },
-  { label: 'Battery Storage', val: '920 GWh' },
-  { label: 'Green Jobs', val: '14.3M' },
-  { label: 'Avg Solar Cost', val: '$0.031/kWh' },
-  { label: 'Countries 100% RE', val: '12' },
-];
+/* ── DATA ── */
+const SC={Mathematics:"#5b6ef5",Science:"#18c774",English:"#f4a72b",Hindi:"#e85ca0","Social Studies":"#12c0d4",Computer:"#7c5ce8","Physical Ed.":"#f97316",PE:"#f97316",Art:"#12c0d4"};
+const ATT=[{d:"2025-05-01",s:"P"},{d:"2025-05-02",s:"P"},{d:"2025-05-05",s:"A"},{d:"2025-05-06",s:"P"},{d:"2025-05-07",s:"P"},{d:"2025-05-08",s:"L"},{d:"2025-05-09",s:"P"},{d:"2025-05-12",s:"P"},{d:"2025-05-13",s:"P"},{d:"2025-05-14",s:"P"},{d:"2025-05-15",s:"A"},{d:"2025-05-16",s:"P"},{d:"2025-05-19",s:"P"},{d:"2025-05-20",s:"P"},{d:"2025-05-21",s:"P"},{d:"2025-05-22",s:"P"},{d:"2025-05-23",s:"P"}];
+const HW=[{id:1,subject:"Mathematics",title:"Quadratic Equations – Ex 4.3",due:"2025-05-07",status:"Submitted",teacher:"Mrs. Kapoor"},{id:2,subject:"Science",title:"Chapter 5 – Diagram & Notes",due:"2025-05-08",status:"Pending",teacher:"Mr. Verma"},{id:3,subject:"English",title:"Essay: My Future Goals",due:"2025-05-09",status:"Pending",teacher:"Ms. Priya"},{id:4,subject:"Hindi",title:"पाठ 7 – प्रश्न उत्तर",due:"2025-05-10",status:"Submitted",teacher:"Mr. Gupta"},{id:5,subject:"Social Studies",title:"Map Work – Chapter 3",due:"2025-05-12",status:"Pending",teacher:"Mrs. Singh"},{id:6,subject:"Computer",title:"Python Basics – Lab Sheet",due:"2025-05-06",status:"Submitted",teacher:"Mr. Iyer"}];
+const EXAMS=[{subject:"Mathematics",date:"2025-05-20",time:"9:00 AM",room:"Room 201"},{subject:"Science",date:"2025-05-21",time:"9:00 AM",room:"Room 203"},{subject:"English",date:"2025-05-22",time:"11:00 AM",room:"Room 205"},{subject:"Hindi",date:"2025-05-23",time:"9:00 AM",room:"Room 201"},{subject:"Social Studies",date:"2025-05-24",time:"11:00 AM",room:"Room 207"}];
+const RES=[{subject:"Mathematics",ut1:38,ut2:42,mid:85,total:165,max:200,grade:"A+"},{subject:"Science",ut1:35,ut2:40,mid:78,total:153,max:200,grade:"A"},{subject:"English",ut1:40,ut2:43,mid:88,total:171,max:200,grade:"A+"},{subject:"Hindi",ut1:36,ut2:38,mid:80,total:154,max:200,grade:"A"},{subject:"Social Studies",ut1:33,ut2:37,mid:75,total:145,max:200,grade:"B+"},{subject:"Computer",ut1:45,ut2:47,mid:92,total:184,max:200,grade:"A+"}];
+const FEES_D=[{term:"Term 1 – 2024",amount:8500,paid:true,date:"2024-04-10"},{term:"Term 2 – 2024",amount:8500,paid:true,date:"2024-10-08"},{term:"Term 1 – 2025",amount:9200,paid:true,date:"2025-04-05"},{term:"Term 2 – 2025",amount:9200,paid:false,date:null}];
+const NOTICES_D=[{title:"Annual Sports Day",body:"Scheduled 25th May 2025. All students must participate.",time:"2 hrs ago",icon:"🏆",color:"#f4a72b"},{title:"Holiday Notice",body:"School closed 19th May (Buddha Purnima). Resumes 20th May.",time:"1 day ago",icon:"🎉",color:"#18c774"},{title:"Parent-Teacher Meeting",body:"PTM on 28th May 2025, 9 AM – 1 PM.",time:"2 days ago",icon:"📢",color:"#5b6ef5"},{title:"Fee Reminder",body:"Term 2 fees due by 31st May. Pay online to avoid late charges.",time:"3 days ago",icon:"💰",color:"#f0504b"}];
+const TT={Mon:["Mathematics","Science","English","Lunch","Hindi","Computer","PE"],Tue:["Science","Mathematics","Social Studies","Lunch","English","Hindi","Art"],Wed:["English","Hindi","Mathematics","Lunch","Science","Social Studies","Computer"],Thu:["Hindi","English","Science","Lunch","Mathematics","PE","Social Studies"],Fri:["Computer","Mathematics","Hindi","Lunch","Science","English","Social Studies"]};
+const MATS=[{subject:"Mathematics",type:"PDF",title:"Chapter 4 – Quadratic Equations Notes",size:"2.4 MB"},{subject:"Science",type:"VIDEO",title:"Photosynthesis – Animated",size:"YouTube"},{subject:"English",type:"PDF",title:"Grammar Reference – Class 10",size:"1.8 MB"},{subject:"Computer",type:"PDF",title:"Python Basics – Lab Manual",size:"3.1 MB"},{subject:"Social Studies",type:"PDF",title:"India – Physical Geography Maps",size:"4.2 MB"},{subject:"Mathematics",type:"VIDEO",title:"Trigonometry Intro – Video Lecture",size:"YouTube"}];
+let MSGS=[{from:"Mrs. Kapoor",mine:false,msg:"Subu, your Chapter 4 performance was excellent! Keep it up 👍",time:"10:30 AM"},{from:"Me",mine:true,msg:"Thank you Ma'am! I'll work harder for the next unit test.",time:"10:45 AM"},{from:"Mr. Verma",mine:false,msg:"Please submit the diagram assignment by tomorrow.",time:"11:00 AM"},{from:"Me",mine:true,msg:"Sure sir, I'll submit it today.",time:"11:05 AM"}];
 
-const ticker = document.getElementById('ticker');
-const itemsHTML = tickerData.map(d =>
-  `<span class="stat-item"><span class="stat-label">${d.label}</span><span class="stat-sep">·</span><span class="stat-val">${d.val}</span></span>`
-).join('');
-ticker.innerHTML = itemsHTML + itemsHTML; // duplicate for seamless loop
+/* ── HELPERS ── */
+const sc=s=>SC[s]||"#5b6ef5";
+const ha=(h,a)=>h+Math.round(a*255).toString(16).padStart(2,"0");
+const fd=d=>new Date(d).toLocaleDateString("en-IN",{day:"numeric",month:"short"});
+const $=id=>document.getElementById(id);
 
-// Bar chart
-const barData = [
-  { day: 'Mon', val: 9.2, color: '#7DC84A' },
-  { day: 'Tue', val: 11.8, color: '#7DC84A' },
-  { day: 'Wed', val: 10.4, color: '#7DC84A' },
-  { day: 'Thu', val: 13.2, color: '#7DC84A' },
-  { day: 'Fri', val: 12.7, color: '#7DC84A' },
-  { day: 'Sat', val: 8.6, color: '#4FA830' },
-  { day: 'Sun', val: 8.4, color: '#4FA830' },
-];
-const maxBar = Math.max(...barData.map(d => d.val));
-const chart = document.getElementById('barChart');
-const labelsEl = document.getElementById('barLabels');
-
-barData.forEach(d => {
-  const h = Math.round((d.val / maxBar) * 100);
-  chart.innerHTML += `<div class="bar-wrap"><div class="bar" style="height:${h}px; background:${d.color}; min-height:8px;" title="${d.val} GWh"></div></div>`;
-  labelsEl.innerHTML += `<div style="flex:1; text-align:center; font-size:0.65rem; color:var(--text3)">${d.day}</div>`;
-});
-
-// Calculator
-function recalc() {
-  const size = parseFloat(document.getElementById('sizeRange').value);
-  const bill = parseFloat(document.getElementById('billRange').value);
-  const hours = parseFloat(document.getElementById('hoursRange').value);
-  const source = document.getElementById('calcSource').value;
-
-  const costPerKW = source === 'solar' ? 50000 : source === 'wind' ? 70000 : 80000;
-  const co2PerKWh = 0.71; // kg CO2 per kWh (India grid avg)
-  const tariff = bill / (300); // rough kWh rate
-
-  const annualGen = Math.round(size * hours * 365);
-  const annualSave = Math.round(annualGen * tariff);
-  const systemCost = size * costPerKW;
-  const payback = (systemCost / annualSave).toFixed(1);
-  const co2 = (annualGen * co2PerKWh / 1000).toFixed(1);
-  const net25 = Math.round(annualSave * 25 - systemCost);
-  const net25Str = net25 >= 100000
-    ? '₹' + (net25 / 100000).toFixed(1) + ' L'
-    : '₹' + net25.toLocaleString();
-
-  document.getElementById('resGen').textContent = annualGen.toLocaleString() + ' kWh';
-  document.getElementById('resSave').textContent = '₹' + annualSave.toLocaleString();
-  document.getElementById('resPayback').textContent = payback + ' years';
-  document.getElementById('resCO2').textContent = co2 + ' tonnes';
-  document.getElementById('res25').textContent = net25Str;
+/* ── QR ── */
+function buildQR(id,cols,seed){
+  const el=$(id);if(!el)return;
+  el.innerHTML="";el.style.gridTemplateColumns=`repeat(${cols},7px)`;
+  for(let i=0;i<cols*cols;i++){
+    const c=document.createElement("div");c.className="qr-cell";
+    c.style.background=(seed*i*31+seed^i*7)%11>4?"#1e1b4b":"transparent";
+    el.appendChild(c);
+  }
 }
 
-recalc();
-
-// Animate bars on scroll
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.style.opacity = 1;
+/* ── RENDERERS ── */
+function renderDashboard(){
+  let eh="";
+  EXAMS.slice(0,3).forEach((e,i)=>{
+    const c=sc(e.subject);
+    eh+=`<div class="ri"><div class="ri-ico" style="background:${ha(c,.13)};color:${c}">${e.subject.substring(0,3)}</div><div class="ri-main"><div class="ri-t">${e.subject}</div><div class="ri-s">${fd(e.date)} · ${e.time}</div></div><span class="rbadge" style="background:${ha(c,.14)};color:${c}">UT</span></div>`;
   });
-}, { threshold: 0.1 });
+  $("d-exams").innerHTML=eh;
+  let nh="";
+  NOTICES_D.slice(0,3).forEach(n=>{
+    nh+=`<div class="ri"><div style="width:34px;height:34px;border-radius:9px;background:${ha(n.color,.13)};display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">${n.icon}</div><div style="flex:1;min-width:0"><div class="ri-t">${n.title}</div><div class="ri-s" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${n.body.substring(0,42)}…</div></div></div>`;
+  });
+  $("d-notices").innerHTML=nh;
+  let hwh="";
+  HW.slice(0,3).forEach(h=>{
+    const p=h.status==="Pending";const c=p?"#f4a72b":"#18c774";
+    hwh+=`<div class="ri"><div class="ri-ico" style="background:${ha(sc(h.subject),.13)};color:${sc(h.subject)}">${h.subject.substring(0,3)}</div><div style="flex:1;min-width:0"><div class="ri-t">${h.title.substring(0,28)}…</div><div class="ri-s">${h.subject} · Due ${fd(h.due)}</div></div><span class="rbadge" style="background:${ha(c,.14)};color:${c}">${p?"⏱":"✓"}</span></div>`;
+  });
+  $("d-hw").innerHTML=hwh;
+}
 
-document.querySelectorAll('.card, .source-card, .metric-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transition = 'opacity 0.5s ease, transform 0.3s ease, border-color 0.2s';
-  observer.observe(el);
+function renderAttendance(){
+  let h="";
+  ATT.forEach(a=>{
+    const bg=a.s==="P"?"rgba(18,199,116,.14)":a.s==="A"?"rgba(240,80,75,.14)":"rgba(244,167,43,.14)";
+    const br=a.s==="P"?"rgba(18,199,116,.3)":a.s==="A"?"rgba(240,80,75,.3)":"rgba(244,167,43,.3)";
+    const cl=a.s==="P"?"#18c774":a.s==="A"?"#f0504b":"#f4a72b";
+    h+=`<div style="width:36px;height:40px;border-radius:9px;background:${bg};border:1px solid ${br};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><div style="font-size:10px;font-weight:700;color:${cl}">${a.s}</div><div style="font-size:8px;color:#4f5570">${new Date(a.d).getDate()}</div></div>`;
+  });
+  $("att-cal").innerHTML=h;
+}
+
+function renderHomework(filter){
+  document.querySelectorAll("#hw-tabs .tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.hw===filter));
+  const data=filter==="All"?HW:HW.filter(h=>h.status===filter);
+  let h="";
+  data.forEach(hw=>{
+    const p=hw.status==="Pending";const c=sc(hw.subject);
+    h+=`<div class="card-sm" style="border-left:3px solid ${c};margin-bottom:9px"><div style="display:flex;align-items:center;gap:9px"><div style="width:38px;height:38px;border-radius:10px;background:${ha(c,.13)};color:${c};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">${hw.subject.substring(0,3)}</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:#eef0f7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${hw.title}</div><div style="font-size:10px;color:#8c93b0;margin-top:1px">${hw.subject} · ${hw.teacher}</div></div></div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px"><span style="font-size:9px;color:#4f5570">Due: ${fd(hw.due)}</span><div style="display:flex;gap:6px;align-items:center"><span class="rbadge" style="background:${p?"rgba(244,167,43,.14)":"rgba(18,199,116,.14)"};color:${p?"#f4a72b":"#18c774"}">${p?"⏱ Pending":"✓ Done"}</span>${p?`<button class="btn-p" style="padding:5px 9px;font-size:10px">Upload</button>`:""}</div></div></div>`;
+  });
+  $("hw-list").innerHTML=h;
+}
+
+function renderExams(){
+  let h="";
+  EXAMS.forEach(e=>{
+    const c=sc(e.subject);const dt=new Date(e.date);
+    h+=`<div class="card-sm" style="margin-bottom:9px"><div style="display:flex;align-items:center;gap:10px"><div style="width:44px;height:44px;border-radius:12px;background:${ha(c,.13)};border:1px solid ${ha(c,.22)};display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:16px;font-weight:700;color:${c};line-height:1">${dt.getDate()}</div><div style="font-size:8px;color:#8c93b0">${dt.toLocaleString("en",{month:"short"})}</div></div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:#eef0f7">${e.subject}</div><div style="font-size:10px;color:#8c93b0;margin-top:2px">${e.time} · ${e.room}</div></div><span class="rbadge" style="background:${ha(c,.14)};color:${c}">UT</span></div></div>`;
+  });
+  $("exams-list").innerHTML=h;
+}
+
+function renderResults(){
+  let h="";
+  RES.forEach(r=>{
+    const pct=Math.round(r.total/r.max*100);const c=sc(r.subject);
+    h+=`<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px"><span style="color:#eef0f7;font-weight:500">${r.subject}</span><span style="display:flex;gap:7px;align-items:center;color:#8c93b0"><span>${r.total}/${r.max}</span><span class="rbadge" style="background:${ha(c,.14)};color:${c}">${r.grade}</span></span></div><div class="prog"><div class="prog-f" style="width:${pct}%;background:${c}"></div></div><div style="font-size:9px;color:#4f5570;margin-top:3px">UT1: ${r.ut1} · UT2: ${r.ut2} · Mid: ${r.mid}</div></div>`;
+  });
+  $("res-bars").innerHTML=h;
+}
+
+function renderFees(){
+  const struct=[["Tuition","₹6,000"],["Transport","₹1,500"],["Lab","₹800"],["Sports","₹500"],["Misc.","₹400"]];
+  let sh="";
+  struct.forEach(([k,v])=>{sh+=`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#8c93b0">${k}</span><span style="font-weight:600;color:#eef0f7">${v}</span></div>`;});
+  sh+=`<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:14px;font-weight:700;color:#5b6ef5"><span>Total / Term</span><span>₹9,200</span></div>`;
+  $("fee-struct").innerHTML=sh;
+  let fh="";
+  FEES_D.forEach(f=>{
+    fh+=`<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)"><div style="width:34px;height:34px;border-radius:9px;background:${f.paid?"rgba(18,199,116,.14)":"rgba(240,80,75,.14)"};display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${f.paid?"✅":"⏳"}</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#eef0f7">${f.term}</div><div style="font-size:10px;color:#8c93b0">${f.paid?"Paid "+f.date:"Payment Pending"}</div></div><div style="text-align:right"><div style="font-weight:700;font-size:12px;color:#eef0f7">₹${f.amount.toLocaleString()}</div>${f.paid?`<div style="font-size:9px;color:#5b6ef5;cursor:pointer;margin-top:2px">📥 Receipt</div>`:""}</div></div>`;
+  });
+  $("fee-hist").innerHTML=fh;
+}
+
+function renderTimetable(){
+  const periods=["Day","1st","2nd","3rd","🍱","4th","5th","6th"];
+  let h=`<thead><tr>${periods.map(p=>`<th>${p}</th>`).join("")}</tr></thead><tbody>`;
+  Object.entries(TT).forEach(([day,subs])=>{
+    h+=`<tr><td>${day}</td>${subs.map(s=>{const isL=s==="Lunch";const c=isL?"var(--dim)":sc(s);return`<td><div class="tt-pill" style="background:${isL?"rgba(255,255,255,.04)":ha(sc(s),.13)};color:${c};border:1px solid ${isL?"transparent":ha(sc(s),.2)}">${isL?"🍱":s.substring(0,3)}</div></td>`;}).join("")}</tr>`;
+  });
+  h+="</tbody>";
+  $("tt-table").innerHTML=h;
+  let leg="";
+  Object.entries(SC).slice(0,6).forEach(([s,c])=>{
+    leg+=`<span style="padding:3px 8px;border-radius:6px;font-size:9px;font-weight:500;background:${ha(c,.13)};color:${c};border:1px solid ${ha(c,.2)}">${s}</span>`;
+  });
+  $("tt-legend").innerHTML=leg;
+}
+
+function renderMaterials(){
+  let h="";
+  MATS.forEach(m=>{
+    const p=m.type==="PDF";
+    h+=`<div class="mat-row"><div style="width:40px;height:40px;border-radius:11px;background:${p?"rgba(240,80,75,.14)":"rgba(18,199,116,.12)"};display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${p?"📄":"▶️"}</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:#eef0f7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.title}</div><div style="font-size:10px;color:#8c93b0;margin-top:2px">${m.subject} · ${m.size}</div></div><button class="btn-s" style="padding:6px 9px;font-size:10px;flex-shrink:0">${p?"📥":"🔗"}</button></div>`;
+  });
+  $("mat-list").innerHTML=h;
+}
+
+function renderTeachers(){
+  const teachers=[{name:"Mrs. Kapoor",sub:"Maths",online:true,init:"K"},{name:"Mr. Verma",sub:"Science",online:false,init:"V"},{name:"Ms. Priya",sub:"English",online:true,init:"P"},{name:"Mr. Gupta",sub:"Hindi",online:false,init:"G"}];
+  let h="";
+  teachers.forEach((t,i)=>{
+    h+=`<div class="t-chip${i===0?" active":""}" data-t="${t.name}"><div class="t-av">${t.init}<div class="t-pip" style="background:${t.online?"#18c774":"#4f5570"}"></div></div><div class="t-name">${t.name.split(" ")[1]||t.name}</div><div class="t-sub">${t.sub}</div></div>`;
+  });
+  $("teacher-list").innerHTML=h;
+}
+
+function renderMessages(){
+  let h="";
+  MSGS.forEach(m=>{
+    h+=`<div style="display:flex;justify-content:${m.mine?"flex-end":"flex-start"}"><div class="msg ${m.mine?"msg-me":"msg-them"}">${!m.mine?`<div class="msg-sender">${m.from}</div>`:""}<div>${m.msg}</div><div class="msg-time">${m.time}</div></div></div>`;
+  });
+  const el=$("chat-msgs");
+  el.innerHTML=h;
+  el.scrollTop=el.scrollHeight;
+}
+
+function renderNotices(){
+  let h="";
+  NOTICES_D.forEach(n=>{
+    h+=`<div class="notice-item" style="background:${ha(n.color,.05)};border-color:${ha(n.color,.18)};border-left-color:${n.color}"><div style="width:40px;height:40px;border-radius:11px;background:${ha(n.color,.14)};display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${n.icon}</div><div><div style="font-weight:700;font-size:13px;color:#eef0f7;margin-bottom:3px">${n.title}</div><div style="font-size:11px;color:#8c93b0;line-height:1.55">${n.body}</div><div style="font-size:10px;color:#4f5570;margin-top:6px">${n.time}</div></div></div>`;
+  });
+  $("notices-list").innerHTML=h;
+}
+
+function renderAll(){
+  renderDashboard();renderAttendance();renderHomework("All");
+  renderExams();renderResults();renderFees();renderTimetable();
+  renderMaterials();renderTeachers();renderMessages();renderNotices();
+  buildQR("big-qr",9,892);
+}
+
+/* ── NAVIGATION ── */
+const PM={dashboard:"pg-dashboard",attendance:"pg-attendance",homework:"pg-homework",exams:"pg-exams",results:"pg-results",fees:"pg-fees",timetable:"pg-timetable",materials:"pg-materials",chat:"pg-chat",notices:"pg-notices",profile:"pg-profile"};
+
+function navigate(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const pg=$(PM[id]);if(pg){pg.classList.add("active");void pg.offsetWidth;}
+  document.querySelectorAll(".bni[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+  $("scroll-area").scrollTop=0;
+  closeMore();
+  if(id==="notices"){$("notif-pip").style.display="none";}
+}
+
+/* ── MORE ── */
+function openMore(){$("more-overlay").style.display="block";$("more-drawer").classList.add("open");}
+function closeMore(){$("more-overlay").style.display="none";$("more-drawer").classList.remove("open");}
+$("more-btn").addEventListener("click",openMore);
+$("more-overlay").addEventListener("click",closeMore);
+$("more-drawer").addEventListener("click",e=>{const item=e.target.closest(".more-item[data-page]");if(item)navigate(item.dataset.page);});
+
+/* ── BOTTOM NAV ── */
+$("bottom-nav").addEventListener("click",e=>{const btn=e.target.closest(".bni[data-page]");if(btn)navigate(btn.dataset.page);});
+
+/* ── PROFILE TABS ── */
+document.addEventListener("click",e=>{
+  if(e.target.dataset.ptab){
+    const t=e.target.dataset.ptab;
+    ["pt-details","pt-parent","pt-idcard"].forEach(id=>{$(id).classList.toggle("hidden",id!==t);});
+    document.querySelectorAll(".tab-btn[data-ptab]").forEach(b=>b.classList.toggle("active",b.dataset.ptab===t));
+  }
+  if(e.target.dataset.hw)renderHomework(e.target.dataset.hw);
+  if(e.target.dataset.t){
+    document.querySelectorAll(".t-chip").forEach(c=>c.classList.toggle("active",c.dataset.t===e.target.dataset.t||c.closest("[data-t]")?.dataset.t===e.target.closest("[data-t]")?.dataset.t));
+  }
+});
+
+/* ── NOTIFICATIONS ── */
+$("notif-btn").addEventListener("click",()=>{navigate("notices");document.querySelectorAll(".bni[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page==="notices"));});
+
+/* ── CHAT ── */
+$("chat-send").addEventListener("click",sendMsg);
+$("chat-inp").addEventListener("keydown",e=>e.key==="Enter"&&sendMsg());
+function sendMsg(){
+  const inp=$("chat-inp"),msg=inp.value.trim();
+  if(!msg)return;
+  MSGS.push({from:"Me",mine:true,msg,time:new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})});
+  inp.value="";renderMessages();
+}
+
+/* ── LOGIN ── */
+$("l-btn").addEventListener("click",doLogin);
+$("l-pw").addEventListener("keydown",e=>e.key==="Enter"&&doLogin());
+function doLogin(){
+  const id=$("l-id").value.trim(),pw=$("l-pw").value;
+  const err=$("l-err");
+  if(!id||!pw){err.textContent="Please fill all fields.";return;}
+  if(pw.length<4){err.textContent="Invalid credentials.";return;}
+  const btn=$("l-btn");btn.textContent="Signing in…";btn.disabled=true;
+  setTimeout(()=>{
+    $("login-screen").style.display="none";
+    const app=$("app-shell");app.style.display="flex";
+    renderAll();
+  },900);
+}
+
+/* ── SIGN OUT ── */
+$("signout-btn").addEventListener("click",()=>{
+  $("app-shell").style.display="none";
+  $("login-screen").style.display="flex";
+  $("l-id").value="";$("l-pw").value="";$("l-err").textContent="";
+  $("l-btn").textContent="Sign In →";$("l-btn").disabled=false;
+  navigate("dashboard");
 });
 </script>
 </body>
 </html>
+
